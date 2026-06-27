@@ -235,15 +235,23 @@ Nhóm xây dựng ba Prompt Template tương ứng với ba kỹ thuật Prompt 
 
 #### A. Zero-Shot Prompt Template
 ```text
-You are an expert BDD engineer. Given a Connextra User Story, automatically generate a structured Gherkin Scenario and its corresponding Python Step Definitions (using the behave framework).
+You are an expert BDD engineer. Given a Connextra User Story and its Requirement Description, you must automatically generate a structured Gherkin Scenario and its corresponding Python Step Definitions (using the behave framework).
+
+Use step-by-step reasoning internally before generating the final answer. Do not reveal your reasoning process.
+
+Use the Requirement Description to identify:
+
+* Preconditions (Given)
+* User actions (When)
+* Expected outcomes (Then)
+
+Output only the final Gherkin Scenario and Python Step Definitions.
 
 User Story:
-{USER_STORY}
+{user_story}
 
-Requirements:
-1. Ensure the Gherkin Scenario follows the standard Given-When-Then syntax.
-2. Ensure the Python Step Definitions are syntactically valid and directly implement the steps in the Gherkin Scenario.
-3. Output the results strictly in the format shown below, using 'Gherkin:' and 'Python:' delimiters. Do not include any other conversational filler.
+Requirement Description:
+{requirements}
 
 Output Format:
 
@@ -252,6 +260,12 @@ Gherkin:
 
 Python:
 [Python Step Definitions]
+
+Rules:
+
+* Do not use markdown code fences.
+* Do not include explanations, notes, reasoning, or comments.
+* Do not include any text before "Gherkin:" or after the Python output.
 ```
 
 #### B. Few-Shot Prompt Template
@@ -260,77 +274,81 @@ You are an expert BDD engineer. Given a Connextra User Story, automatically gene
 
 Here are two representative examples:
 
-### Example 1
+Example 1
+
 User Story:
 As a registered user, I want to log in with my credentials, so that I can access my dashboard.
 
 Gherkin:
 Feature: User Login
-  Scenario: Successful login with valid credentials
-    Given the user is on the login page
-    When the user enters a valid username "john_doe" and password "secure123"
-    And clicks the login button
-    Then they should be redirected to the dashboard
+
+Scenario: Successful login with valid credentials
+Given the user is on the login page
+When the user enters a valid username "john_doe" and password "secure123"
+And clicks the login button
+Then they should be redirected to the dashboard
 
 Python:
 from behave import given, when, then
 
 @given('the user is on the login page')
 def step_impl(context):
-    context.page = "login"
+    pass
 
-@when('the user enters a valid username "{username}" and password "{password}"')
+@when('the user enters a valid username "{{username}}" and password "{{password}}"')
 def step_impl(context, username, password):
-    context.username = username
-    context.password = password
+    pass
 
 @when('clicks the login button')
 def step_impl(context):
-    context.logged_in = True
+    pass
 
 @then('they should be redirected to the dashboard')
 def step_impl(context):
-    assert context.logged_in is True
-    context.page = "dashboard"
+    pass
 
 
-### Example 2
+Example 2
+
 User Story:
 As a shopper, I want to add an item to my shopping cart, so that I can purchase it later.
 
 Gherkin:
 Feature: Shopping Cart
-  Scenario: Add product to cart
-    Given the user has an empty shopping cart
-    When the user views the product page for "Wireless Mouse"
-    And clicks "Add to Cart"
-    Then the shopping cart should contain 1 item of "Wireless Mouse"
+
+Scenario: Add product to cart
+Given the user has an empty shopping cart
+When the user views the product page for "Wireless Mouse"
+And clicks "Add to Cart"
+Then the shopping cart should contain 1 item of "Wireless Mouse"
 
 Python:
 from behave import given, when, then
 
 @given('the user has an empty shopping cart')
 def step_impl(context):
-    context.cart = []
+    pass
 
-@when('the user views the product page for "{product_name}"')
+@when('the user views the product page for "{{product_name}}"')
 def step_impl(context, product_name):
-    context.current_product = product_name
+    pass
 
 @when('clicks "Add to Cart"')
 def step_impl(context):
-    context.cart.append(context.current_product)
+    pass
 
-@then('the shopping cart should contain {count:d} item of "{product_name}"')
+@then('the shopping cart should contain {{count:d}} item of "{{product_name}}"')
 def step_impl(context, count, product_name):
-    assert len(context.cart) == count
-    assert product_name in context.cart
+    pass
 
 
-Now, generate the BDD artifacts for the following user story. Follow the same output format.
+Now, generate the BDD artifacts for the following user story.
 
 User Story:
-{USER_STORY}
+{user_story}
+
+Requirement Description:
+{requirements}
 
 Output Format:
 
@@ -339,15 +357,35 @@ Gherkin:
 
 Python:
 [Python Step Definitions]
+
+Rules:
+- Do not use markdown code fences.
+- Do not include explanations, notes, or comments.
+- Do not include any text before "Gherkin:" or after the Python output.
+
 ```
 
 #### C. Chain-of-Thought Prompt Template
 ```text
-You are an expert BDD engineer. Given a Connextra User Story, you must automatically generate a structured Gherkin Scenario and its corresponding Python Step Definitions (using the behave framework).
+You are an expert BDD engineer. Given a Connextra User Story and its Requirement Description, you must automatically generate a structured Gherkin Scenario and its corresponding Python Step Definitions (using the behave framework).
 
-Use step-by-step reasoning internally before generating the final answer. Do not reveal your reasoning process. Output only the final Gherkin Scenario and Python Step Definitions.
+Use step-by-step reasoning internally before generating the final answer. Do not reveal your reasoning process.
 
-Structure your response strictly as follows, using 'Gherkin:' and 'Python:' delimiters:
+Use the Requirement Description to identify:
+
+* Preconditions (Given)
+* User actions (When)
+* Expected outcomes (Then)
+
+Output only the final Gherkin Scenario and Python Step Definitions.
+
+User Story:
+{USER_STORY}
+
+Requirement Description:
+{REQUIREMENTS}
+
+Output Format:
 
 Gherkin:
 [Gherkin Scenario]
@@ -355,8 +393,13 @@ Gherkin:
 Python:
 [Python Step Definitions]
 
-User Story:
-{USER_STORY}
+Rules:
+
+* Do not use markdown code fences.
+* Do not include explanations, notes, reasoning, or comments.
+* Do not include any text before "Gherkin:" or after the Python output.
+
+
 ```
 
 ---
