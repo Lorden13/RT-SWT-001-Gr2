@@ -1,0 +1,18 @@
+# Gap Statement — Automated BDD/Gherkin Test Case Generation using Large Language Models
+**Evidence table:** N = 16 papers
+
+## Các khoảng trống phát hiện
+
+### GAP-T (Technology): Thiếu nghiên cứu ứng dụng mô hình ngôn ngữ lớn nguồn mở quy mô nhỏ được tối ưu hóa cho kiểm thử BDD
+**Bằng chứng:** Theo Evidence Table, phần lớn các nghiên cứu đạt kết quả cao (như Paper 1, 3, 4, 6, 9, 10, 11, 13, 14, 15) đều phụ thuộc hoàn toàn vào các mô hình thương mại đóng đắt đỏ như **GPT-4, GPT-4o, hoặc Claude 3.5 Sonnet** để đạt được tỷ lệ chạy thành công > 80%. Chỉ có duy nhất Paper 12 (Selfbehave) thực hiện tinh chỉnh (fine-tuning) một mô hình nguồn mở cỡ nhỏ (LLaMA-3-8B), nhưng đó là trên tập dữ liệu Gherkin tự sinh (synthetic) chứ chưa chứng minh được hiệu quả trên các user stories thực tế của doanh nghiệp. Các nghiên cứu sử dụng mô hình nguồn mở chưa tinh chỉnh như LLaMA-3-8B (Paper 5, 16) hay LLaMA-3-70B (Paper 2, 7) chỉ đạt tỷ lệ biên dịch/chạy thành công rất thấp (khoảng 61% - 78%). Do đó, có một khoảng trống lớn về việc xây dựng quy trình fine-tuning mô hình nguồn mở quy mô nhỏ (8B - 14B parameters) bằng dữ liệu BDD thực tế để đạt hiệu năng tương đương GPT-4o nhưng đảm bảo tính bảo mật và tiết kiệm chi phí cho doanh nghiệp.
+
+### GAP-M (Metric): Thiếu sự đánh giá đồng bộ giữa tính đúng đắn cú pháp (Gherkin syntax) và khả năng thực thi thực tế (Execution pass rate) của các mã kiểm thử (step definitions) sinh ra
+**Bằng chứng:** Các nghiên cứu hiện tại bị chia rẽ sâu sắc về mặt metric đo lường. Một nhóm nghiên cứu (Paper 3, 8, 11, 12) chỉ tập trung đo lường chất lượng đặc tả ở mức văn bản hoặc cú pháp (sử dụng BLEU, Cosine Similarity, hoặc cú pháp Gherkin check), đạt tỷ lệ đúng cú pháp rất cao (> 98%). Ngược lại, nhóm nghiên cứu thực hành (Paper 1, 5, 10, 13, 14, 16) lại chỉ tập trung đo lường khả năng chạy được của script kiểm thử (Selenium, Appium, Playwright script) mà bỏ qua việc đánh giá xem script đó có thực sự khớp ngữ nghĩa với yêu cầu ban đầu trong User Story hay không. Chưa có nghiên cứu nào thiết lập một bộ metric kép đồng bộ nhằm đánh giá cả tính đúng đắn ngữ nghĩa (Semantic Alignment) và tính thực thi kỹ thuật (Compilation/Execution rate) của quy trình sinh kiểm thử tự động từ BDD.
+
+### GAP-D (Dataset): Sự khan hiếm của các bộ dữ liệu chuẩn (Benchmark datasets) đa miền (multi-domain) chứa cả User Story, kịch bản Gherkin tương ứng, và mã nguồn kiểm thử thực tế
+**Bằng chứng:** Ngoại trừ Paper 12 tự tạo ra bộ dataset tổng hợp gồm 5,000 kịch bản Gherkin nhưng thiếu mã nguồn kiểm thử thực tế để chạy, hầu hết các nghiên cứu còn lại đều sử dụng các bộ dữ liệu nhỏ lẻ, đóng, hoặc có tính chất nội bộ (như Paper 1 chỉ dùng 15 web app PoC, Paper 4 dùng 35 user stories ngân hàng đóng, Paper 6 dùng 18 tài liệu logistics nội bộ, Paper 11 dùng 10 user stories fintech). Điều này dẫn đến sự thiếu hụt nghiêm trọng một bộ benchmark dataset mã nguồn mở chất lượng cao, đa miền, tích hợp đầy đủ từ yêu cầu (User Story) -> đặc tả hành vi (Gherkin feature) -> mã thực thi kiểm thử (Step definitions) để cộng đồng khoa học có thể so sánh chéo hiệu năng của các LLM khác nhau một cách khách quan.
+
+## Phát biểu GAP tổng hợp
+
+> [!IMPORTANT]
+> **GAP Tổng Hợp:** Các nghiên cứu hiện nay về sinh kiểm thử tự động từ đặc tả BDD/Gherkin bị phụ thuộc nặng nề vào các mô hình thương mại đóng (GPT-4, Claude 3.5) để đạt tỷ lệ thực thi tốt, đồng thời thiếu hụt một quy trình tối ưu hóa các mô hình ngôn ngữ lớn nguồn mở quy mô nhỏ bằng phương pháp tinh chỉnh (fine-tuning) trên dữ liệu thực tế nhằm bảo mật thông tin yêu cầu của doanh nghiệp. Bên cạnh đó, việc đánh giá chất lượng kiểm thử tự động sinh ra vẫn chưa có sự đồng bộ giữa tính đúng cú pháp đặc tả (Gherkin) và tính thực thi kỹ thuật của mã kiểm thử sinh ra.

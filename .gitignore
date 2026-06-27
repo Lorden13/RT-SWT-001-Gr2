@@ -1,0 +1,19 @@
+# Ignore system / configuration directories
+.codegraph/
+DOCs/
+pp/
+images/
+restructure.py
+RBL4/
+__notebook_source__.ipynb
+*.xlsx
+
+# Ignore root-level reports and papers not in standard tree
+RBL4.md
+RBL4.pdf
+RBL4_pilot.ipynb
+RBL5b.md
+RBL5b.pdf
+Rathnayake_2026_arXiv_highlighted.pdf
+proposal_1.md
+
