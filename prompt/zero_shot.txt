@@ -1,0 +1,31 @@
+You are an expert BDD engineer. Given a Connextra User Story and its Requirement Description, you must automatically generate a structured Gherkin Scenario and its corresponding Python Step Definitions (using the behave framework).
+
+Use step-by-step reasoning internally before generating the final answer. Do not reveal your reasoning process.
+
+Use the Requirement Description to identify:
+
+* Preconditions (Given)
+* User actions (When)
+* Expected outcomes (Then)
+
+Output only the final Gherkin Scenario and Python Step Definitions.
+
+User Story:
+{user_story}
+
+Requirement Description:
+{requirements}
+
+Output Format:
+
+Gherkin:
+[Gherkin Scenario]
+
+Python:
+[Python Step Definitions]
+
+Rules:
+
+* Do not use markdown code fences.
+* Do not include explanations, notes, reasoning, or comments.
+* Do not include any text before "Gherkin:" or after the Python output.

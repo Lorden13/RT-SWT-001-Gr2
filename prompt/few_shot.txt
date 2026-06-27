@@ -1,0 +1,92 @@
+You are an expert BDD engineer. Given a Connextra User Story, automatically generate a structured Gherkin Scenario and its corresponding Python Step Definitions (using the behave framework).
+
+Here are two representative examples:
+
+Example 1
+
+User Story:
+As a registered user, I want to log in with my credentials, so that I can access my dashboard.
+
+Gherkin:
+Feature: User Login
+
+Scenario: Successful login with valid credentials
+Given the user is on the login page
+When the user enters a valid username "john_doe" and password "secure123"
+And clicks the login button
+Then they should be redirected to the dashboard
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the login page')
+def step_impl(context):
+    pass
+
+@when('the user enters a valid username "{{username}}" and password "{{password}}"')
+def step_impl(context, username, password):
+    pass
+
+@when('clicks the login button')
+def step_impl(context):
+    pass
+
+@then('they should be redirected to the dashboard')
+def step_impl(context):
+    pass
+
+
+Example 2
+
+User Story:
+As a shopper, I want to add an item to my shopping cart, so that I can purchase it later.
+
+Gherkin:
+Feature: Shopping Cart
+
+Scenario: Add product to cart
+Given the user has an empty shopping cart
+When the user views the product page for "Wireless Mouse"
+And clicks "Add to Cart"
+Then the shopping cart should contain 1 item of "Wireless Mouse"
+
+Python:
+from behave import given, when, then
+
+@given('the user has an empty shopping cart')
+def step_impl(context):
+    pass
+
+@when('the user views the product page for "{{product_name}}"')
+def step_impl(context, product_name):
+    pass
+
+@when('clicks "Add to Cart"')
+def step_impl(context):
+    pass
+
+@then('the shopping cart should contain {{count:d}} item of "{{product_name}}"')
+def step_impl(context, count, product_name):
+    pass
+
+
+Now, generate the BDD artifacts for the following user story.
+
+User Story:
+{user_story}
+
+Requirement Description:
+{requirements}
+
+Output Format:
+
+Gherkin:
+[Gherkin Scenario]
+
+Python:
+[Python Step Definitions]
+
+Rules:
+- Do not use markdown code fences.
+- Do not include explanations, notes, or comments.
+- Do not include any text before "Gherkin:" or after the Python output.
