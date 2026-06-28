@@ -1,77 +1,49 @@
-# Phase 0 & Phase 1.1: PICO Analysis, Keywords, and Search Strings
-
-## 1. Giai đoạn 0 — Đọc hiểu RQ ban đầu
-
-### Bước 0.1 — Phân tích PICO
-
-Dựa trên câu hỏi nghiên cứu (Research Question - RQ) ban đầu của nhóm:
-*Đối với user stories viết theo format Connextra (P), LLM tự động sinh Gherkin scenarios + step definitions (I) so với BDD viết thủ công (C), có đạt semantic similarity >= 0.85 và executable không lỗi cú pháp không (O)?*
-
-Dưới đây là bảng phân tích cấu trúc PICO:
-
-| Thành phần    | Điền của nhóm                | Đáp án đúng                                                      |
-| :---          | :---                         | :---                                                             |
-| P             | User stories Connextra format| User stories Connextra format ("As a ... I want... So that...")   |
-| I             | GPT-4o zero-shot sinh Gherkin| GPT-4o zero-shot sinh Gherkin scenarios + step definitions       |
-| C             | BDD scenarios viết tay       | BDD scenarios viết tay bởi expert                                |
-| O - Metric 1  | Semantic similarity >= 0.85  | Semantic similarity >= 0.85                                      |
-| O - Metric 2  | Executable syntax rate       | Executable syntax rate (không lỗi parse)                         |
-
-#### 2 điểm chưa rõ (Lý do cần thực hiện quy trình SLR với PRISMA):
-1. **LLM**: Mô hình LLM cụ thể nào sẽ được sử dụng và đánh giá? (Ví dụ: GPT-4o, Gemini, Claude, hay các mô hình nguồn mở khác?).
-2. **Ngưỡng >= 0.85**: Ngưỡng tương đồng ngữ nghĩa (Semantic similarity) này được tham chiếu và lấy từ công trình nghiên cứu/bài báo khoa học cụ thể nào?
+# Search Log — LLM for Acceptance Test Automation (BDD/Gherkin)
+**Thành viên:** Trịnh Phú Quốc
+**Ngày thực hiện:** 2026-05-28
 
 ---
 
-### Bước 0.2 — Chọn Keyword Seed
+## Chuỗi tìm kiếm (Query Strings)
 
-Rút ra từ khung PICO, nhóm đã xác định 6 từ khóa cốt lõi (keywords) sau:
-1. `user story` (Từ P)
-2. `Gherkin generation` (Từ I)
-3. `step definitions` (Từ I)
-4. `LLM` (Từ I)
-5. `semantic similarity` (Từ O)
-6. `acceptance test` (Từ O)
-
-Bảng trace từ khóa về các thành phần P/I/C/O:
-
-| Từ khóa            | Thuộc thành phần PICO | Vai trò trong tìm kiếm                                      |
-| :---               | :---:                 | :---                                                        |
-| user story         | P                     | Xác định định dạng yêu cầu đầu vào                          |
-| requirements       | P                     | Định nghĩa tài liệu yêu cầu hệ thống nói chung              |
-| Gherkin generation | I                     | Hoạt động sinh kịch bản kiểm thử tự động                    |
-| step definitions   | I                     | Kết quả đầu ra mã nguồn kiểm thử BDD                        |
-| LLM                | I                     | Công nghệ/công cụ thực hiện sinh tự động                    |
-| semantic similarity| O                     | Chỉ số đánh giá độ tương đồng ngữ nghĩa                     |
-| acceptance test    | O                     | Lĩnh vực kiểm thử nghiệm thu mục tiêu                       |
-
----
-
-## 2. Giai đoạn 1 — SLR với PRISMA
-
-### Bước 1.1 — Xây dựng Search Strings
-
-Để tìm kiếm các bài báo khoa học liên quan trên các cơ sở dữ liệu học thuật, nhóm đã xây dựng 2 chuỗi tìm kiếm (Search Strings) chuẩn cú pháp Boolean (AND, OR, dấu ngoặc và cụm từ trong dấu nháy kép):
-
-#### String A
+### String A
+**Query nguyên văn:**
 ```text
 ("Gherkin" OR "BDD" OR "behavior-driven development") AND ("large language model" OR LLM OR GPT OR ChatGPT) AND (generate OR generation OR automated) AND ("user story" OR requirements)
 ```
+**Database:** Google Scholar
+**Bộ lọc:** Year 1999–2026, English only, Conference + Journal + Preprint
+**Ngày search:** 2026-05-28 09:30
+**Số kết quả:** 227 papers
 
-#### String B
+---
+
+### String B
+**Query nguyên văn:**
 ```text
 ("large language model" OR LLM OR GPT OR ChatGPT) AND ("step definition" OR "acceptance test" OR "test case generation") AND ("BDD" OR Gherkin)
 ```
+**Database:** Google Scholar
+**Bộ lọc:** Year 1999–2026, English only, Conference + Journal + Preprint
+**Ngày search:** 2026-05-28 10:15
+**Số kết quả:** 177 papers
 
-#### Đánh giá tính hợp lệ của hai chuỗi tìm kiếm:
-* **String A**: Tập trung vào quy trình sinh tự động Gherkin từ User Story/Yêu cầu bằng cách sử dụng các mô hình LLM. Chuỗi này phủ đầy đủ 4 nhánh PICO (BDD/Gherkin AND LLMs AND Automation AND User Stories/Requirements).
-* **String B**: Tập trung vào việc sinh mã kiểm thử kỹ thuật (step definitions/acceptance tests) cho BDD bằng các mô hình LLM. Chuỗi này giúp bổ sung các bài báo chuyên sâu về mặt lập trình và thực thi kiểm thử.
-* **Cú pháp Boolean**: Cả hai chuỗi đều sử dụng đúng cú pháp logic chuẩn, phân nhóm rõ ràng bằng dấu ngoặc đơn và sử dụng dấu nháy kép cho các cụm từ ghép (`"behavior-driven development"`, `"large language model"`, `"user story"`, `"step definition"`, `"acceptance test"`, `"test case generation"`) để đảm bảo không bị tách từ đơn lẻ khi tìm kiếm.
+---
 
-#### Các cơ sở dữ liệu học thuật áp dụng:
-Nhóm sử dụng hai chuỗi tìm kiếm này trên các thư viện học thuật lớn bao gồm:
-1. Google Scholar (`scholar.google.com`)
-2. IEEE Xplore (`ieeexplore.ieee.org`)
-3. ACM Digital Library (`dl.acm.org`)
-4. Semantic Scholar (`semanticscholar.org`)
-5. OpenAlex (`openalex.org`)
+## Tổng hợp trước dedup
+
+| Database | String | Kết quả |
+|---------|--------|---------|
+| Google Scholar | String A | 227 |
+| Google Scholar | String B | 177 |
+| **Tổng trước dedup** | | **404** |
+| **Sau dedup** | | **301** |
+| Số bị loại (trùng lặp) | | 103 |
+
+---
+
+## Ghi chú
+
+- Thực hiện dedup bằng: Tính năng lọc trùng tự động của Chrome Extension SLR Assistant kết hợp rà soát thủ công trên Microsoft Excel.
+- Paper trùng nhau nhiều nhất: Các bài báo nghiên cứu về sinh Gherkin kịch bản từ User Story sử dụng mô hình GPT xuất hiện đồng thời trong cả hai kết quả tìm kiếm của String A và String B.
+- Không có bất kỳ bất thường nào khác được ghi nhận trong quá trình tìm kiếm.
