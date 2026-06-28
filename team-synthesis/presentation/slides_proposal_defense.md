@@ -116,8 +116,8 @@
 ## Slide 9: Timeline & Role Delegation (30 giây)
 *   **Nội dung Slide:**
     *   **Phân công vai trò:**
-        *   **PL (Ngô Đình Khoa):** Project Lead - Điều phối tiến độ, rà soát tính nhất quán tài liệu.
-        *   **DG (Trần Đăng Khoa):** Data & Ground Truth - Rút 100 mẫu, verify Ground Truth và Cleaned Outputs.
+        *   **PL (Trần Đăng Khoa):** Project Lead - Điều phối tiến độ, rà soát tính nhất quán tài liệu.
+        *   **DG (Ngô Đình Khoa):** Data & Ground Truth - Rút 100 mẫu, verify Ground Truth và Cleaned Outputs.
         *   **LR (Trịnh Phú Quốc):** LLM Runner - Cài đặt Qwen local, thiết kế prompt và chạy mô hình.
         *   **MS (Đặng Đỗ Cao Sang):** Metrics & Stats - Lập trình parser tĩnh kép, tính SBERT và chạy statistical test.
         *   **RW (Đào Lý Phi Hùng):** Report Writer - Viết Threats, vẽ chart, slide bảo vệ & nghiệm thu.
