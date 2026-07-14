@@ -1,0 +1,30 @@
+
+==============================
+Full Experiment API Log
+==============================
+
+Date: 2026-07-14 15:57:19.484092
+
+Model: GPT-4o
+Provider: OpenAI API
+Temperature: 0
+
+Prompt Types
+------------
+Zero-shot
+Few-shot
+Chain-of-Thought
+
+Dataset
+-------
+Full Dataset (N = 100)
+
+Samples
+-------
+Zero-shot : 100
+Few-shot  : 100
+CoT       : 100
+
+Invalid Outputs : 0
+
+Status : SUCCESS

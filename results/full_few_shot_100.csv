@@ -1,0 +1,3123 @@
+ID,User Story,Output
+362,"Rename ""Simple"" Page to ""Smart"" Page","Gherkin:
+Feature: Rename Page
+
+Scenario: Rename ""Simple"" Page to ""Smart"" Page
+Given the user is on the V2 Index List
+When the user navigates to ""Add a Page""
+Then the page title should be updated to ""Smart Page""
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the V2 Index List')
+def step_impl(context):
+    pass
+
+@when('the user navigates to ""Add a Page""')
+def step_impl(context):
+    pass
+
+@then('the page title should be updated to ""Smart Page""')
+def step_impl(context):
+    pass"
+74,"As a User, I want MCP Setting for Kanban Sort Options Updates","Gherkin:
+Feature: MCP Setting for Kanban Sort Options
+
+Scenario: Add Kanban Sort Options setting under Development Use Only
+Given the user is on the settings page
+When the user navigates to the Development Use Only section
+And adds the Kanban Sort Options setting under Databases - Single User Record Edit Restriction
+Then the setting should be visible in the Development Use Only section
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the settings page')
+def step_impl(context):
+    pass
+
+@when('the user navigates to the Development Use Only section')
+def step_impl(context):
+    pass
+
+@when('adds the Kanban Sort Options setting under Databases - Single User Record Edit Restriction')
+def step_impl(context):
+    pass
+
+@then('the setting should be visible in the Development Use Only section')
+def step_impl(context):
+    pass"
+375,MCP setting for new Grouped Approval types,"Gherkin:
+Feature: MCP Setting for Grouped Approval Types
+
+Scenario: Verify new MCP setting for Grouped Approvals
+Given the user is on the MCP settings page
+When the user navigates to the ""Development Use Only"" section
+Then the setting ""Approvals - Approvals List (V3) - Grouped Approvals - Record File & Resource Publish (development use only)"" should be listed
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the MCP settings page')
+def step_impl(context):
+    pass
+
+@when('the user navigates to the ""Development Use Only"" section')
+def step_impl(context):
+    pass
+
+@then('the setting ""Approvals - Approvals List (V3) - Grouped Approvals - Record File & Resource Publish (development use only)"" should be listed')
+def step_impl(context):
+    pass"
+156,"As a User, I want to set up Session Based Digest Email in My Account Alerts (Markup) for Comment Status Updates, Edited Comments, Deleted Comments, and New Revisions","Gherkin:
+Feature: Session Based Digest Email Setup
+
+Scenario: Set up session based digest email for comment updates
+Given the user is on the My Account Alerts (Markup) page
+When the user selects ""Session"" from the Digest Frequency drop-down menu
+And enables alerts for ""Updates to Comment status""
+And enables alerts for ""Edited Comments""
+Then the session based digest email should be configured successfully
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the My Account Alerts (Markup) page')
+def step_impl(context):
+    pass
+
+@when('the user selects ""Session"" from the Digest Frequency drop-down menu')
+def step_impl(context):
+    pass
+
+@when('enables alerts for ""Updates to Comment status""')
+def step_impl(context):
+    pass
+
+@when('enables alerts for ""Edited Comments""')
+def step_impl(context):
+    pass
+
+@then('the session based digest email should be configured successfully')
+def step_impl(context):
+    pass"
+105,"As a User, I should not see the Page Category dropdown when viewing Pages if none of them are assigned to Category","Gherkin:
+Feature: Page Category Visibility
+
+Scenario: No Page Category dropdown when no pages are assigned to a category
+Given the user is viewing a page
+And all pages are not associated with any category
+When the user checks the page interface
+Then the Page Category dropdown should not be visible
+
+Python:
+from behave import given, when, then
+
+@given('the user is viewing a page')
+def step_impl(context):
+    pass
+
+@given('all pages are not associated with any category')
+def step_impl(context):
+    pass
+
+@when('the user checks the page interface')
+def step_impl(context):
+    pass
+
+@then('the Page Category dropdown should not be visible')
+def step_impl(context):
+    pass"
+395,"PB - As a User, I want to configure permissions of sub-pages in Admin -> Group","Gherkin:
+Feature: Configure Permissions
+
+Scenario: Configure sub-page permissions
+Given the user is on the Admin Group Permission page
+When the user views the parent page ""Resources""
+And configures permissions for the sub-page ""Sub-Resources""
+Then the permissions should be updated in line with the design
+
+Scenario: Trigger permission propagation
+Given the user is on the Admin Group Permission page
+When the user triggers propagation for the parent page ""Resources""
+Then the permissions should propagate to all sub-pages
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the Admin Group Permission page')
+def step_impl(context):
+    pass
+
+@when('the user views the parent page ""{parent_page}""')
+def step_impl(context, parent_page):
+    pass
+
+@when('configures permissions for the sub-page ""{sub_page}""')
+def step_impl(context, sub_page):
+    pass
+
+@then('the permissions should be updated in line with the design')
+def step_impl(context):
+    pass
+
+@when('the user triggers propagation for the parent page ""{parent_page}""')
+def step_impl(context, parent_page):
+    pass
+
+@then('the permissions should propagate to all sub-pages')
+def step_impl(context):
+    pass"
+378,"PB - As a User, I want the status of  Resource added via Resource Lookup to be linked with Resource module - unsupported resource type scenario","Gherkin:
+Feature: Resource Linking
+
+Scenario: Link unsupported resource type
+Given the user is on the Resource Lookup page
+When the user adds an unsupported resource type
+Then the resource should not be linked to the Resource module
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the Resource Lookup page')
+def step_impl(context):
+    pass
+
+@when('the user adds an unsupported resource type')
+def step_impl(context):
+    pass
+
+@then('the resource should not be linked to the Resource module')
+def step_impl(context):
+    pass"
+125,"As a config user, I want to see/enable a new Setting in Admin > Template for Workflows for Collaborators in Approvals [Resource Feedback]","Gherkin:
+Feature: Admin Settings for Resource Feedback
+
+Scenario: Enable MCP setting for Resource Feedback Workflow Templates
+Given the user is on the Admin > Template settings page
+When the user enables the MCP setting
+Then the new setting should display for Resource Feedback Workflow Templates
+And this should apply to both existing and new templates
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the Admin > Template settings page')
+def step_impl(context):
+    pass
+
+@when('the user enables the MCP setting')
+def step_impl(context):
+    pass
+
+@then('the new setting should display for Resource Feedback Workflow Templates')
+def step_impl(context):
+    pass
+
+@then('this should apply to both existing and new templates')
+def step_impl(context):
+    pass"
+69,"As a User, I want to update UI & logic around selecting Jobs in Info Preview panel for preview + closing them to return to Resource preview","Gherkin:
+Feature: Job Preview Selection
+
+Scenario: Update UI & logic for selecting and closing Job Previews
+Given the user is on the Info Preview panel
+When the user selects a Job
+Then the Job Preview should be displayed
+
+Scenario: Re-click to switch back to Resource Preview
+Given the Job Preview is displayed
+When the user re-clicks the selected Job
+Then the Resource Preview should be displayed
+
+Scenario: Close Job Preview to return to Resource Preview
+Given the Job Preview is displayed
+When the user closes the Job Preview
+Then the Resource Preview should be displayed
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the Info Preview panel')
+def step_impl(context):
+    pass
+
+@when('the user selects a Job')
+def step_impl(context):
+    pass
+
+@then('the Job Preview should be displayed')
+def step_impl(context):
+    pass
+
+@given('the Job Preview is displayed')
+def step_impl(context):
+    pass
+
+@when('the user re-clicks the selected Job')
+def step_impl(context):
+    pass
+
+@then('the Resource Preview should be displayed')
+def step_impl(context):
+    pass
+
+@when('the user closes the Job Preview')
+def step_impl(context):
+    pass"
+451,As a user I want to click 'Review Request' action in action dropdown in footer to open Bulk Approve Page (action redirect),"Gherkin:
+Feature: Bulk Review Request
+
+Scenario: Open Bulk Review Request page from action dropdown
+Given the user is on a page with an action dropdown in the footer
+When the user clicks 'Review Request' in the action dropdown
+Then the Bulk Review Request page should open
+
+Python:
+from behave import given, when, then
+
+@given('the user is on a page with an action dropdown in the footer')
+def step_impl(context):
+    pass
+
+@when('the user clicks ""Review Request"" in the action dropdown')
+def step_impl(context):
+    pass
+
+@then('the Bulk Review Request page should open')
+def step_impl(context):
+    pass"
+10,"As a user, I want to be able to preview the GIF or Lottie File converted MP4 on the Edit screen so that I can preview what the animation like before I Edit or upload a new version","Gherkin:
+Feature: Animation Preview
+
+Scenario: Preview GIF or Lottie File converted MP4 on Edit screen
+Given the user is on the Edit/New Version screen
+When the user uploads a GIF or Lottie File
+Then the preview should display the converted MP4
+And the controls should be hidden
+And the MP4 should autoplay
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the Edit/New Version screen')
+def step_impl(context):
+    pass
+
+@when('the user uploads a GIF or Lottie File')
+def step_impl(context):
+    pass
+
+@then('the preview should display the converted MP4')
+def step_impl(context):
+    pass
+
+@then('the controls should be hidden')
+def step_impl(context):
+    pass
+
+@then('the MP4 should autoplay')
+def step_impl(context):
+    pass"
+195,"PB - As an Internal User, I want to have MCP(development use only) settings to enable/disable features per Epic for Drag & Drop Page MVP ","Gherkin:
+Feature: MCP Settings Management
+
+Scenario: Enable/Disable MCP settings for Drag & Drop Page MVP
+Given the user is on the MCP settings page
+When the user enables the setting ""Smart Page: Widgets combining Block""
+And enables the setting ""Smart Page: Image Resizing""
+And enables the setting ""Smart Pages - Page Templates (development use only)""
+And enables the setting ""Smart Page: Page Grouping""
+Then the settings should be enabled under Development Use only
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the MCP settings page')
+def step_impl(context):
+    pass
+
+@when('the user enables the setting ""{setting_name}""')
+def step_impl(context, setting_name):
+    pass
+
+@then('the settings should be enabled under Development Use only')
+def step_impl(context):
+    pass"
+407,Record File Grouped Requests added to Group tab,"Gherkin:
+Feature: Grouped Requests Display
+
+Scenario: Display Grouped Tab for new Grouped Record File request
+Given the user is on the V3 Approval List
+And the user has never seen the Grouped Tab
+When the user requests their first Grouped Record File
+Then the Grouped Tab should be displayed in the V3 Approval List
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the V3 Approval List')
+def step_impl(context):
+    pass
+
+@given('the user has never seen the Grouped Tab')
+def step_impl(context):
+    pass
+
+@when('the user requests their first Grouped Record File')
+def step_impl(context):
+    pass
+
+@then('the Grouped Tab should be displayed in the V3 Approval List')
+def step_impl(context):
+    pass"
+85,"As a User, I want Close or cancel handling","Gherkin:
+Feature: Edit Template Navigation
+
+Scenario: Return to previous location on cancel or close
+Given the user is on the Edit Template page
+When the user selects ""Close"" or ""Cancel""
+Then they should be returned to the location they selected the Edit action from
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the Edit Template page')
+def step_impl(context):
+    pass
+
+@when('the user selects ""Close"" or ""Cancel""')
+def step_impl(context):
+    pass
+
+@then('they should be returned to the location they selected the Edit action from')
+def step_impl(context):
+    pass"
+372,"PB - As a User, I want to re-order pages within the same parent/root via Nav - FE integration","Gherkin:
+Feature: Re-order Pages
+
+Scenario: Re-order pages via drag-and-drop
+Given the user is editing the navigation panel
+When the user drags and drops a page to a new position
+Then the page should be moved to the new position
+And any sub-pages should move with the page
+And sub-pages should be collapsed under the page in the navigation panel
+
+Python:
+from behave import given, when, then
+
+@given('the user is editing the navigation panel')
+def step_impl(context):
+    pass
+
+@when('the user drags and drops a page to a new position')
+def step_impl(context):
+    pass
+
+@then('the page should be moved to the new position')
+def step_impl(context):
+    pass
+
+@then('any sub-pages should move with the page')
+def step_impl(context):
+    pass
+
+@then('sub-pages should be collapsed under the page in the navigation panel')
+def step_impl(context):
+    pass"
+389,"PB - As an internal User, I want to set Page limits via MCP settings","Gherkin:
+Feature: MCP Page Limits
+
+Scenario: Set page limits for client sites
+Given the user is on the MCP control panel
+When the user navigates to the settings for client sites
+And sets the page limit to ""50""
+Then the page limit should be updated to ""50"" for client sites
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the MCP control panel')
+def step_impl(context):
+    pass
+
+@when('the user navigates to the settings for client sites')
+def step_impl(context):
+    pass
+
+@when('sets the page limit to ""{limit}""')
+def step_impl(context, limit):
+    pass
+
+@then('the page limit should be updated to ""{limit}"" for client sites')
+def step_impl(context, limit):
+    pass"
+496,"CT - As a User, on Add Revision page I should be able to see my Threads and switch between them but not Manage them.","Gherkin:
+Feature: Add Revision Page Threads
+
+Scenario: View and switch between Threads
+Given the user is on the Add Revision page
+When the user views their Threads
+Then they should be able to switch between Threads
+And they should see all comments of the selected Thread
+And they should not be able to manage or create new Threads
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the Add Revision page')
+def step_impl(context):
+    pass
+
+@when('the user views their Threads')
+def step_impl(context):
+    pass
+
+@then('they should be able to switch between Threads')
+def step_impl(context):
+    pass
+
+@then('they should see all comments of the selected Thread')
+def step_impl(context):
+    pass
+
+@then('they should not be able to manage or create new Threads')
+def step_impl(context):
+    pass"
+31,"As a user, I want on close of Single view redirect to Grouped Approval Review page (don't clear out single page response values)","Gherkin:
+Feature: Single View to Grouped Approval Review
+
+Scenario: Retain response info when redirecting to Grouped Approval Review
+Given the user is on the single response page with entered response info
+When the user navigates back to the Grouped Approval Review page
+Then the response info should be retained
+
+Scenario: Re-open single view retains response details
+Given the user is on the Grouped Approval Review page
+When the user re-opens the single response view
+Then the previously entered response details should be displayed
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the single response page with entered response info')
+def step_impl(context):
+    pass
+
+@when('the user navigates back to the Grouped Approval Review page')
+def step_impl(context):
+    pass
+
+@then('the response info should be retained')
+def step_impl(context):
+    pass
+
+@given('the user is on the Grouped Approval Review page')
+def step_impl(context):
+    pass
+
+@when('the user re-opens the single response view')
+def step_impl(context):
+    pass
+
+@then('the previously entered response details should be displayed')
+def step_impl(context):
+    pass"
+317,"PB - (Misc) As a User, I want to set auto-play as default or not for Video Widgets when viewing a Smart Page","Gherkin:
+Feature: Video Widget Auto-Play Setting
+
+Scenario: Set auto-play for Video Widgets
+Given the user is viewing a Smart Page
+And a Video Widget is present
+When the user clicks the auto-play button
+Then the Video Widget should be set to auto-play
+
+Scenario: Default auto-play setting for Video Widgets
+Given the user is viewing a Smart Page
+And a Video Widget is present
+Then the auto-play button should be unchecked by default
+
+Python:
+from behave import given, when, then
+
+@given('the user is viewing a Smart Page')
+def step_impl(context):
+    pass
+
+@given('a Video Widget is present')
+def step_impl(context):
+    pass
+
+@when('the user clicks the auto-play button')
+def step_impl(context):
+    pass
+
+@then('the Video Widget should be set to auto-play')
+def step_impl(context):
+    pass
+
+@then('the auto-play button should be unchecked by default')
+def step_impl(context):
+    pass"
+409,Publish Resource Grouped Requests added to Group tab,"Gherkin:
+Feature: Grouped Resource Publish Requests
+
+Scenario: Display Grouped Tab for first-time requester
+Given the user is on the V3 Approval List
+And the user has never seen the Grouped Tab
+When the user submits their first Grouped Resource Publish request
+Then the Grouped Tab should be displayed in the V3 Approval List
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the V3 Approval List')
+def step_impl(context):
+    pass
+
+@given('the user has never seen the Grouped Tab')
+def step_impl(context):
+    pass
+
+@when('the user submits their first Grouped Resource Publish request')
+def step_impl(context):
+    pass
+
+@then('the Grouped Tab should be displayed in the V3 Approval List')
+def step_impl(context):
+    pass"
+491,"[GDA] - As a user, I want to be able to Update my Response in single review page 1/2: Core handling","Gherkin:
+Feature: Update Response in Single Review Page
+
+Scenario: Update response for a pending request
+Given the user is on the single review page
+And the request is in Pending status
+When the user clicks the ""Update Response"" button in the ""My Response"" section
+Then the user should be able to update their response
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the single review page')
+def step_impl(context):
+    pass
+
+@given('the request is in Pending status')
+def step_impl(context):
+    pass
+
+@when('the user clicks the ""Update Response"" button in the ""My Response"" section')
+def step_impl(context):
+    pass
+
+@then('the user should be able to update their response')
+def step_impl(context):
+    pass"
+492,"[GDA] - As a user, I want to be able to click Submit & Next (single view) and have validation checks occurs","Gherkin:
+Feature: Submit & Next Validation
+
+Scenario: Validation checks on Submit & Next
+Given the user is on the single request view
+When the user clicks ""Submit & Next""
+Then a validation check should occur for mandatory comments
+And a validation check should occur for unfilled responses
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the single request view')
+def step_impl(context):
+    pass
+
+@when('the user clicks ""Submit & Next""')
+def step_impl(context):
+    pass
+
+@then('a validation check should occur for mandatory comments')
+def step_impl(context):
+    pass
+
+@then('a validation check should occur for unfilled responses')
+def step_impl(context):
+    pass"
+281,"PB - As a User, I want the status of background Image added via Resource Lookup to be linked with Resource module","Gherkin:
+Feature: Background Image Resource Linking
+
+Scenario: Link background image status with Resource Module
+Given the user has added a background image via Resource Lookup in Page Builder
+When the image is set as a ""Page"" or ""Section"" background
+Then the status of the background image should be linked with the derived Image resources in the Resource Module
+
+Python:
+from behave import given, when, then
+
+@given('the user has added a background image via Resource Lookup in Page Builder')
+def step_impl(context):
+    pass
+
+@when('the image is set as a ""{background_type}"" background')
+def step_impl(context, background_type):
+    pass
+
+@then('the status of the background image should be linked with the derived Image resources in the Resource Module')
+def step_impl(context):
+    pass"
+357,"Related (V3) - Permission Handling, Updates, and other core existing logic (F.E.) - [1 of 4: Resource Permissions]","Gherkin:
+Feature: Resource Permissions
+
+Scenario: Update permission logic for V3 Related functionality
+Given the user is using the V3 Related functionality
+When the user accesses a resource with updated permission logic
+Then the originally intended logic should be restored
+
+Python:
+from behave import given, when, then
+
+@given('the user is using the V3 Related functionality')
+def step_impl(context):
+    pass
+
+@when('the user accesses a resource with updated permission logic')
+def step_impl(context):
+    pass
+
+@then('the originally intended logic should be restored')
+def step_impl(context):
+    pass"
+77,"As a User, I want to Restricted Actions for Template Resources [Database Locations]","Gherkin:
+Feature: Restricted Actions for Template Resources
+
+Scenario: Restricted actions for created or master templates
+Given a resource is a created template or a master template
+When a user views the available actions
+Then the actions ""Download"", ""Block from Single and Bulk Download"", ""Alias"", ""Block from Single and Bulk Create Alias"" should not be displayed
+
+Scenario: Supported actions for A/C
+Given a resource is an A/C
+When a user views the available actions
+Then the actions ""Edit"", ""Email Internal Share Link"", ""Move"", ""Check in / Out"", ""Usage"", ""Related"", ""Feedback"" should be displayed
+
+Python:
+from behave import given, when, then
+
+@given('a resource is a created template or a master template')
+def step_impl(context):
+    pass
+
+@when('a user views the available actions')
+def step_impl(context):
+    pass
+
+@then('the actions ""{action_list}"" should not be displayed')
+def step_impl(context, action_list):
+    pass
+
+@given('a resource is an A/C')
+def step_impl(context):
+    pass
+
+@then('the actions ""{action_list}"" should be displayed')
+def step_impl(context, action_list):
+    pass"
+462,"2FA: option to select between SMS, Email, or both as options to receive the code (option set at the client level, not configurable per user)","Gherkin:
+Feature: Two-Factor Authentication Settings
+
+Scenario: Admin sets 2FA type to SMS
+Given the admin is on the Admin > Settings > Login and Security page
+And the User Setting or Global option is enabled
+When the admin sees the 2FA Type setting
+And checks the SMS option
+Then the 2FA Type should be set to SMS
+
+Python:
+from behave import given, when, then
+
+@given('the admin is on the Admin > Settings > Login and Security page')
+def step_impl(context):
+    pass
+
+@given('the User Setting or Global option is enabled')
+def step_impl(context):
+    pass
+
+@when('the admin sees the 2FA Type setting')
+def step_impl(context):
+    pass
+
+@when('checks the SMS option')
+def step_impl(context):
+    pass
+
+@then('the 2FA Type should be set to SMS')
+def step_impl(context):
+    pass"
+498,As a user I want to filter by number of revisions for Resource Publish Requests in Workflow Request Stats,"Gherkin:
+Feature: Filter by number of revisions
+
+Scenario: Display 'Markup Comments Revisions' option when 'All Workflows' is selected
+Given the user is on the Workflow Request Stats page
+When the user selects 'All Workflows'
+Then the 'Markup Comments Revisions' option should be available for Workflow Requests
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the Workflow Request Stats page')
+def step_impl(context):
+    pass
+
+@when('the user selects ""All Workflows""')
+def step_impl(context):
+    pass
+
+@then('the ""Markup Comments Revisions"" option should be available for Workflow Requests')
+def step_impl(context):
+    pass"
+212,"PB - As a User, I want to report on Resource downloaded (Preview) separately than added in Smart Page for Resource Module (Usage)","Gherkin:
+Feature: Resource Usage Reporting
+
+Scenario: Track resource download action in Smart Pages
+Given the user is on the Smart Page with a previously uploaded Resource
+When the user performs a Resource download action for a ""Good"" quality Resource
+Then the Resource usage reporting should reflect the download action separately
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the Smart Page with a previously uploaded Resource')
+def step_impl(context):
+    pass
+
+@when('the user performs a Resource download action for a ""{quality}"" quality Resource')
+def step_impl(context, quality):
+    pass
+
+@then('the Resource usage reporting should reflect the download action separately')
+def step_impl(context):
+    pass"
+102,"As a User, I want to set Primary Font Size in Admin and reflect to page title font size in Page Nav (both left & right side)","Gherkin:
+Feature: Primary Font Size Setting
+
+Scenario: Set and reflect primary font size in Page Nav
+Given the user is in the Admin Template settings
+When the user sets the Primary Font Size to ""14""
+Then the page title font size in Page Nav should be ""14"" on both left and right sides
+
+Python:
+from behave import given, when, then
+
+@given('the user is in the Admin Template settings')
+def step_impl(context):
+    pass
+
+@when('the user sets the Primary Font Size to ""{font_size}""')
+def step_impl(context, font_size):
+    pass
+
+@then('the page title font size in Page Nav should be ""{font_size}"" on both left and right sides')
+def step_impl(context, font_size):
+    pass"
+335,"PB - As a User, I want to create a Drag & Drop Page (as a standalone Page) from Nav","Gherkin:
+Feature: Create Drag & Drop Page
+
+Scenario: Create a Drag & Drop Page from Nav
+Given the user is on the Page Builder under 'All Pages'
+When the user clicks the creation button at the bottom
+Or clicks the action button 'Page' from the kebab icon
+Then a new Drag & Drop Page should be created as a standalone page
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the Page Builder under \'All Pages\'')
+def step_impl(context):
+    pass
+
+@when('the user clicks the creation button at the bottom')
+def step_impl(context):
+    pass
+
+@when('clicks the action button \'Page\' from the kebab icon')
+def step_impl(context):
+    pass
+
+@then('a new Drag & Drop Page should be created as a standalone page')
+def step_impl(context):
+    pass"
+476,"As a User, I want to filter Image Resources that flagged with Unknown faces","Gherkin:
+Feature: Filter Image Resources
+
+Scenario: Filter resources with Unknown People condition
+Given the user is on the resource filter panel
+When the user selects the ""Unknown People"" condition
+Then the resources should be filtered to show only those with Unknown faces
+
+Scenario: Verify position of Unknown People condition
+Given the user is on the resource filter panel
+Then the ""Unknown People"" condition should be positioned below ""People""
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the resource filter panel')
+def step_impl(context):
+    pass
+
+@when('the user selects the ""Unknown People"" condition')
+def step_impl(context):
+    pass
+
+@then('the resources should be filtered to show only those with Unknown faces')
+def step_impl(context):
+    pass
+
+@then('the ""Unknown People"" condition should be positioned below ""People""')
+def step_impl(context):
+    pass"
+337,"PB - As a User, I want to create an empty  Smart Page from the template popup","Gherkin:
+Feature: Create Smart Page
+
+Scenario: Create an empty Smart Page from the template popup
+Given the user is on the template popup
+When the user sees the button ""Start with a blank template""
+And clicks on the button ""Start with a blank template""
+Then the selected effect should be visible
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the template popup')
+def step_impl(context):
+    pass
+
+@when('the user sees the button ""Start with a blank template""')
+def step_impl(context):
+    pass
+
+@when('clicks on the button ""Start with a blank template""')
+def step_impl(context):
+    pass
+
+@then('the selected effect should be visible')
+def step_impl(context):
+    pass"
+441,As a user I can only select a max of 300 items to Review in Bulk (FE),"Gherkin:
+Feature: Bulk Review Selection
+
+Scenario: Disable selection after reaching max items
+Given the user has selected 300 items for review
+When the user attempts to select another item
+Then all other select icons for non-selected items should be disabled
+
+Python:
+from behave import given, when, then
+
+@given('the user has selected 300 items for review')
+def step_impl(context):
+    pass
+
+@when('the user attempts to select another item')
+def step_impl(context):
+    pass
+
+@then('all other select icons for non-selected items should be disabled')
+def step_impl(context):
+    pass"
+174,"MCP Front End - As a User, I can View details of a server","Gherkin:
+Feature: View Server Details
+
+Scenario: View server details from the Servers table
+Given the user is on the Servers table page
+When the user clicks the view icon for a server
+Then the Servers form should open in view mode
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the Servers table page')
+def step_impl(context):
+    pass
+
+@when('the user clicks the view icon for a server')
+def step_impl(context):
+    pass
+
+@then('the Servers form should open in view mode')
+def step_impl(context):
+    pass"
+3,"As an IB team member, I want to be able to enable a GIF/Lottie setting in MCP so that I can control all the settings from one place","Gherkin:
+Feature: MCP GIF/Lottie Setting
+
+Scenario: Enable GIF/Lottie Preview Support
+Given the user is in the Development Use Only area of the MCP
+When the user sees the setting ""Resources - GIF/Lottie Preview Support""
+And the user toggles the setting to enabled
+Then GIF/Lottie Preview features should be available on the platform
+
+Scenario: Disable GIF/Lottie Preview Support
+Given the user is in the Development Use Only area of the MCP
+When the user sees the setting ""Resources - GIF/Lottie Preview Support""
+And the user toggles the setting to disabled
+Then no GIF/Lottie Preview features should be available on the platform
+
+Python:
+from behave import given, when, then
+
+@given('the user is in the Development Use Only area of the MCP')
+def step_impl(context):
+    pass
+
+@when('the user sees the setting ""{setting_name}""')
+def step_impl(context, setting_name):
+    pass
+
+@when('the user toggles the setting to enabled')
+def step_impl(context):
+    pass
+
+@then('GIF/Lottie Preview features should be available on the platform')
+def step_impl(context):
+    pass
+
+@when('the user toggles the setting to disabled')
+def step_impl(context):
+    pass
+
+@then('no GIF/Lottie Preview features should be available on the platform')
+def step_impl(context):
+    pass"
+334,"PB - [1/4] As an Internal User, I want to have MCP(development use only) settings to enable/disable features per Epic for Drag & Drop Page MVP ","Gherkin:
+Feature: MCP Settings
+
+Scenario: Enable/Disable Smart Pages - Page Templates setting
+Given the user is on the MCP settings page
+When the user locates the ""Smart Pages - Page Templates (development use only)"" setting
+And toggles the setting to ""enabled""
+Then the setting should be saved as ""enabled""
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the MCP settings page')
+def step_impl(context):
+    pass
+
+@when('the user locates the ""Smart Pages - Page Templates (development use only)"" setting')
+def step_impl(context):
+    pass
+
+@when('toggles the setting to ""{state}""')
+def step_impl(context, state):
+    pass
+
+@then('the setting should be saved as ""{state}""')
+def step_impl(context, state):
+    pass"
+410,Grouped Record Files - Grouped Completion Email to Requester,"Gherkin:
+Feature: Grouped Record Files Notification
+
+Scenario: Send grouped completion email to requester
+Given the ""Enable Grouped Requests"" setting is enabled
+And the ""Requester > Grouped Request has been completed"" notification setting is enabled
+When a grouped record file request is made
+Then individual emails should not be sent for these requests
+
+Python:
+from behave import given, when, then
+
+@given('the ""Enable Grouped Requests"" setting is enabled')
+def step_impl(context):
+    pass
+
+@given('the ""Requester > Grouped Request has been completed"" notification setting is enabled')
+def step_impl(context):
+    pass
+
+@when('a grouped record file request is made')
+def step_impl(context):
+    pass
+
+@then('individual emails should not be sent for these requests')
+def step_impl(context):
+    pass"
+71,"As a user who can reassign, I can select multiple reviewers","Gherkin:
+Feature: Reassign Reviewers
+
+Scenario: Select multiple reviewers from dropdown
+Given the prerequisite is enabled and opened
+When the user opens the reviewer selection dropdown
+And selects multiple reviewers ""Alice"", ""Bob"", and ""Charlie""
+Then the selected reviewers should appear in the field
+
+Python:
+from behave import given, when, then
+
+@given('the prerequisite is enabled and opened')
+def step_impl(context):
+    pass
+
+@when('the user opens the reviewer selection dropdown')
+def step_impl(context):
+    pass
+
+@when('selects multiple reviewers ""{reviewer1}"", ""{reviewer2}"", and ""{reviewer3}""')
+def step_impl(context, reviewer1, reviewer2, reviewer3):
+    pass
+
+@then('the selected reviewers should appear in the field')
+def step_impl(context):
+    pass"
+210,"PB - As a User, I want to see a new landing page","Gherkin:
+Feature: Landing Page
+
+Scenario: View new landing page with empty sections
+Given the user is on the new landing page
+Then the page should display empty sections with no blocks
+
+Python:
+from behave import given, then
+
+@given('the user is on the new landing page')
+def step_impl(context):
+    pass
+
+@then('the page should display empty sections with no blocks')
+def step_impl(context):
+    pass"
+64,"As a User, I want to edit Font in Text Widget","Gherkin:
+Feature: Edit Font in Text Widget
+
+Scenario: Edit font in Rich Text Editor
+Given the user is on the Text Widget editor page
+When the user selects the font dropdown in the Rich Text Editor
+And chooses a font ""Arial""
+Then the text should be displayed in ""Arial"" font
+
+Scenario: Use custom fonts from Admin
+Given the user is on the Text Widget editor page
+And custom fonts are available from Admin
+When the user selects the font dropdown in the Rich Text Editor
+And chooses a custom font ""CustomFont1""
+Then the text should be displayed in ""CustomFont1"" font
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the Text Widget editor page')
+def step_impl(context):
+    pass
+
+@when('the user selects the font dropdown in the Rich Text Editor')
+def step_impl(context):
+    pass
+
+@when('chooses a font ""{font_name}""')
+def step_impl(context, font_name):
+    pass
+
+@then('the text should be displayed in ""{font_name}"" font')
+def step_impl(context, font_name):
+    pass
+
+@given('custom fonts are available from Admin')
+def step_impl(context):
+    pass"
+385,"PB - As a User, I want to re-order pages within the same parent/root via Nav - FE UI component","Gherkin:
+Feature: Re-order Pages
+
+Scenario: Re-order pages via drag-and-drop
+Given the user is editing the navigation panel
+And the user has a page with sub-pages
+When the user drags and drops the page to a new position
+Then the page and its sub-pages should be moved together
+And the sub-pages should be collapsed under the page
+
+Python:
+from behave import given, when, then
+
+@given('the user is editing the navigation panel')
+def step_impl(context):
+    pass
+
+@given('the user has a page with sub-pages')
+def step_impl(context):
+    pass
+
+@when('the user drags and drops the page to a new position')
+def step_impl(context):
+    pass
+
+@then('the page and its sub-pages should be moved together')
+def step_impl(context):
+    pass
+
+@then('the sub-pages should be collapsed under the page')
+def step_impl(context):
+    pass"
+94,"As a user, who I can select as collaborator updates based on if 'all' is allowed in Template settings","Gherkin:
+Feature: Collaborator Selection
+
+Scenario: Select all users as collaborators when allowed
+Given the user is on the Workflow Template settings page
+And 'All users' is selected in 'Collaborators permissions'
+When the user selects a collaborator
+Then all active platform users should be selectable as collaborators
+And bypass permissions should be extended to any selected user
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the Workflow Template settings page')
+def step_impl(context):
+    pass
+
+@given(""'All users' is selected in 'Collaborators permissions'"")
+def step_impl(context):
+    pass
+
+@when('the user selects a collaborator')
+def step_impl(context):
+    pass
+
+@then('all active platform users should be selectable as collaborators')
+def step_impl(context):
+    pass
+
+@then('bypass permissions should be extended to any selected user')
+def step_impl(context):
+    pass"
+486,"PB - (Misc) As a User, I want to exit Editing mode and go back to Custom Page List during creating/editing a Simple Page","Gherkin:
+Feature: Exit Editing Mode
+
+Scenario: Exit editing mode and return to Custom Page List
+Given the user is in Editing mode of a Simple Page
+When the user clicks the page exit button on the top bar
+Then they should be redirected to the Custom Page List
+
+Python:
+from behave import given, when, then
+
+@given('the user is in Editing mode of a Simple Page')
+def step_impl(context):
+    pass
+
+@when('the user clicks the page exit button on the top bar')
+def step_impl(context):
+    pass
+
+@then('they should be redirected to the Custom Page List')
+def step_impl(context):
+    pass"
+186,"PB - As a User, I want to configure both Block and Text Widget properties","Gherkin:
+Feature: Widget Configuration
+
+Scenario: Configure Block and Text Widget properties
+Given the user is on the widget configuration page
+When the user selects a widget from the navigation
+And configures the Block and Text Widget properties
+Then the widget settings should be updated successfully
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the widget configuration page')
+def step_impl(context):
+    pass
+
+@when('the user selects a widget from the navigation')
+def step_impl(context):
+    pass
+
+@when('configures the Block and Text Widget properties')
+def step_impl(context):
+    pass
+
+@then('the widget settings should be updated successfully')
+def step_impl(context):
+    pass"
+34,"As a User, I want to Change the tagged face to another Person (existing) via drop-down menu on Training Centre","Gherkin:
+Feature: Change Tagged Face
+
+Scenario: Update tagged face to another existing person
+Given the user is on the training centre page
+When the user detaches the tagged face
+And selects another existing person ""Jane Doe"" from the drop-down menu
+And saves the changes
+Then the tagged face should be updated to ""Jane Doe""
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the training centre page')
+def step_impl(context):
+    pass
+
+@when('the user detaches the tagged face')
+def step_impl(context):
+    pass
+
+@when('selects another existing person ""{person_name}"" from the drop-down menu')
+def step_impl(context, person_name):
+    pass
+
+@when('saves the changes')
+def step_impl(context):
+    pass
+
+@then('the tagged face should be updated to ""{person_name}""')
+def step_impl(context, person_name):
+    pass"
+78,"As a User, when I create, update and delete a Server and the action has failed, show a snackbar message to show the error","Gherkin:
+Feature: Server Management Error Handling
+
+Scenario: Show error message when server creation fails
+Given the user is on the server creation page
+When the user attempts to create a server and it fails
+Then the page remains open
+And a snackbar appears with the error message
+
+Scenario: Show error message when server update fails
+Given the user is on the server update page
+When the user attempts to update a server and it fails
+Then the page remains open
+And a snackbar appears with the error message
+
+Scenario: Show error message when server deletion fails
+Given the user is on the server deletion dialog
+When the user attempts to delete a server and it fails
+Then the dialog remains open
+And a snackbar appears with the error message
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the server creation page')
+def step_impl(context):
+    pass
+
+@when('the user attempts to create a server and it fails')
+def step_impl(context):
+    pass
+
+@then('the page remains open')
+def step_impl(context):
+    pass
+
+@then('a snackbar appears with the error message')
+def step_impl(context):
+    pass
+
+@given('the user is on the server update page')
+def step_impl(context):
+    pass
+
+@when('the user attempts to update a server and it fails')
+def step_impl(context):
+    pass
+
+@given('the user is on the server deletion dialog')
+def step_impl(context):
+    pass
+
+@when('the user attempts to delete a server and it fails')
+def step_impl(context):
+    pass
+
+@then('the dialog remains open')
+def step_impl(context):
+    pass"
+1,"As a user, I want to enable image tagging from the Asset Intelligence section in the MCP settings","Gherkin:
+Feature: MCP Settings for Image Tagging
+
+Scenario: Enable Image Tagging in MCP settings
+Given the user is in the MCP settings under Asset Intelligence
+When the user enables the ""Enable Image Tagging"" setting
+Then all Image Tagging Capabilities should be activated
+And the platform should ignore Imagga functionality and use Azure only
+And a new setting ""Azure Image Processing Limit (Images) (per billing cycle)"" should be available
+And the setting ""Azure Video Processing Limit (per billing cycle)"" should be renamed to ""Azure Video Processing Limit (minutes) (per billing cycle)""
+
+Python:
+from behave import given, when, then
+
+@given('the user is in the MCP settings under Asset Intelligence')
+def step_impl(context):
+    pass
+
+@when('the user enables the ""Enable Image Tagging"" setting')
+def step_impl(context):
+    pass
+
+@then('all Image Tagging Capabilities should be activated')
+def step_impl(context):
+    pass
+
+@then('the platform should ignore Imagga functionality and use Azure only')
+def step_impl(context):
+    pass
+
+@then('a new setting ""Azure Image Processing Limit (Images) (per billing cycle)"" should be available')
+def step_impl(context):
+    pass
+
+@then('the setting ""Azure Video Processing Limit (per billing cycle)"" should be renamed to ""Azure Video Processing Limit (minutes) (per billing cycle)""')
+def step_impl(context):
+    pass"
+12,"As a user, I want to be able to preview the GIF or Lottie File converted MP4 on the Versions/Revisions Screen so that I can preview what the animation is before adding a version/revision","Gherkin:
+Feature: Animation Preview
+
+Scenario: Preview GIF or Lottie File converted MP4 on Versions/Revisions Screen
+Given the user is on the Versions or Revisions Tab of the Approvals Screen
+When the user views the animation preview
+Then the preview should display the GIF or Lottie File converted MP4
+And the controls should be hidden
+And the MP4 should autoplay
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the Versions or Revisions Tab of the Approvals Screen')
+def step_impl(context):
+    pass
+
+@when('the user views the animation preview')
+def step_impl(context):
+    pass
+
+@then('the preview should display the GIF or Lottie File converted MP4')
+def step_impl(context):
+    pass
+
+@then('the controls should be hidden')
+def step_impl(context):
+    pass
+
+@then('the MP4 should autoplay')
+def step_impl(context):
+    pass"
+416,[X-Template] Bulk Approvals - Select logic: Advanced cross template/type select (excluding record requests) - Full support/logic,"Gherkin:
+Feature: Bulk Approvals
+
+Scenario: Advanced cross template/type select for bulk approvals
+Given multiple templates have ""Enable Bulk Reviewing"" enabled
+When the user selects an item from the Approval List
+Then other requests from the Approval List should be selectable
+And record requests should be excluded
+
+Python:
+from behave import given, when, then
+
+@given('multiple templates have ""Enable Bulk Reviewing"" enabled')
+def step_impl(context):
+    pass
+
+@when('the user selects an item from the Approval List')
+def step_impl(context):
+    pass
+
+@then('other requests from the Approval List should be selectable')
+def step_impl(context):
+    pass
+
+@then('record requests should be excluded')
+def step_impl(context):
+    pass"
+23,"As a user, I want to see an Exit without saving warning when I try to leave the Bulk Edit Page/Process","Gherkin:
+Feature: Exit without saving warning
+
+Scenario: Display warning when exiting Bulk Edit without saving
+Given the user is on the Bulk Edit page
+When the user clicks the Exit button
+Then an abandon pop-up should appear with the title ""Exit without saving Resources""
+And the pop-up text should be ""If you click the Exit button, none of the Resources currently on your Bulk Edit screen will be updated. To Save your Edits, Cancel this popup and click Save Changes.""
+And the pop-up should have a ""Cancel"" button
+And the pop-up should have an ""Exit"" button
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the Bulk Edit page')
+def step_impl(context):
+    pass
+
+@when('the user clicks the Exit button')
+def step_impl(context):
+    pass
+
+@then('an abandon pop-up should appear with the title ""Exit without saving Resources""')
+def step_impl(context):
+    pass
+
+@then('the pop-up text should be ""If you click the Exit button, none of the Resources currently on your Bulk Edit screen will be updated. To Save your Edits, Cancel this popup and click Save Changes.""')
+def step_impl(context):
+    pass
+
+@then('the pop-up should have a ""Cancel"" button')
+def step_impl(context):
+    pass
+
+@then('the pop-up should have an ""Exit"" button')
+def step_impl(context):
+    pass"
+73,"As a user, I want to be able to open a reassign V3 Modal (Core new UI)","Gherkin:
+Feature: Reassign V3 Modal
+
+Scenario: Open the reassign V3 Modal
+Given the prerequisite is enabled
+When the user clicks on re-assign
+Then a new V3+ UI modal should display as per designs
+
+Python:
+from behave import given, when, then
+
+@given('the prerequisite is enabled')
+def step_impl(context):
+    pass
+
+@when('the user clicks on re-assign')
+def step_impl(context):
+    pass
+
+@then('a new V3+ UI modal should display as per designs')
+def step_impl(context):
+    pass"
+183,"PB - As a User, I want to have previous 'Block' background colour setting embedded in Text Widget toolbar after combining these two","Gherkin:
+Feature: Text Widget Background Colour
+
+Scenario: Embed previous 'Block' background colour in Text Widget toolbar
+Given the user has a 'Block' with a background colour set
+When the user combines the 'Block' with the Text Widget
+Then the previous 'Block' background colour should be embedded in the Text Widget toolbar
+
+Scenario: Set background colour for Text Widget
+Given the user is on the Text Widget toolbar
+When the user clicks on the background colour setting
+And opens the colour swatch popover
+And sets a new colour for the Text Widget background
+Then the Text Widget background should reflect the new colour
+
+Python:
+from behave import given, when, then
+
+@given('the user has a ""Block"" with a background colour set')
+def step_impl(context):
+    pass
+
+@when('the user combines the ""Block"" with the Text Widget')
+def step_impl(context):
+    pass
+
+@then('the previous ""Block"" background colour should be embedded in the Text Widget toolbar')
+def step_impl(context):
+    pass
+
+@given('the user is on the Text Widget toolbar')
+def step_impl(context):
+    pass
+
+@when('the user clicks on the background colour setting')
+def step_impl(context):
+    pass
+
+@when('opens the colour swatch popover')
+def step_impl(context):
+    pass
+
+@when('sets a new colour for the Text Widget background')
+def step_impl(context):
+    pass
+
+@then('the Text Widget background should reflect the new colour')
+def step_impl(context):
+    pass"
+132,"As a User, I can click Add from Servers Page and I am taken to Servers Create page","Gherkin:
+Feature: Server Management
+
+Scenario: Navigate to Servers Create page from Servers Page
+Given the user is on the Servers Page
+When the user clicks the Add button
+Then they should be taken to the Servers Create page
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the Servers Page')
+def step_impl(context):
+    pass
+
+@when('the user clicks the Add button')
+def step_impl(context):
+    pass
+
+@then('they should be taken to the Servers Create page')
+def step_impl(context):
+    pass"
+411,Grouped Record Files - Grouped Email Notification Settings added to Record File Templates,"Gherkin:
+Feature: Grouped Email Notification Settings
+
+Scenario: Enable Grouped Requests and view additional notification options
+Given the MCP development setting form is enabled
+And the ""Enable Grouped Requests"" setting is enabled in Admin > Workflow for a Record File Approval Template
+When the User Notifications is set to ""Select""
+Then additional notification options should appear
+And ""Requester Emails"" should be an option
+
+Python:
+from behave import given, when, then
+
+@given('the MCP development setting form is enabled')
+def step_impl(context):
+    pass
+
+@given('the ""Enable Grouped Requests"" setting is enabled in Admin > Workflow for a Record File Approval Template')
+def step_impl(context):
+    pass
+
+@when('the User Notifications is set to ""Select""')
+def step_impl(context):
+    pass
+
+@then('additional notification options should appear')
+def step_impl(context):
+    pass
+
+@then('""Requester Emails"" should be an option')
+def step_impl(context):
+    pass"
+194,"BP - (Misc) As a User, I want to Replace resources via Resource Lookup from Nav Panel","Gherkin:
+Feature: Resource Replacement via Resource Lookup
+
+Scenario: Replace resource using Resource Lookup from Nav Panel
+Given the user is on the Page Builder with a selected resource
+When the user clicks the ""Replace"" button in the Nav Panel
+Then the Resource Lookup should be displayed
+And the tooltip for the ""Replace"" button should be ""Select an image from your Resourcecustomsingular area"" for Page background
+And the tooltip for the ""Replace"" button should be ""Select a video from your Resourcecustomsingular area"" for Video Widget
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the Page Builder with a selected resource')
+def step_impl(context):
+    pass
+
+@when('the user clicks the ""Replace"" button in the Nav Panel')
+def step_impl(context):
+    pass
+
+@then('the Resource Lookup should be displayed')
+def step_impl(context):
+    pass
+
+@then('the tooltip for the ""Replace"" button should be ""Select an image from your Resourcecustomsingular area"" for Page background')
+def step_impl(context):
+    pass
+
+@then('the tooltip for the ""Replace"" button should be ""Select a video from your Resourcecustomsingular area"" for Video Widget')
+def step_impl(context):
+    pass"
+56,"As a User, I want to access Reply action for New Comments in Daily Digest Email","Gherkin:
+Feature: Reply to Comments in Daily Digest Email
+
+Scenario: Access Reply action for new comments
+Given the user is viewing the Daily Digest Email
+When the user sees the ""Reply"" action for a new comment
+And clicks on ""Reply""
+Then a new tab should open with the Reply page
+And the applicable comment should be highlighted
+And the text-box should be active for replying
+
+Python:
+from behave import given, when, then
+
+@given('the user is viewing the Daily Digest Email')
+def step_impl(context):
+    pass
+
+@when('the user sees the ""Reply"" action for a new comment')
+def step_impl(context):
+    pass
+
+@when('clicks on ""Reply""')
+def step_impl(context):
+    pass
+
+@then('a new tab should open with the Reply page')
+def step_impl(context):
+    pass
+
+@then('the applicable comment should be highlighted')
+def step_impl(context):
+    pass
+
+@then('the text-box should be active for replying')
+def step_impl(context):
+    pass"
+149,"As a User, I want to  end my Session automatically when I leave the page by default","Gherkin:
+Feature: Automatic Session End
+
+Scenario: End session automatically when leaving the page
+Given the user is on a page with a session
+When the user closes the markup overlay
+Then the session should end automatically
+
+Python:
+from behave import given, when, then
+
+@given('the user is on a page with a session')
+def step_impl(context):
+    pass
+
+@when('the user closes the markup overlay')
+def step_impl(context):
+    pass
+
+@then('the session should end automatically')
+def step_impl(context):
+    pass"
+19,"As a Database Manager, I want to allow end users to Add More child records ('Add More') - Handle maximum child records","Gherkin:
+Feature: Manage Child Records
+
+Scenario: Handle maximum child records
+Given the form builder is configured with ""Allow User to Add More {Recordcustomnameplural}""
+And there are 30 child records in the configuration
+When the user tries to add another child record
+Then the ""Allow User to Add More {Recordcustomnameplural}"" should be enabled
+And if all 30 records are disabled for ""Allow User to skip...""
+Then the ""Allow User to Add More {Recordcustomnameplural}"" should be disabled
+And the hover text should be ""The max 30 {Records} has been added here. Remove any of the above to allow users to add more.""
+
+Python:
+from behave import given, when, then
+
+@given('the form builder is configured with ""Allow User to Add More {Recordcustomnameplural}""')
+def step_impl(context, Recordcustomnameplural):
+    pass
+
+@given('there are 30 child records in the configuration')
+def step_impl(context):
+    pass
+
+@when('the user tries to add another child record')
+def step_impl(context):
+    pass
+
+@then('the ""Allow User to Add More {Recordcustomnameplural}"" should be enabled')
+def step_impl(context, Recordcustomnameplural):
+    pass
+
+@then('if all 30 records are disabled for ""Allow User to skip...""')
+def step_impl(context):
+    pass
+
+@then('the ""Allow User to Add More {Recordcustomnameplural}"" should be disabled')
+def step_impl(context, Recordcustomnameplural):
+    pass
+
+@then('the hover text should be ""The max 30 {Records} has been added here. Remove any of the above to allow users to add more.""')
+def step_impl(context, Records):
+    pass"
+205,"PB - As a User, I want to add a new Widget ""Spacer""","Gherkin:
+Feature: Widget Management
+
+Scenario: Add and configure a new Spacer widget
+Given the user is on the design page
+When the user drags a new ""Spacer"" widget from the Nav to a Section
+Then the ""Spacer"" widget should be visible in the Section
+And the default settings for the ""Spacer"" widget should be Colour ""#FFFFFF"", Padding ""0pt"", Ratio ""12""
+When the user configures the ""Spacer"" widget settings
+Then the settings should be updated
+And the user can drag a Section into the ""Spacer"" widget
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the design page')
+def step_impl(context):
+    pass
+
+@when('the user drags a new ""Spacer"" widget from the Nav to a Section')
+def step_impl(context):
+    pass
+
+@then('the ""Spacer"" widget should be visible in the Section')
+def step_impl(context):
+    pass
+
+@then('the default settings for the ""Spacer"" widget should be Colour ""{colour}"", Padding ""{padding}"", Ratio ""{ratio}""')
+def step_impl(context, colour, padding, ratio):
+    pass
+
+@when('the user configures the ""Spacer"" widget settings')
+def step_impl(context):
+    pass
+
+@then('the settings should be updated')
+def step_impl(context):
+    pass
+
+@then('the user can drag a Section into the ""Spacer"" widget')
+def step_impl(context):
+    pass"
+79,"As a User, I want MCP Setting for Single User Record Editor Restriction","Gherkin:
+Feature: MCP Setting for Single User Record Editor Restriction
+
+Scenario: Add new setting to MCP
+Given the user is on the MCP settings page
+When the user navigates to the “Development Use Only” section
+And adds a new setting named ""Databases - Single User Record Edit Restriction""
+Then the setting should be added to the bottom of the list
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the MCP settings page')
+def step_impl(context):
+    pass
+
+@when('the user navigates to the “Development Use Only” section')
+def step_impl(context):
+    pass
+
+@when('adds a new setting named ""Databases - Single User Record Edit Restriction""')
+def step_impl(context):
+    pass
+
+@then('the setting should be added to the bottom of the list')
+def step_impl(context):
+    pass"
+495,As a user I want to see time to complete for requests in Workflow Dashboards (UPDATE) including Reviewed Status Requests,"Gherkin:
+Feature: Workflow Dashboard Time to Complete
+
+Scenario: Display time to complete for requests including Reviewed Status
+Given the user is on the Workflow Dashboard
+When the user selects ""All Workflows"" or a specific workflow
+Then the time to complete should be displayed for requests including those with Reviewed Status
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the Workflow Dashboard')
+def step_impl(context):
+    pass
+
+@when('the user selects ""{workflow_option}""')
+def step_impl(context, workflow_option):
+    pass
+
+@then('the time to complete should be displayed for requests including those with Reviewed Status')
+def step_impl(context):
+    pass"
+263,"PB - As a User, I want to delete a Block","Gherkin:
+Feature: Block Deletion
+
+Scenario: Successfully delete a block and its contents
+Given the user has selected a block
+When the user sees the toolbar
+And clicks the delete icon
+Then the block and its contents should be deleted
+And the remaining blocks should be auto-aligned within the section
+
+Scenario: Undo block deletion
+Given the user has deleted a block
+When the user clicks undo
+Then the block and its contents should be restored
+
+Python:
+from behave import given, when, then
+
+@given('the user has selected a block')
+def step_impl(context):
+    pass
+
+@when('the user sees the toolbar')
+def step_impl(context):
+    pass
+
+@when('clicks the delete icon')
+def step_impl(context):
+    pass
+
+@then('the block and its contents should be deleted')
+def step_impl(context):
+    pass
+
+@then('the remaining blocks should be auto-aligned within the section')
+def step_impl(context):
+    pass
+
+@given('the user has deleted a block')
+def step_impl(context):
+    pass
+
+@when('the user clicks undo')
+def step_impl(context):
+    pass
+
+@then('the block and its contents should be restored')
+def step_impl(context):
+    pass"
+324,[Ask AI Alpha] As a user I want to choose to search whole platform or current location (UI + pendo),"Gherkin:
+Feature: Search Scope Selection
+
+Scenario: Default search scope is limited to current view
+Given the user is on the search panel
+When the panel is opened
+Then the ""Limit to current view"" checkbox should be visible
+And the ""Limit to current view"" checkbox should be enabled by default
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the search panel')
+def step_impl(context):
+    pass
+
+@when('the panel is opened')
+def step_impl(context):
+    pass
+
+@then('the ""Limit to current view"" checkbox should be visible')
+def step_impl(context):
+    pass
+
+@then('the ""Limit to current view"" checkbox should be enabled by default')
+def step_impl(context):
+    pass"
+484,"As a User, I want to see New Replies in Daily Digest Email","Gherkin:
+Feature: Daily Digest Email
+
+Scenario: View new replies in daily digest email
+Given the user receives a daily digest email
+When the email is opened
+Then the email should display new replied markup comments as per design
+And show replied comment contents, user, and time
+
+Python:
+from behave import given, when, then
+
+@given('the user receives a daily digest email')
+def step_impl(context):
+    pass
+
+@when('the email is opened')
+def step_impl(context):
+    pass
+
+@then('the email should display new replied markup comments as per design')
+def step_impl(context):
+    pass
+
+@then('show replied comment contents, user, and time')
+def step_impl(context):
+    pass"
+80,"As a user who has selected Master Template option, if I can see none, I am directed to Create a blank one instead","Gherkin:
+Feature: Master Template Selection
+
+Scenario: No Master Templates available
+Given the user has selected the Master Template option
+And no Master Templates exist
+When the user sees the message ""No Master Templates available""
+Then the user can select to Create a Blank Template
+
+Python:
+from behave import given, when, then
+
+@given('the user has selected the Master Template option')
+def step_impl(context):
+    pass
+
+@given('no Master Templates exist')
+def step_impl(context):
+    pass
+
+@when('the user sees the message ""No Master Templates available""')
+def step_impl(context):
+    pass
+
+@then('the user can select to Create a Blank Template')
+def step_impl(context):
+    pass"
+40,"As a Product user, I want to be able to turn the Record Publish Approval feature on / off during development (MCP)","Gherkin:
+Feature: Record Publish Approval Feature Toggle
+
+Scenario: Toggle Record Publish Approval feature during development
+Given the user is on the settings page
+When the user sees the setting ""Databases - Record Publish Approval Rewrite POC (development use only)""
+And renames it to ""Approvals - Record Publish Approval Rewrite (development use only)""
+Then the setting should be updated successfully
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the settings page')
+def step_impl(context):
+    pass
+
+@when('the user sees the setting ""Databases - Record Publish Approval Rewrite POC (development use only)""')
+def step_impl(context):
+    pass
+
+@when('renames it to ""Approvals - Record Publish Approval Rewrite (development use only)""')
+def step_impl(context):
+    pass
+
+@then('the setting should be updated successfully')
+def step_impl(context):
+    pass"
+452,As a user I want to see 'Review Request' bulk action in action dropdown in footer,"Gherkin:
+Feature: Bulk Action Footer
+
+Scenario: Display 'Review Request' bulk action in footer
+Given the user is on the items page
+When the user selects one item's checkbox
+Then the Bulk Action footer bar should display with 'Review Request' option
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the items page')
+def step_impl(context):
+    pass
+
+@when('the user selects one item\'s checkbox')
+def step_impl(context):
+    pass
+
+@then('the Bulk Action footer bar should display with \'Review Request\' option')
+def step_impl(context):
+    pass"
+47,"As a User, I want to see Block ""ratio"" simply changed to ""width""","Gherkin:
+Feature: Block Configuration
+
+Scenario: Change Block ""Ratio"" to ""Width"" in Side Panel
+Given the user is viewing the Side Panel
+When the user sees the Block's configuration
+Then the title should be ""Width""
+And the description label should be ""BLOCK RATIO"" between the ""Width"" title and the slider
+
+Python:
+from behave import given, when, then
+
+@given('the user is viewing the Side Panel')
+def step_impl(context):
+    pass
+
+@when('the user sees the Block\'s configuration')
+def step_impl(context):
+    pass
+
+@then('the title should be ""Width""')
+def step_impl(context):
+    pass
+
+@then('the description label should be ""BLOCK RATIO"" between the ""Width"" title and the slider')
+def step_impl(context):
+    pass"
+239,As a user I can Bulk Submit (updates from Grouped work),"Gherkin:
+Feature: Bulk Submit
+
+Scenario: Successful bulk submit with grouped work
+Given the user is on the Grouped Review page
+When the user hovers over the ""Submit & Continue"" button
+Then the tooltip text should be displayed
+When the user clicks the ""Submit & Continue"" button
+Then a snackbar should appear confirming submission
+And the item should be updated in the list
+When the user completes a staged request multiple times
+Then the stage should proceed until completed
+When the user completes the last stage
+Then the Complete Stage should work
+When the user saves a staged request with mixed current stage
+Then the request should be saved successfully
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the Grouped Review page')
+def step_impl(context):
+    pass
+
+@when('the user hovers over the ""Submit & Continue"" button')
+def step_impl(context):
+    pass
+
+@then('the tooltip text should be displayed')
+def step_impl(context):
+    pass
+
+@when('the user clicks the ""Submit & Continue"" button')
+def step_impl(context):
+    pass
+
+@then('a snackbar should appear confirming submission')
+def step_impl(context):
+    pass
+
+@then('the item should be updated in the list')
+def step_impl(context):
+    pass
+
+@when('the user completes a staged request multiple times')
+def step_impl(context):
+    pass
+
+@then('the stage should proceed until completed')
+def step_impl(context):
+    pass
+
+@when('the user completes the last stage')
+def step_impl(context):
+    pass
+
+@then('the Complete Stage should work')
+def step_impl(context):
+    pass
+
+@when('the user saves a staged request with mixed current stage')
+def step_impl(context):
+    pass
+
+@then('the request should be saved successfully')
+def step_impl(context):
+    pass"
+392,"[QW 3/5] Requester Re-assign: Load users (user list, load all users) from workflow config - (v2 component approach)","Gherkin:
+Feature: Requester Re-assign
+
+Scenario: Load users excluding V2 Approval List
+Given the user is on the re-assign page
+When the user loads the user list from the workflow config
+Then the list should exclude users from the V2 Approval List
+And only Workflow or Main Admins can be assigned requests
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the re-assign page')
+def step_impl(context):
+    pass
+
+@when('the user loads the user list from the workflow config')
+def step_impl(context):
+    pass
+
+@then('the list should exclude users from the V2 Approval List')
+def step_impl(context):
+    pass
+
+@then('only Workflow or Main Admins can be assigned requests')
+def step_impl(context):
+    pass"
+353,"PB - As a User, I want to see a new landing page","Gherkin:
+Feature: Landing Page
+
+Scenario: View new landing page with empty sections
+Given the user is on the new landing page
+Then the page should display empty sections with no blocks
+
+Python:
+from behave import given, then
+
+@given('the user is on the new landing page')
+def step_impl(context):
+    pass
+
+@then('the page should display empty sections with no blocks')
+def step_impl(context):
+    pass"
+342,"BP - (Misc) As a User, I want to see the Page Tree remain the same while switching Pages from Nav Panel","Gherkin:
+Feature: Page Tree Consistency
+
+Scenario: Page Tree remains the same while switching pages
+Given the user is viewing or editing a page with an expanded Page Tree
+When the user switches to another page from the Nav Panel
+Then the Page Tree should remain the same
+
+Python:
+from behave import given, when, then
+
+@given('the user is viewing or editing a page with an expanded Page Tree')
+def step_impl(context):
+    pass
+
+@when('the user switches to another page from the Nav Panel')
+def step_impl(context):
+    pass
+
+@then('the Page Tree should remain the same')
+def step_impl(context):
+    pass"
+278,"As a user, I want to see the seq ID of the record in the header","Gherkin:
+Feature: Display Sequence ID
+
+Scenario: View and copy sequence ID in the header
+Given the user is on the record page
+When the sequence ID is displayed in a Chip component
+Then the sequence ID should be truncated with a tooltip to display the full value
+And a copy icon should be present to copy the sequence ID
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the record page')
+def step_impl(context):
+    pass
+
+@when('the sequence ID is displayed in a Chip component')
+def step_impl(context):
+    pass
+
+@then('the sequence ID should be truncated with a tooltip to display the full value')
+def step_impl(context):
+    pass
+
+@then('a copy icon should be present to copy the sequence ID')
+def step_impl(context):
+    pass"
+291,"PB - As a User, I want to assign / re-assign an existing parent / standalone page to an existing Page Category","Gherkin:
+Feature: Page Category Assignment
+
+Scenario: Assign a standalone page to a Page Category
+Given the user is on the page management interface
+When the user selects a standalone page
+And clicks the ""Assign Page Category"" button
+And chooses an existing Page Category ""News""
+Then the standalone page should be assigned to the ""News"" category
+
+Scenario: Re-assign a parent page with sub-pages to a different Page Category
+Given the user is on the page management interface
+When the user selects a parent page with sub-pages
+And clicks the ""Assign Page Category"" button
+And chooses a different Page Category ""Blog""
+Then the parent page and its sub-pages should be assigned to the ""Blog"" category
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the page management interface')
+def step_impl(context):
+    pass
+
+@when('the user selects a standalone page')
+def step_impl(context):
+    pass
+
+@when('clicks the ""Assign Page Category"" button')
+def step_impl(context):
+    pass
+
+@when('chooses an existing Page Category ""{category}""')
+def step_impl(context, category):
+    pass
+
+@then('the standalone page should be assigned to the ""{category}"" category')
+def step_impl(context, category):
+    pass
+
+@when('the user selects a parent page with sub-pages')
+def step_impl(context):
+    pass
+
+@when('chooses a different Page Category ""{category}""')
+def step_impl(context, category):
+    pass
+
+@then('the parent page and its sub-pages should be assigned to the ""{category}"" category')
+def step_impl(context, category):
+    pass"
+318,"[Ask AI Alpha] As a Main Admin user, only I and other Main Admins can use 'Ask AI' in Alpha phase","Gherkin:
+Feature: AI Assist Access Control
+
+Scenario: Main Admin can see AI Assist button
+Given the user is a Main Admin
+When the user is on the dashboard
+Then the user should see the ""AI Assist"" button
+
+Scenario: Non-Main Admin cannot see AI Assist button
+Given the user is not a Main Admin
+When the user is on the dashboard
+Then the user should not see the ""AI Assist"" button
+
+Scenario: Main Admin emulating non-Main Admin cannot see AI Assist button
+Given the user is a Main Admin emulating a non-Main Admin
+When the user is on the dashboard
+Then the user should not see the ""AI Assist"" button
+
+Python:
+from behave import given, when, then
+
+@given('the user is a Main Admin')
+def step_impl(context):
+    pass
+
+@given('the user is not a Main Admin')
+def step_impl(context):
+    pass
+
+@given('the user is a Main Admin emulating a non-Main Admin')
+def step_impl(context):
+    pass
+
+@when('the user is on the dashboard')
+def step_impl(context):
+    pass
+
+@then('the user should see the ""AI Assist"" button')
+def step_impl(context):
+    pass
+
+@then('the user should not see the ""AI Assist"" button')
+def step_impl(context):
+    pass"
+305,"PB - As a User, I want to configure both Block and Button Widget properties","Gherkin:
+Feature: Widget Configuration
+
+Scenario: Configure Button Widget properties
+Given the user is on the widget configuration page
+When the user selects the ""Button"" widget
+And enters ""Submit"" as the Button Text
+And enters ""http://example.com"" as the Button Link
+Then the Button widget should be configured with the specified properties
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the widget configuration page')
+def step_impl(context):
+    pass
+
+@when('the user selects the ""{widget_type}"" widget')
+def step_impl(context, widget_type):
+    pass
+
+@when('enters ""{button_text}"" as the Button Text')
+def step_impl(context, button_text):
+    pass
+
+@when('enters ""{button_link}"" as the Button Link')
+def step_impl(context, button_link):
+    pass
+
+@then('the Button widget should be configured with the specified properties')
+def step_impl(context):
+    pass"
+269,"PB - As a User, I want to move Widgets across Blocks","Gherkin:
+Feature: Reorder Widgets
+
+Scenario: Reorder widget across blocks in the same section
+Given the user is viewing a section with multiple blocks
+And a widget is added to a block
+When the user clicks and holds the reorder icon on the widget
+And drags it to an empty target block in the same section
+Then the widget should be moved to the target block
+
+Scenario: Reorder widget across blocks to a different section
+Given the user is viewing multiple sections with blocks
+And a widget is added to a block in one section
+When the user clicks and holds the reorder icon on the widget
+And drags it to an empty target block in a different section
+Then the widget should be moved to the target block
+
+Scenario: Visual feedback while dragging widget
+Given the user is dragging a widget across blocks
+When the widget is being dragged
+Then selecting and hovering effects should be visible
+
+Python:
+from behave import given, when, then
+
+@given('the user is viewing a section with multiple blocks')
+def step_impl(context):
+    pass
+
+@given('a widget is added to a block')
+def step_impl(context):
+    pass
+
+@when('the user clicks and holds the reorder icon on the widget')
+def step_impl(context):
+    pass
+
+@when('drags it to an empty target block in the same section')
+def step_impl(context):
+    pass
+
+@then('the widget should be moved to the target block')
+def step_impl(context):
+    pass
+
+@given('the user is viewing multiple sections with blocks')
+def step_impl(context):
+    pass
+
+@given('a widget is added to a block in one section')
+def step_impl(context):
+    pass
+
+@when('drags it to an empty target block in a different section')
+def step_impl(context):
+    pass
+
+@given('the user is dragging a widget across blocks')
+def step_impl(context):
+    pass
+
+@when('the widget is being dragged')
+def step_impl(context):
+    pass
+
+@then('selecting and hovering effects should be visible')
+def step_impl(context):
+    pass"
+70,"As a User, I want UI Button / Action on Template Resource in Info Preview to Create Job, which opens in Editor","Gherkin:
+Feature: Create Job from Template
+
+Scenario: Create Job action on Template Resource
+Given the user is on the Info Preview page with permission to create jobs
+And the template is created by img.ly+IB
+When the user clicks the ""Create Job"" button
+Then the template should open as a job in the editor
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the Info Preview page with permission to create jobs')
+def step_impl(context):
+    pass
+
+@given('the template is created by img.ly+IB')
+def step_impl(context):
+    pass
+
+@when('the user clicks the ""Create Job"" button')
+def step_impl(context):
+    pass
+
+@then('the template should open as a job in the editor')
+def step_impl(context):
+    pass"
+456,"As a user I only see enabled checkboxes for relevant items (disable for records, and for relevant users Reviewers/Admins)","Gherkin:
+Feature: Checkbox Enablement
+
+Scenario: Display enabled checkboxes for relevant items
+Given the new column is displayed
+When no items are selected
+Then checkboxes should be enabled for ""Pending Record File Approval"" requests
+And checkboxes should be enabled for ""Pending Resource Feedback Approval"" requests
+
+Python:
+from behave import given, when, then
+
+@given('the new column is displayed')
+def step_impl(context):
+    pass
+
+@when('no items are selected')
+def step_impl(context):
+    pass
+
+@then('checkboxes should be enabled for ""Pending Record File Approval"" requests')
+def step_impl(context):
+    pass
+
+@then('checkboxes should be enabled for ""Pending Resource Feedback Approval"" requests')
+def step_impl(context):
+    pass"
+466,"As a user in single view when I click previous/next, or Save & Next,  this takes into account my Search/Filtered results","Gherkin:
+Feature: Navigation through filtered results
+
+Scenario: Navigate through filtered results using Previous/Next
+Given the user is viewing a single item from filtered results
+When the user clicks ""Next""
+Then the next item in the filtered results should be displayed
+
+Scenario: Navigate through filtered results using Save & Next
+Given the user is viewing a single item from filtered results
+When the user clicks ""Save & Next""
+Then the next item in the filtered results should be displayed
+
+Scenario: Change search to see more items
+Given the user is viewing a single item from filtered results
+When the user changes the search criteria
+Then the filtered results should update accordingly
+
+Python:
+from behave import given, when, then
+
+@given('the user is viewing a single item from filtered results')
+def step_impl(context):
+    pass
+
+@when('the user clicks ""Next""')
+def step_impl(context):
+    pass
+
+@then('the next item in the filtered results should be displayed')
+def step_impl(context):
+    pass
+
+@when('the user clicks ""Save & Next""')
+def step_impl(context):
+    pass
+
+@when('the user changes the search criteria')
+def step_impl(context):
+    pass
+
+@then('the filtered results should update accordingly')
+def step_impl(context):
+    pass"
+155,"As a User, I want Markup Page begins the session once the first activity on Updates to Comment Status, Edited Comments, Deleted Comments, or New Revisions gets sent to backend","Gherkin:
+Feature: Markup Page Session Start
+
+Scenario: Start session on new action
+Given the user is on the Markup Page
+When an update to comment status is sent to the backend
+Then the session should start for the user
+
+Scenario: Start session on edited comment
+Given the user is on the Markup Page
+When an edited comment is sent to the backend
+Then the session should start for the user
+
+Scenario: Start session on deleted comment
+Given the user is on the Markup Page
+When a deleted comment is sent to the backend
+Then the session should start for the user
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the Markup Page')
+def step_impl(context):
+    pass
+
+@when('an update to comment status is sent to the backend')
+def step_impl(context):
+    pass
+
+@when('an edited comment is sent to the backend')
+def step_impl(context):
+    pass
+
+@when('a deleted comment is sent to the backend')
+def step_impl(context):
+    pass
+
+@then('the session should start for the user')
+def step_impl(context):
+    pass"
+83,"As a user creating a job, I can only edit / configure elements allowed by Template creator","Gherkin:
+Feature: Job Editor Restrictions
+
+Scenario: Edit elements in Adopter Mode
+Given the user opens the Editor in Adopter Mode
+When the user attempts to interact with a restricted element
+Then the interaction should be blocked
+
+Scenario: Edit allowed elements in Adopter Mode
+Given the user opens the Editor in Adopter Mode
+When the user interacts with an allowed element
+Then the interaction should be successful
+
+Python:
+from behave import given, when, then
+
+@given('the user opens the Editor in Adopter Mode')
+def step_impl(context):
+    pass
+
+@when('the user attempts to interact with a restricted element')
+def step_impl(context):
+    pass
+
+@then('the interaction should be blocked')
+def step_impl(context):
+    pass
+
+@when('the user interacts with an allowed element')
+def step_impl(context):
+    pass
+
+@then('the interaction should be successful')
+def step_impl(context):
+    pass"
+478,"PB - (Misc) As a User, I want to have a standard Text Widget - Link input without a placeholder","Gherkin:
+Feature: Text Widget Link Input
+
+Scenario: Display text widget link popup without a placeholder
+Given the user is on the text widget page
+When the user clicks on the link input field
+Then the link popup should be displayed without a placeholder
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the text widget page')
+def step_impl(context):
+    pass
+
+@when('the user clicks on the link input field')
+def step_impl(context):
+    pass
+
+@then('the link popup should be displayed without a placeholder')
+def step_impl(context):
+    pass"
+173,"MCP Front End - As a user, I can update server details","Gherkin:
+Feature: Update Server Details
+
+Scenario: Open server form in update mode
+Given the user is on the Servers table
+When the user clicks the Edit icon for a server
+Then the Servers form should open in update mode
+
+Scenario: Warning message on cancel after updates
+Given the user has updated server details
+When the user clicks the Cancel button
+Then a warning message should be displayed
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the Servers table')
+def step_impl(context):
+    pass
+
+@when('the user clicks the Edit icon for a server')
+def step_impl(context):
+    pass
+
+@then('the Servers form should open in update mode')
+def step_impl(context):
+    pass
+
+@given('the user has updated server details')
+def step_impl(context):
+    pass
+
+@when('the user clicks the Cancel button')
+def step_impl(context):
+    pass
+
+@then('a warning message should be displayed')
+def step_impl(context):
+    pass"
+322,[Ask AI Alpha] As a user I want to enter a question in 'Ask AI' field,"Gherkin:
+Feature: Ask AI Question
+
+Scenario: Enter a question in the 'Ask AI' field
+Given the user is on the Ask AI page
+When the user sees the question field under the panel header
+And the placeholder text is ""Ask me a question""
+Then the user can enter a question in the text field
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the Ask AI page')
+def step_impl(context):
+    pass
+
+@when('the user sees the question field under the panel header')
+def step_impl(context):
+    pass
+
+@when('the placeholder text is ""Ask me a question""')
+def step_impl(context):
+    pass
+
+@then('the user can enter a question in the text field')
+def step_impl(context):
+    pass"
+91,"As a User, I want to Update Workflow Template Configure Groups/Divisions to be a modal not full overlay","Gherkin:
+Feature: Update Workflow Template
+
+Scenario: Update Configure Groups/Divisions to modal
+Given the user is on the workflow template page
+When the user selects ""Configure Groups/Divisions""
+Then a modal should appear instead of a full overlay
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the workflow template page')
+def step_impl(context):
+    pass
+
+@when('the user selects ""Configure Groups/Divisions""')
+def step_impl(context):
+    pass
+
+@then('a modal should appear instead of a full overlay')
+def step_impl(context):
+    pass"
+181,"As a user, I want to freely navigate between stages (Staged)","Gherkin:
+Feature: Stage Navigation
+
+Scenario: Navigate between stages
+Given the user is on the stage navigation page
+When the user views the available stages
+And selects a stage to navigate to
+Then the selected stage should be displayed
+And the status of the stages should be shown
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the stage navigation page')
+def step_impl(context):
+    pass
+
+@when('the user views the available stages')
+def step_impl(context):
+    pass
+
+@when('selects a stage to navigate to')
+def step_impl(context):
+    pass
+
+@then('the selected stage should be displayed')
+def step_impl(context):
+    pass
+
+@then('the status of the stages should be shown')
+def step_impl(context):
+    pass"
+415,"PB - (DND replace) As a User, I want to create a sub-page for an exisiting Smart Page via Nav","Gherkin:
+Feature: Create Sub-Page
+
+Scenario: Create a sub-page for an existing Smart Page
+Given the user is on the navigation menu
+When the user clicks on the settings button of a simple page
+Then the sub-page popup should appear
+When the user inputs the sub-page's title as ""New Sub-Page""
+And clicks the ""Save"" button
+Then the sub-page should be created successfully
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the navigation menu')
+def step_impl(context):
+    pass
+
+@when('the user clicks on the settings button of a simple page')
+def step_impl(context):
+    pass
+
+@then('the sub-page popup should appear')
+def step_impl(context):
+    pass
+
+@when('the user inputs the sub-page\'s title as ""{title}""')
+def step_impl(context, title):
+    pass
+
+@when('clicks the ""Save"" button')
+def step_impl(context):
+    pass
+
+@then('the sub-page should be created successfully')
+def step_impl(context):
+    pass"
+313,"PB - As a User, I want to see Drag & Drop Page thumbnails as preview in Custom Page v2 index page","Gherkin:
+Feature: Drag & Drop Page Thumbnails
+
+Scenario: Preview Drag & Drop Page thumbnails in List and Thumb layout views
+Given the user is on the Custom Page v2 index page
+When the user views the Drag & Drop Pages in List layout
+Then the pages should display as thumbnails
+When the user views the Drag & Drop Pages in Thumb layout
+Then the pages should display as thumbnails
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the Custom Page v2 index page')
+def step_impl(context):
+    pass
+
+@when('the user views the Drag & Drop Pages in List layout')
+def step_impl(context):
+    pass
+
+@then('the pages should display as thumbnails')
+def step_impl(context):
+    pass
+
+@when('the user views the Drag & Drop Pages in Thumb layout')
+def step_impl(context):
+    pass
+
+@then('the pages should display as thumbnails')
+def step_impl(context):
+    pass"
+279,"As a user, I want to see the status of the record in the header","Gherkin:
+Feature: Record Status Display
+
+Scenario: Display record status in the header
+Given the user is viewing a record
+When the record status is ""Draft""
+Then the header should display ""Draft""
+
+Scenario: Display archived record status in the header
+Given the user is viewing a record
+When the record status is ""Archived""
+Then the header should display ""Archived""
+
+Python:
+from behave import given, when, then
+
+@given('the user is viewing a record')
+def step_impl(context):
+    pass
+
+@when('the record status is ""{status}""')
+def step_impl(context, status):
+    pass
+
+@then('the header should display ""{status}""')
+def step_impl(context, status):
+    pass"
+382,Guest Upload MVP: Hide Close/Cancel/databaseName/etc for public users,"Gherkin:
+Feature: Guest Upload MVP
+
+Scenario: Hide elements for public users creating a public record
+Given the user is a Public user
+When the user is creating a public record
+Then the page header should display ""Create Record""
+And the 'x' close icon should be hidden
+
+Python:
+from behave import given, when, then
+
+@given('the user is a Public user')
+def step_impl(context):
+    pass
+
+@when('the user is creating a public record')
+def step_impl(context):
+    pass
+
+@then('the page header should display ""Create Record""')
+def step_impl(context):
+    pass
+
+@then('the \'x\' close icon should be hidden')
+def step_impl(context):
+    pass"
+473,"PB - As a User, I want to set Page/Section/Block/Widgets Colour in Opacity ","Gherkin:
+Feature: Set Opacity for Page/Section/Block/Widgets
+
+Scenario: Set opacity for Page background
+Given the user is on the design page
+When the user selects the Page background option
+And adjusts the opacity using the opacity bar
+Then the Page background should reflect the selected opacity
+
+Scenario: Set opacity for Colour Palette Widget
+Given the user is on the design page
+When the user selects the Colour Palette Widget
+And adjusts the opacity using the opacity bar
+Then the Colour Palette Widget should reflect the selected opacity
+
+Scenario: Set opacity for Button Widget's Text
+Given the user is on the design page
+When the user selects the Button Widget's Text option
+And adjusts the opacity using the opacity bar
+Then the Button Widget's Text should reflect the selected opacity
+
+Scenario: Set opacity for Button Widget's Background
+Given the user is on the design page
+When the user selects the Button Widget's Background option
+And adjusts the opacity using the opacity bar
+Then the Button Widget's Background should reflect the selected opacity
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the design page')
+def step_impl(context):
+    pass
+
+@when('the user selects the Page background option')
+def step_impl(context):
+    pass
+
+@when('the user selects the Colour Palette Widget')
+def step_impl(context):
+    pass
+
+@when('the user selects the Button Widget\'s Text option')
+def step_impl(context):
+    pass
+
+@when('the user selects the Button Widget\'s Background option')
+def step_impl(context):
+    pass
+
+@when('adjusts the opacity using the opacity bar')
+def step_impl(context):
+    pass
+
+@then('the Page background should reflect the selected opacity')
+def step_impl(context):
+    pass
+
+@then('the Colour Palette Widget should reflect the selected opacity')
+def step_impl(context):
+    pass
+
+@then('the Button Widget\'s Text should reflect the selected opacity')
+def step_impl(context):
+    pass
+
+@then('the Button Widget\'s Background should reflect the selected opacity')
+def step_impl(context):
+    pass"
+363,"PB - (FE components) As a User, I want to move a sub page to become a standalone Simple Page (Parent)","Gherkin:
+Feature: Page Management
+
+Scenario: Move sub-page to standalone page
+Given the user is in editing mode in Page Builder
+And the user is viewing the Navigation Panel
+When the user drags a sub-page ""SubPage1"" to become a standalone page
+Then ""SubPage1"" should not contain any sub-pages
+And the Navigation Panel should show the updated page hierarchy
+
+Python:
+from behave import given, when, then
+
+@given('the user is in editing mode in Page Builder')
+def step_impl(context):
+    pass
+
+@given('the user is viewing the Navigation Panel')
+def step_impl(context):
+    pass
+
+@when('the user drags a sub-page ""{sub_page}"" to become a standalone page')
+def step_impl(context, sub_page):
+    pass
+
+@then('""{sub_page}"" should not contain any sub-pages')
+def step_impl(context, sub_page):
+    pass
+
+@then('the Navigation Panel should show the updated page hierarchy')
+def step_impl(context):
+    pass"
+325,[Ask AI Alpha] As a user I can tell when results are being loaded,"Gherkin:
+Feature: Loading Indicator
+
+Scenario: Display loading wheel while results are being loaded
+Given the user has entered a query in the input field
+When the user clicks the disabled 'Ask' button
+Then a loading wheel should appear on the 'Ask' button
+And the loading wheel should remain visible while the answer is being fetched
+And the loading wheel should disappear when the answer build is complete
+
+Python:
+from behave import given, when, then
+
+@given('the user has entered a query in the input field')
+def step_impl(context):
+    pass
+
+@when(""the user clicks the disabled 'Ask' button"")
+def step_impl(context):
+    pass
+
+@then('a loading wheel should appear on the ""Ask"" button')
+def step_impl(context):
+    pass
+
+@then('the loading wheel should remain visible while the answer is being fetched')
+def step_impl(context):
+    pass
+
+@then('the loading wheel should disappear when the answer build is complete')
+def step_impl(context):
+    pass"
+432,"PB - As a User, I want to see Nav panel when creating a Simple Page(BE)","Gherkin:
+Feature: Navigation Panel
+
+Scenario: View Nav panel when creating a Simple Page
+Given the user is creating a Simple Page
+When the user views the Right Side Panel
+Then the ""Pages"" tab should be visible and opened by default
+And the user should see all saved Simple pages according to their permissions
+And the pages should be listed in order of ""Last Updated""
+
+Python:
+from behave import given, when, then
+
+@given('the user is creating a Simple Page')
+def step_impl(context):
+    pass
+
+@when('the user views the Right Side Panel')
+def step_impl(context):
+    pass
+
+@then('the ""Pages"" tab should be visible and opened by default')
+def step_impl(context):
+    pass
+
+@then('the user should see all saved Simple pages according to their permissions')
+def step_impl(context):
+    pass
+
+@then('the pages should be listed in order of ""Last Updated""')
+def step_impl(context):
+    pass"
+348,"PB - As a User, I want to add a new Widget ""Spacer""","Gherkin:
+Feature: Add New Widget
+
+Scenario: Add and drag a new Widget ""Spacer""
+Given the user is on the section page
+When the user sees the new widget ""Spacer"" in the navigation
+And drags the widget ""Spacer"" to the section
+Then the widget ""Spacer"" should be added to the section
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the section page')
+def step_impl(context):
+    pass
+
+@when('the user sees the new widget ""{widget_name}"" in the navigation')
+def step_impl(context, widget_name):
+    pass
+
+@when('drags the widget ""{widget_name}"" to the section')
+def step_impl(context, widget_name):
+    pass
+
+@then('the widget ""{widget_name}"" should be added to the section')
+def step_impl(context, widget_name):
+    pass"
+87,"As a User, I want to remove stickers option from left menu","Gherkin:
+Feature: Left Menu Customization
+
+Scenario: Remove stickers option from left menu
+Given the user is on the main page
+When the user accesses the left menu
+Then the stickers option should not be visible
+
+Python:
+from behave import given, when, then
+
+@given('the user is on the main page')
+def step_impl(context):
+    pass
+
+@when('the user accesses the left menu')
+def step_impl(context):
+    pass
+
+@then('the stickers option should not be visible')
+def step_impl(context):
+    pass"
+76,"As a User, I want new File Format 'Templates' displays for scene files that are Img.ly/IB creations (ie, we do not display as scene files) - [V3 Locations]","Gherkin:
+Feature: Display File Format as Templates
+
+Scenario: Display 'Templates' for Img.ly/IB creations
+Given a resource is created via IB+Img.ly
+When the user views the resource in Info Preview
+Then the File Format should be displayed as 'Templates'
+
+Scenario: Display 'Templates' in Database Resource Lookup
+Given a resource is created via IB+Img.ly
+When the user searches for the resource in Database Resource Lookup
+Then the File Format should be displayed as 'Templates'
+
+Scenario: Display 'Templates' in Review Request Item Details
+Given a resource is created via IB+Img.ly
+When the user views the resource in Review Request > Item Details
+Then the File Format should be displayed as 'Templates'
+
+Python:
+from behave import given, when, then
+
+@given('a resource is created via IB+Img.ly')
+def step_impl(context):
+    pass
+
+@when('the user views the resource in Info Preview')
+def step_impl(context):
+    pass
+
+@then('the File Format should be displayed as ""Templates""')
+def step_impl(context):
+    pass
+
+@when('the user searches for the resource in Database Resource Lookup')
+def step_impl(context):
+    pass
+
+@when('the user views the resource in Review Request > Item Details')
+def step_impl(context):
+    pass"
+439,"BP - As a User, I want to single select resources from Resource Lookup with unchangeable filter based on file type in Page Builder","Gherkin:
+Feature: Resource Selection in Page Builder
+
+Scenario: Single select resources with unchangeable filter
+Given the user is in the Page Builder
+When the user opens the Resource Lookup
+Then the filter for File Format should be locked with only ""Image"" enabled
+When the user selects a resource
+Then the resource should be added to the Page Builder
+
+Python:
+from behave import given, when, then
+
+@given('the user is in the Page Builder')
+def step_impl(context):
+    pass
+
+@when('the user opens the Resource Lookup')
+def step_impl(context):
+    pass
+
+@then('the filter for File Format should be locked with only ""{file_format}"" enabled')
+def step_impl(context, file_format):
+    pass
+
+@when('the user selects a resource')
+def step_impl(context):
+    pass
+
+@then('the resource should be added to the Page Builder')
+def step_impl(context):
+    pass"
+16,"As a user, when parent record undergoes publish approval process, child records are only created when parent is approved","Gherkin:
+Feature: Publish Approval Process
+
+Scenario: Child records creation upon parent approval
+Given a parent record is submitted for approval
+When the parent record status becomes ""Approved""
+Then child records should be created
+And the creator of the child records should be the creator of the parent record
+
+Python:
+from behave import given, when, then
+
+@given('a parent record is submitted for approval')
+def step_impl(context):
+    pass
+
+@when('the parent record status becomes ""Approved""')
+def step_impl(context):
+    pass
+
+@then('child records should be created')
+def step_impl(context):
+    pass
+
+@then('the creator of the child records should be the creator of the parent record')
+def step_impl(context):
+    pass"
