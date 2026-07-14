@@ -1,0 +1,173 @@
+﻿ID,User Story,Requirements,Manual Scenario
+362,"Rename ""Simple"" Page to ""Smart"" Page","1. Be able to see the keyword updated to “Smart“ Page, instead of “Simple“ Page (front-end) in the Brand Page MVP  project scope, see detailed locations to rename the keyword as below:
+|| ||*Location to rename*||
+|1|V2 Index List > Add a Page:","Scenario: Renaming 'Simple Page' to 'Smart Page' in the V2 Index List's 'Add a Page'
+Given a user is on the V2 Index List
+When the user selects the 'Add a Page' option
+Then they should see an option labeled 'Smart Page' instead of 'Simple Page'"
+74,"As a User, I want MCP Setting for Kanban Sort Options Updates","1. Add new below setting under *Development Use Only* section Databases - Kanban Sort Options, Location wise, this can be added to bottom of dev section under *Databases - Single User Record Edit Restriction*","Scenario: New Setting for Kanban Sort Options Appears in Development Use Only Section
+Given a user is viewing the settings page
+When they navigate to the Development Use Only section
+Then a new setting ""Databases - Kanban Sort Options"" should be displayed
+And it should be located at the bottom of the section under ""Databases - Single User Record Edit Restriction""
+"
+375,MCP setting for new Grouped Approval types,"1. New MCP setting listed under *Development Use Only* section
+2. Setting: *Approvals - Approvals List (V3) - Grouped Approvals - Record File & Resource Publish (development use only):*","Scenario: Adding a New Setting Under ""Development Use Only"" in MCP
+Given an administrator is logged into the Management Control Panel (MCP)
+And the administrator navigates to the ""Settings"" section
+When the administrator scrolls to the ""Development Use Only"" section
+Then they should see a setting labeled ""Approvals - Approvals List (V3) - Grouped Approvals - Record File & Resource Publish (development use only)""
+And this setting should be configurable as per the system's standard configuration options"
+156,"As a User, I want to set up Session Based Digest Email in My Account Alerts (Markup) for Comment Status Updates, Edited Comments, Deleted Comments, and New Revisions","1. Be able to see and choose ‘Session’ via *My Account* > *Alerts (Markup)* in the *Digest Frequency* drop-down menu for:
+2. Updates to Comment status
+3. Edited Comments
+","Scenario: Select ‘Session’ Option in Digest Frequency Drop-Down for Markup Alerts
+Given the user navigates to My Account > Alerts (Markup)
+When the user opens the Digest Frequency drop-down menu
+Then the ‘Session’ option should be available for selection
+And the user should be able to choose ‘Session’ for the following alert types:
+Updates to Comment Status
+Edited Comments
+
+
+
+
+
+"
+105,"As a User, I should not see the Page Category dropdown when viewing Pages if none of them are assigned to Category","1. Be able to see only Pages from the Left Panel when viewing a Page, if all the pages the user has access to view are all not associated with any Page Category","Scenario: User does not see the Page Category dropdown if no pages have a category  
+    Given the user is viewing Pages in the Left Panel  
+    And none of the pages the user has access to are assigned to a Page Category  
+    When the user navigates to the Pages view  
+    Then the Page Category dropdown should not be displayed  
+    And only the list of Pages should be visible in the Left Panel  "
+395,"PB - As a User, I want to configure permissions of sub-pages in Admin -> Group","1. Be able to see and configure sub-pages under their parent pages in line with design of resource folder/sub-folders in Admin - Group - Permission
+2. Be able to trigger propagation in line with the same logic of resource folder/sub-folders in Admin - Group - Permission","Scenario: Configure and Propagate Permissions for Sub-Pages Under Parent Pages
+Given an administrator is in the Admin - Group - Permission section
+When the administrator views the list of pages
+Then sub-pages should be displayed nested under their respective parent pages, consistent with the design of resource folders and sub-folders
+When the administrator sets permissions on a parent page
+And chooses to propagate these permissions
+Then the system should apply the same permissions to all sub-pages under that parent page, following the same logic used for resource folders and sub-folders
+And the administrator should receive a confirmation that permissions have been successfully propagated to all sub-pages"
+378,"PB - As a User, I want the status of  Resource added via Resource Lookup to be linked with Resource module - unsupported resource type scenario","1.Be able to link the status with the the Resources added to Page Builder via Resource Lookup:
+2. Image as Image Widget
+3. Video as Video Widget","Scenario: Display Resource Status for Widgets Added via Resource Lookup in Page Builder
+Given a user is in the Page Builder's editing mode
+When the user adds an Image Resource as an Image Widget via the Resource Lookup
+Then the status of the Image Resource should be displayed within the Image Widget
+And when the user adds a Video Resource as a Video Widget via the Resource Lookup
+Then the status of the Video Resource should be displayed within the Video Widget"
+125,"As a config user, I want to see/enable a new Setting in Admin > Template for Workflows for Collaborators in Approvals [Resource Feedback]","1. Once MCP setting is enabled, new setting displays for Resource Feedback Workflow Templates
+2. This applies for existing and new templates","Scenario: Display New Setting for Resource Feedback Workflow Templates When MCP is Enabled
+Given the MCP setting is enabled
+When a user views the settings for Resource Feedback Workflow Templates
+Then a new setting should be displayed
+And the new setting should be available for both existing and new templates"
+69,"As a User, I want to update UI & logic around selecting Jobs in Info Preview panel for preview + closing them to return to Resource preview","1. Implement changes to selecting and closing Jobs Previews, as per provided designs  
+
+2. We will retain the existing behavior, where the selected Job needs to be re-clicked to switch the Preview back to the Template instead of the Job. Additionally, we will add another option for the user to close the Job preview.","Scenario: Users can close Job Previews and switch back to the Template
+Given a user has selected a Job and is viewing its Preview
+When the user re-clicks the selected Job
+Then the Preview should switch back to the Template
+
+When the user chooses the new close option for the Job Preview
+Then the Job Preview should close
+And the Template view should be restored"
+451,As a user I want to click 'Review Request' action in action dropdown in footer to open Bulk Approve Page (action redirect),"1. When Bulk ‘Review Request’ action is clicked, as done in, then the Bulk Review Request page opens","Scenario: Navigating to the Bulk Review Request Page
+Given I am a user with appropriate permissions
+When I click on the 'Bulk Review Request' action
+Then the Bulk Review Request page should open"
+10,"As a user, I want to be able to preview the GIF or Lottie File converted MP4 on the Edit screen so that I can preview what the animation like before I Edit or upload a new version","1. Users should see the preview of the GIF or Lottie File converted MP4 on the Edit/New Version screen. This should help users to preview the animation while editing
+2. As a user on the Edit/New Version screen
+3. The preview should show the GIF or Lottie File converted MP4.
+4. Edit uses PDFTron 
+5. The controls should be hidden
+6. The MP4 should autoplay","Scenario: Verify the GIF and Lottie file preview on the Review Request screen screen
+  Given I am an admin 
+  When I upload Lottie and GIF file
+  And navigate to the workflow page
+  And I click on Review Request 
+  Then The file should have been converted to MP4
+  And The controls should be hidden
+  And The MP4 should autoplay"
+195,"PB - As an Internal User, I want to have MCP(development use only) settings to enable/disable features per Epic for Drag & Drop Page MVP ","1. Add a MCP setting “Smart Page: Widgets combining Block“ under Development Use only for Epic:
+2.Add a MCP setting “Smart Page: Image Resizing“ under Development Use only
+3. Add a MCP setting “Smart Pages - Page Templates (development use only)“ under Development Use only
+4.Add a MCP setting “Smart Page: Page Grouping“ under Development Use only","Scenario: Internal user can configure MCP settings for Smart Page features  
+    Given the internal user has access to the MCP settings under ""Development Use only"" for the Epic  
+    When the user views the MCP settings page  
+    Then the following settings should be available:  
+      | Setting Name                            | Description                                        |
+      | ""Smart Page: Widgets combining Block""    | Enables or disables the combining of widgets with blocks on smart pages |  
+      | ""Smart Page: Image Resizing""             | Enables or disables image resizing functionality on smart pages |  
+      | ""Smart Pages - Page Templates""           | Enables or disables the use of page templates in smart pages |  
+      | ""Smart Page: Page Grouping""              | Enables or disables page grouping functionality on smart pages |  
+
+    When the user toggles any of these settings,  
+    Then the corresponding feature for Smart Pages should be enabled or disabled as per the setting's state  
+    And the changes should only apply in the development environment for testing and validation purposes  
+"
+407,Record File Grouped Requests added to Group tab,"1. Grouped Record File requests are to be listed in the Grouped tab in V3 Approval List
+2. This may cause the Grouped Tab to display for users that otherwise may not have seen it - ie, a Requester who never previously saw the Grouped Tab but requests their first Grouped Record File request will now see this Tab in the V3 Approvals List.","Scenario: Displaying Grouped Record File Requests in the Grouped Tab of the V3 Approval List
+Given a user has submitted one or more Grouped Record File requests
+When the user navigates to the V3 Approval List
+Then the ""Grouped"" tab should be visible
+And the user's Grouped Record File requests should be listed under the ""Grouped"" tab
+And if the user has not previously seen the ""Grouped"" tab, it should now be displayed due to the presence of their Grouped Record File requests"
+85,"As a User, I want Close or cancel handling","1. If close or cancel is selected from Edit Template page, user is returned to the location they selected the Edit action from 
+","Scenario: Returning to Previous Location After Cancelling Edit Template
+Given a user is on the Edit Template page
+When they click Close or Cancel
+Then they are returned to the location where they originally selected the Edit action from"
+372,"PB - As a User, I want to re-order pages within the same parent/root via Nav - FE integration","1. Be able to re-order Pages via drag-and-drop from Nav Panel during editing
+2. Sub-pages will be moved all together with Page if it contains any
+3. After drag-and-drop of Pages, Sub-pages will be *collapsed* under Page from Nav Panel","Scenario: Reordering Pages via Drag-and-Drop in Navigation Panel during Editing
+Given the user is in editing mode within the Page Builder
+And the Navigation Panel displays a list of pages, some of which contain sub-pages
+When the user drags a page to a new position within the Navigation Panel
+Then the system moves the selected page to the new position
+And if the moved page contains sub-pages, all associated sub-pages move along with it
+And after the drag-and-drop action, any sub-pages under the moved page are collapsed in the Navigation Panel"
+389,"PB - As an internal User, I want to set Page limits via MCP settings","
+1. Be able to set Page limits on MCP control panel for client sites","Scenario: Set Page Limits for Client Sites in the MCP Control Panel
+Given an administrator is logged into the MCP (Management Control Panel)
+When the administrator navigates to the settings section for a specific client site
+And the administrator sets a page limit for that client site
+Then the system should enforce the specified page limit for the client site
+And attempts to create additional pages beyond this limit should be restricted
+And an appropriate notification should be displayed to inform users of the page limit restriction"
+496,"CT - As a User, on Add Revision page I should be able to see my Threads and switch between them but not Manage them.","1. User should be able to switch between Threads on Add Revision page
+2.User should NOT be able to manage Threads or create new Thread on Add Revision page
+3. User should see all comments of the selected Threads","Scenario: Switching Between Threads on Add Revision Page Without Managing or Creating New Threads
+Given the user is on the Add Revision page
+When they attempt to switch between different Threads
+Then they should be able to select and view different Threads
+And when a Thread is selected
+Then all comments within that Thread should be displayed
+But the user should not have the ability to manage existing Threads
+And the user should not be able to create a new Thread on the Add Revision page"
+31,"As a user, I want on close of Single view redirect to Grouped Approval Review page (don't clear out single page response values)","1. When a user has entered any response info on a single response page and then returns to the List view, those details (comment/response/approved until values) are retained as long as the overall Grouped Review Page is open (As soon as user closes the overall overlay we no longer store this info)
+2. This means, if user re-opens that single view, their response details remain ","Scenario: Retaining single view response details on close
+ Given I have opened a single response page within a Grouped Approval Review
+ And I have entered response information on the single response page
+ When I close the single response page and return to the Grouped Approval Review list view
+ Then the response details I entered on the single response page should be retained
+ And if I reopen the same single response page, the previously entered details should still be present"
+317,"PB - (Misc) As a User, I want to set auto-play as default or not for Video Widgets when viewing a Smart Page","1. Be able to set added Video Widget auto-playing on Viewing via the button as per 
+2.By default, the auto-play button is unchecked, meaning Videos won’t be auto-played on viewing by default","Scenario: Configuring Auto-Play for Video Widget
+Given the user has added a Video Widget
+When they open the Video Widget settings
+Then an Auto-Play button should be available
+And Given the Video Widget is newly added
+When the user has not changed the auto-play setting
+Then the auto-play button should be unchecked by default
+And the video should not auto-play when viewed
+And Given the user enables the auto-play button
+When they view the Video Widget
+Then the video should start playing automatically"
+409,Publish Resource Grouped Requests added to Group tab,"1. Grouped Resource Publish requests are to be listed in the Grouped tab in V3 Approval List
+2. This may cause the Grouped Tab to display for users that otherwise may not have seen it - ie, a Requester who never previously saw the Grouped Tab but requests their first Grouped Resource Publish request will now see this Tab in the V3 Approvals List.","Scenario: Displaying Grouped Resource Publish Requests in the Grouped Tab of the V3 Approval List
+Given a user has submitted their first Grouped Resource Publish request
+When the user navigates to the V3 Approval List
+Then the ""Grouped"" tab becomes visible to the user
+And the user's Grouped Resource Publish request is listed under the ""Grouped"" tab"
