@@ -25,7 +25,7 @@ Behavior-Driven Development (BDD) là một phương pháp phát triển phần 
 
 Để tối ưu hóa, tự động hóa sinh kiểm thử BDD từ User Stories là một hướng nghiên cứu then chốt. Việc sử dụng các mô hình ngôn ngữ lớn (LLM) để sinh kịch bản và Step Definitions từ User Stories định dạng Connextra (`As a [role], I want [feature], so that [benefit]`) hứa hẹn tăng tốc quy trình kiểm thử và đảm bảo tính nhất quán giữa tài liệu và mã nguồn (Rathnayake et al. 2026).
 
-Đánh giá các kỹ thuật Prompt Engineering trên mô hình ngôn ngữ lớn (LLM) là rất quan trọng để tối ưu hóa quy trình sinh tự động BDD. Trong thực tế, mặc dù các mô hình ngôn ngữ lớn có năng lực sinh mã nguồn và kịch bản kiểm thử mạnh mẽ, hiệu năng của chúng phụ thuộc rất lớn vào cách thiết kế chỉ dẫn (Prompt Design). Các kỹ thuật Prompt Engineering khác nhau như Zero-Shot, Few-Shot và Chain-of-Thought (CoT) mang lại những cấu trúc thông tin và định hướng suy luận khác nhau cho mô hình. Tuy nhiên, hiện tại vẫn chưa có nhiều nghiên cứu thực nghiệm đánh giá và so sánh một cách hệ thống ảnh hưởng của các kỹ thuật prompt khác nhau đến chất lượng sinh các tài liệu BDD (bao gồm kịch bản Gherkin và mã Step Definitions) từ User Stories thực tế. Việc thực hiện nghiên cứu này trên một mô hình nguồn mở như Qwen2.5-7B-Instruct sẽ giúp các đội ngũ phát triển hiểu rõ hiệu quả thực tế và giới hạn của từng kỹ thuật prompting, từ đó áp dụng giải pháp tự động hóa kiểm thử BDD local tối ưu và tiết kiệm chi phí.
+Đánh giá các kỹ thuật Prompt Engineering trên mô hình ngôn ngữ lớn (LLM) là rất quan trọng để tối ưu hóa quy trình sinh tự động BDD. Trong thực tế, mặc dù các mô hình ngôn ngữ lớn có năng lực sinh mã nguồn và kịch bản kiểm thử mạnh mẽ, hiệu năng của chúng phụ thuộc rất lớn vào cách thiết kế chỉ dẫn (Prompt Design). Các kỹ thuật Prompt Engineering khác nhau như Zero-Shot, Few-Shot và Chain-of-Thought (CoT) mang lại những cấu trúc thông tin và định hướng suy luận khác nhau cho mô hình. Tuy nhiên, hiện tại vẫn chưa có nhiều nghiên cứu thực nghiệm đánh giá và so sánh một cách hệ thống ảnh hưởng của các kỹ thuật prompt khác nhau đến chất lượng sinh các tài liệu BDD (bao gồm kịch bản Gherkin và mã Step Definitions) từ User Stories thực tế. Việc thực hiện nghiên cứu này trên một mô hình tiên tiến như GPT-4o thông qua OpenAI Responses API sẽ giúp các đội ngũ phát triển hiểu rõ hiệu quả thực tế và giới hạn của từng kỹ thuật prompting, từ đó áp dụng giải pháp tự động hóa kiểm thử BDD tối ưu và hiệu quả.
 
 ### 2.2 State of the Art
 
@@ -42,13 +42,17 @@ Selfbehave et al. (2026) tinh chỉnh LLaMA-3-8B bằng LoRA, đạt tỷ lệ b
 ### 2.3 GAP (Khoảng trống nghiên cứu)
 
 Dựa trên tổng hợp các bài báo khoa học chính thức, nhóm xác định 3 khoảng trống nghiên cứu chính:
-*   **GAP-T (Technology - Chính):** Chưa có nhiều nghiên cứu thực nghiệm đánh giá và so sánh các kỹ thuật Prompt Engineering như Zero-Shot, Few-Shot và Chain-of-Thought trong bài toán đồng sinh Gherkin Scenarios và Python Step Definitions từ Connextra User Stories trên mô hình nguồn mở chạy cục bộ (Hỗ trợ bởi: Fernandes et al. 2025, Rathnayake et al. 2026, dos Santos et al. 2026).
+*   **GAP-T (Technology - Chính):** Nghiên cứu thực nghiệm so sánh một cách hệ thống các kỹ thuật Prompt Engineering (Zero-shot, Few-shot và Chain-of-Thought) trong bài toán đồng sinh Gherkin Scenarios và Python Step Definitions từ Connextra User Stories sử dụng GPT-4o (A systematic empirical comparison of Prompt Engineering techniques (Zero-shot, Few-shot and Chain-of-Thought) for automatically generating Gherkin Scenarios and Python Step Definitions from Connextra User Stories using GPT-4o) (Hỗ trợ bởi: Fernandes et al. 2025, Rathnayake et al. 2026, dos Santos et al. 2026).
 *   **GAP-M (Metric - Phụ):** Các nghiên cứu hiện tại còn thiếu một cơ chế kiểm định tĩnh kép (kết hợp gherkin-official parser và Python AST Parser) làm bộ lọc chất lượng trước khi tiến hành đo độ tương đồng ngữ nghĩa Cosine Similarity với kịch bản chuẩn, tránh việc đo lường trên các đoạn mã lỗi cú pháp (Hỗ trợ bởi: Karpurapu et al. 2024, Tesfalidet et al. 2025).
 *   **GAP-D (Dataset - Hỗ trợ):** Các thực nghiệm còn hạn chế trên các tập dữ liệu benchmark đa miền thực tế quy mô lớn, phần lớn chỉ tập trung vào dữ liệu tự sinh hoặc tập dữ liệu nhỏ từ 5 đến 34 mẫu (Hỗ trợ bởi: Rathnayake et al. 2026).
 
 ### 2.4 Motivation
 
-Nếu các khoảng trống này không được giải quyết, các doanh nghiệp và đội ngũ kỹ sư sẽ thiếu cơ sở khoa học để lựa chọn kỹ thuật hướng dẫn mô hình (prompting) hiệu quả nhất, dẫn đến chất lượng mã nguồn sinh ra không tối ưu. Sinh kịch bản Gherkin thiếu Step Definitions chỉ giải quyết được một nửa bài toán tự động hóa. Hơn nữa, việc đánh giá thiếu bộ lọc tĩnh kép sẽ dẫn đến rủi ro triển khai mã nguồn lỗi cú pháp, gây lãng phí tài nguyên thực thi và giảm lòng tin của kỹ sư phát triển. Nghiên cứu thực nghiệm này nhằm cung cấp bằng chứng thực nghiệm rõ ràng về hiệu quả của Zero-Shot, Few-Shot và Chain-of-Thought trên mô hình nguồn mở Qwen2.5-7B-Instruct chạy cục bộ, giúp các tổ chức xây dựng quy trình tự động hóa kiểm thử BDD local an toàn, khả thi và tối ưu nhất.
+Nếu các khoảng trống này không được giải quyết, các doanh nghiệp và đội ngũ kỹ sư sẽ thiếu cơ sở khoa học để lựa chọn kỹ thuật hướng dẫn mô hình (prompting) hiệu quả nhất, dẫn đến chất lượng mã nguồn sinh ra không tối ưu. Sinh kịch bản Gherkin thiếu Step Definitions chỉ giải quyết được một nửa bài toán tự động hóa. Hơn nữa, việc đánh giá thiếu bộ lọc tĩnh kép sẽ dẫn đến rủi ro triển khai mã nguồn lỗi cú pháp, gây lãng phí tài nguyên thực thi và giảm lòng tin của kỹ sư phát triển. Nghiên cứu thực nghiệm này nhằm cung cấp bằng chứng thực nghiệm rõ ràng về hiệu quả của các kỹ thuật Zero-Shot, Few-Shot và Chain-of-Thought trên mô hình GPT-4o thông qua OpenAI Responses API. GPT-4o được lựa chọn nhờ khả năng tuân thủ chỉ dẫn vượt trội (state-of-the-art instruction following), chất lượng sinh mã nguồn cao (high quality code generation), năng lực suy luận mạnh mẽ (strong reasoning capability), cùng với tính khả thi cao về khả năng tái lập thực nghiệm thông qua các tham số sinh tất định (reproducibility using deterministic parameters). Nghiên cứu này sẽ giúp các tổ chức xây dựng quy trình tự động hóa kiểm thử BDD đáng tin cậy, khả thi và tối ưu nhất.
+
+### 2.5 Đóng góp dự kiến (Expected Contributions)
+
+Đóng góp chính của nghiên cứu này là: Một đánh giá thực nghiệm có hệ thống về các kỹ thuật Prompt Engineering trên mô hình GPT-4o cho việc tự động sinh BDD (Gherkin Scenarios và Python Step Definitions) từ Connextra User Stories (A systematic empirical evaluation of Prompt Engineering techniques on GPT-4o for automated BDD generation from Connextra User Stories). Nghiên cứu tập trung đánh giá hiệu năng và độ ổn định của mô hình thương mại hàng đầu này mà không bao gồm việc đánh giá triển khai các mô hình nguồn mở cục bộ.
 
 ---
 
@@ -92,38 +96,38 @@ Bảng ánh xạ các GAP nghiên cứu phát hiện được từ tài liệu r
 
 ### 4.1 Câu hỏi nghiên cứu chính (Main RQ)
 
-Liệu có sự khác biệt có ý nghĩa thống kê về Semantic Similarity và Executable Syntax Rate giữa các kỹ thuật Prompt Engineering (Zero-Shot, Few-Shot, Chain-of-Thought) khi áp dụng trên mô hình Qwen2.5-7B-Instruct hay không?
+Liệu có sự khác biệt có ý nghĩa thống kê về Semantic Similarity và Executable Syntax Rate giữa các kỹ thuật Prompt Engineering (Zero-Shot, Few-Shot, Chain-of-Thought) khi áp dụng trên mô hình GPT-4o hay không?
 
 ### 4.2 Các câu hỏi nghiên cứu phụ (Sub-RQs)
 
 #### RQ1 – Semantic Similarity (Độ tương đồng ngữ nghĩa)
 Kỹ thuật Prompt Engineering nào tạo ra độ tương đồng ngữ nghĩa Cosine Similarity cao nhất so với Ground Truth?
 *   *Cơ sở khoa học cho ngưỡng 0.80:* Ngưỡng 0.80 được lựa chọn dựa trên các nghiên cứu đi trước về so khớp ngữ nghĩa trong kiểm thử phần mềm (ví dụ: Fernandes et al. 2025 đạt điểm tương đồng trung bình 0.84 với Gemini; Tesfalidet et al. 2025 đạt 0.81 với GPT-4). Điểm số từ 0.80 trở lên biểu thị kịch bản BDD sinh ra giữ được các tiêu chí chấp nhận nghiệp vụ cốt lõi và ánh xạ đúng cấu trúc tham số của Ground Truth, giúp giảm thiểu đáng kể nỗ lực chỉnh sửa thủ công của kỹ sư.
-*   *Hệ giả thuyết cho Zero-Shot:*
+*   *Hệ giả thuyết cho Zero-Shot (Phép kiểm One-Sample Wilcoxon & đo kích cỡ hiệu ứng bằng Rank-Biserial Correlation):*
     $$\text{H0}_{1a}: \text{Median}(\text{Similarity}_{\text{Zero-Shot}}) \le 0.80$$
     $$\text{H1}_{1a}: \text{Median}(\text{Similarity}_{\text{Zero-Shot}}) > 0.80$$
-*   *Hệ giả thuyết cho Few-Shot:*
+*   *Hệ giả thuyết cho Few-Shot (Phép kiểm One-Sample Wilcoxon & đo kích cỡ hiệu ứng bằng Rank-Biserial Correlation):*
     $$\text{H0}_{1b}: \text{Median}(\text{Similarity}_{\text{Few-Shot}}) \le 0.80$$
     $$\text{H1}_{1b}: \text{Median}(\text{Similarity}_{\text{Few-Shot}}) > 0.80$$
-*   *Hệ giả thuyết cho Chain-of-Thought (CoT):*
+*   *Hệ giả thuyết cho Chain-of-Thought (CoT) (Phép kiểm One-Sample Wilcoxon & đo kích cỡ hiệu ứng bằng Rank-Biserial Correlation):*
     $$\text{H0}_{1c}: \text{Median}(\text{Similarity}_{\text{CoT}}) \le 0.80$$
     $$\text{H1}_{1c}: \text{Median}(\text{Similarity}_{\text{CoT}}) > 0.80$$
 
 #### RQ2 – Executable Syntax Rate (Tỷ lệ cú pháp tĩnh khả thi)
 Kỹ thuật Prompt Engineering nào tạo ra tỷ lệ cú pháp tĩnh hợp lệ Executable Syntax Rate tối thiểu 85% cao nhất sau khi qua bộ lọc kép Gherkin Parser và Python AST Validation?
-*   *Hệ giả thuyết cho Zero-Shot:*
+*   *Hệ giả thuyết cho Zero-Shot (Phép kiểm Binomial Exact Test):*
     $$\text{H0}_{2a}: p_{\text{syntax\_Zero-Shot}} \le 0.85$$
     $$\text{H1}_{2a}: p_{\text{syntax\_Zero-Shot}} > 0.85$$
-*   *Hệ giả thuyết cho Few-Shot:*
+*   *Hệ giả thuyết cho Few-Shot (Phép kiểm Binomial Exact Test):*
     $$\text{H0}_{2b}: p_{\text{syntax\_Few-Shot}} \le 0.85$$
     $$\text{H1}_{2b}: p_{\text{syntax\_Few-Shot}} > 0.85$$
-*   *Hệ giả thuyết cho Chain-of-Thought (CoT):*
+*   *Hệ giả thuyết cho Chain-of-Thought (CoT) (Phép kiểm Binomial Exact Test):*
     $$\text{H0}_{2c}: p_{\text{syntax\_CoT}} \le 0.85$$
     $$\text{H1}_{2c}: p_{\text{syntax\_CoT}} > 0.85$$
 
 #### RQ3 – Comparative Evaluation (Đánh giá đối chứng)
-Có sự khác biệt có ý nghĩa thống kê về chất lượng ngữ nghĩa và tỷ lệ cú pháp tĩnh hợp lệ giữa Zero-Shot, Few-Shot và Chain-of-Thought prompting khi áp dụng trên mô hình Qwen2.5-7B-Instruct hay không?
-*   *Hệ giả thuyết so sánh độ tương đồng ngữ nghĩa (Paired Wilcoxon Signed-Rank Test):*
+Có sự khác biệt có ý nghĩa thống kê về chất lượng ngữ nghĩa và tỷ lệ cú pháp tĩnh hợp lệ giữa Zero-Shot, Few-Shot và Chain-of-Thought prompting khi áp dụng trên mô hình GPT-4o hay không?
+*   *Hệ giả thuyết so sánh độ tương đồng ngữ nghĩa (Paired Wilcoxon Signed-Rank Test & đo kích cỡ hiệu ứng bằng Rank-Biserial Correlation):*
     - Zero-Shot vs Few-Shot:
       $$\text{H0}_{3a}: \text{Median}(\text{Similarity}_{\text{Few-Shot}} - \text{Similarity}_{\text{Zero-Shot}}) = 0$$
       $$\text{H1}_{3a}: \text{Median}(\text{Similarity}_{\text{Few-Shot}} - \text{Similarity}_{\text{Zero-Shot}}) \neq 0$$
@@ -151,7 +155,7 @@ Bảng mô tả cấu trúc PICO của thực nghiệm:
 | Thành phần PICO | Đặc tả chi tiết trong nghiên cứu của nhóm |
 | :--- | :--- |
 | **Population (P)** | 100 User Stories định dạng Connextra rút ngẫu nhiên không lặp (seed = 42) từ tập dữ liệu 500 mẫu của Rathnayake et al. (2026). |
-| **Intervention (I)** | Áp dụng các kỹ thuật Prompt Engineering (Zero-Shot, Few-Shot, Chain-of-Thought) trên mô hình nguồn mở Qwen2.5-7B-Instruct. |
+| **Intervention (I)** | Áp dụng các kỹ thuật Prompt Engineering (Zero-Shot, Few-Shot, Chain-of-Thought) trên mô hình GPT-4o thông qua OpenAI Responses API. |
 | **Comparison (C)** | So sánh đối chứng chéo giữa 3 kỹ thuật Prompting với nhau và so sánh với kịch bản chuẩn viết tay từ chuyên gia (Ground Truth). |
 | **Outcome (O)** | Điểm tương đồng ngữ nghĩa Cosine Similarity (ngưỡng $\ge 0.80$) và Tỷ lệ cú pháp tĩnh hợp lệ Executable Syntax Rate (ngưỡng $\ge 85\%$). |
 
@@ -189,63 +193,52 @@ Phương pháp rút mẫu thực nghiệm:
 Quy trình thực nghiệm tuần tự được thiết kế như sau:
 
 ```
-      User Story định dạng Connextra
-                 ↓
-        Qwen2.5-7B-Instruct
-                 ↓
-   [Zero-Shot / Few-Shot / CoT] Prompt
-                 ↓
-             Đồng sinh:
-       • Kịch bản Gherkin (.feature)
-       • Mã Python Step Definition (.py)
-                 ↓
-       Kiểm định cú pháp tĩnh (Parser & AST)
-                 ↓
-       Đánh giá ngữ nghĩa (SBERT Cosine)
-                 ↓
-       Phân tích thống kê (Wilcoxon, Binomial, McNemar)
+        User Story + Requirement Description
+                         ↓
+                  Prompt Template
+                         ↓
+                      GPT-4o
+                         ↓
+                  BDD Generation
+                         ↓
+                 Static Validation
+                         ↓
+                Semantic Evaluation
+                         ↓
+                Statistical Analysis
 ```
 
 Chi tiết mục đích của từng giai đoạn:
-1.  **Connextra User Story:** Dữ liệu yêu cầu đầu vào chuẩn hóa làm ngữ cảnh cho LLM.
-2.  **Qwen2.5-7B-Instruct:** Mô hình ngôn ngữ lớn nguồn mở thực thi suy luận cục bộ.
-3.  **Prompt Configuration:** Cung cấp prompt tương ứng với 3 kỹ thuật thực nghiệm: Zero-Shot, Few-Shot, hoặc Chain-of-Thought.
-4.  **Generate:** Đồng sinh kịch bản Gherkin (.feature) và Step Definitions (.py) sử dụng framework Behave trong một lượt suy luận duy nhất.
+1.  **User Story + Requirement Description:** Dữ liệu yêu cầu đầu vào định dạng Connextra và mô tả yêu cầu chi tiết làm ngữ cảnh cơ sở cho LLM.
+2.  **Prompt Template:** Điền dữ liệu đầu vào vào khung prompt tương ứng với 3 kỹ thuật thực nghiệm: Zero-Shot, Few-Shot, hoặc Chain-of-Thought.
+3.  **GPT-4o:** Mô hình ngôn ngữ lớn thương mại thực thi suy luận thông qua OpenAI Responses API nhận prompt và xử lý sinh.
+4.  **BDD Generation:** Đồng sinh kịch bản Gherkin (.feature) và Step Definitions (.py) sử dụng framework Behave trong một lượt suy luận duy nhất.
 5.  **Static Validation:** Bộ lọc kép kiểm lỗi cú pháp tĩnh của kịch bản Gherkin (qua gherkin parser) và Step Code Python (qua AST).
-6.  **Semantic Evaluation:** Đánh giá độ tương hợp nghiệp vụ Cosine SBERT so với Ground Truth của chuyên gia.
-7.  **Statistical Analysis:** Áp dụng các phép kiểm thống kê toán học để kết luận hệ giả thuyết ở mức ý nghĩa $\alpha = 0.05$.
+6.  **Semantic Evaluation:** Đánh giá độ tương hợp nghiệp vụ Cosine SBERT, BLEU, ROUGE so với Ground Truth của chuyên gia.
+7.  **Statistical Analysis:** Áp dụng các phép kiểm thống kê toán học (Wilcoxon, Binomial, McNemar) để kết luận hệ giả thuyết ở mức ý nghĩa $\alpha = 0.05$.
 
 ### 5.3 Model Configuration
 
-#### Experimental Model (Mô hình thực nghiệm)
-*   **Mô hình:** Qwen2.5-7B-Instruct
-*   **Lý do lựa chọn:** 
-    *   Là mô hình mã nguồn mở thế hệ mới với khả năng tuân thủ chỉ dẫn (instruction-following) và sinh mã nguồn (Code Generation) vượt trội trong nhóm mô hình quy mô dưới 10 tỷ tham số.
-    *   Model có thể chạy thông qua Ollama local hoặc môi trường miễn phí như Kaggle Notebook tùy điều kiện phần cứng của nhóm.
-    *   Không yêu cầu fine-tuning hay huấn luyện lại mô hình, loại bỏ hoàn toàn các rủi ro kỹ thuật liên quan đến việc huấn luyện (như tràn bộ nhớ, mất ổn định hàm loss) và chi phí chuẩn bị tập dữ liệu train.
+#### Experimental Model & API Provider (Mô hình thực nghiệm & Nhà cung cấp)
+*   **Mô hình:** GPT-4o
+*   **Nhà cung cấp:** OpenAI Responses API
+*   **Lý do lựa chọn:** GPT-4o là mô hình ngôn ngữ lớn thương mại thế hệ mới tiên tiến nhất hiện nay, sở hữu năng lực tuân thủ chỉ dẫn vượt trội (state-of-the-art instruction following), chất lượng sinh mã nguồn cao (high quality code generation), và khả năng suy luận mạnh mẽ (strong reasoning capability). Việc sử dụng API dịch vụ chính thức từ OpenAI đảm bảo độ ổn định cao và khả năng xử lý đồng sinh mã nguồn phức tạp một cách chính xác.
 
-#### Generation Settings (Tham số sinh)
+#### Generation Settings (Tham số cấu hình sinh)
 *   **Temperature:** 0
 *   **Top_p:** 1
 *   *Lý do:* Thiết lập temperature = 0 và top_p = 1 đưa mô hình về chế độ sinh tất định (deterministic generation). Điều này triệt tiêu tính ngẫu nhiên của văn bản đầu ra, đảm bảo tính tái lập (reproducibility) cao nhất cho các kịch bản kiểm thử sinh ra khi thực thi lại thực nghiệm.
 
 ### 5.4 Prompt Templates
 
-Nhóm xây dựng ba Prompt Template tương ứng với ba kỹ thuật Prompt Engineering bằng tiếng Anh học thuật để thực nghiệm trên Qwen2.5-7B-Instruct:
+Nhóm xây dựng ba Prompt Template tương ứng với ba kỹ thuật Prompt Engineering bằng tiếng Anh học thuật để thực nghiệm trên GPT-4o:
 
 #### A. Zero-Shot Prompt Template
+Kỹ thuật Zero-Shot thiết lập vai trò chuyên gia kiểm thử (QA Expert) và kỹ sư phát triển BDD (BDD Engineer) cho mô hình GPT-4o. Mô hình được yêu cầu sinh ra chính xác một Feature, một Scenario (đặc biệt là một kịch bản happy-path duy nhất), và các mã Python Behave Step Definitions tương ứng. Việc sinh kịch bản được làm phong phú và chi tiết hóa bằng cách sử dụng Requirement Description đi kèm. Prompt tuân thủ quy định định dạng đầu ra nghiêm ngặt: không sử dụng markdown code fences, không chứa bất kỳ giải thích, lập luận hay bình luận nào.
 ```text
-You are an expert BDD engineer. Given a Connextra User Story and its Requirement Description, you must automatically generate a structured Gherkin Scenario and its corresponding Python Step Definitions (using the behave framework).
+You are a QA expert and BDD engineer.
 
-Use step-by-step reasoning internally before generating the final answer. Do not reveal your reasoning process.
-
-Use the Requirement Description to identify:
-
-* Preconditions (Given)
-* User actions (When)
-* Expected outcomes (Then)
-
-Output only the final Gherkin Scenario and Python Step Definitions.
+Generate a BDD Gherkin Scenario and corresponding Python Step Definitions for the following user story and requirement description.
 
 User Story:
 {user_story}
@@ -253,22 +246,57 @@ User Story:
 Requirement Description:
 {requirements}
 
+Requirements:
+
+1. Generate only the most important happy path scenario.
+2. Do not generate multiple scenarios.
+3. Generate exactly one Feature and one Scenario.
+4. Follow standard Given-When-Then syntax.
+5. Use the Requirement Description to enrich the scenario when necessary.
+6. Ensure Python Step Definitions are syntactically valid Behave step definitions.
+7. Each Given, When, and Then step in the Gherkin Scenario must have a corresponding Python Step Definition.
+
+STRICT OUTPUT RULES:
+
+* Return plain text only.
+* Do not use markdown code fences.
+* Do not use ```gherkin.
+* Do not use ```python.
+* Do not include explanations.
+* Do not include notes.
+* Do not include comments beginning with #.
+* Do not include any text before "Gherkin:".
+* Do not include any text after the Python output.
+
 Output Format:
 
 Gherkin:
-[Gherkin Scenario]
+Feature: <feature name>
+
+Scenario: <scenario name>
+Given ...
+When ...
+Then ...
 
 Python:
-[Python Step Definitions]
+from behave import given, when, then
 
-Rules:
+@given("...")
+def step_impl(context):
+    pass
 
-* Do not use markdown code fences.
-* Do not include explanations, notes, reasoning, or comments.
-* Do not include any text before "Gherkin:" or after the Python output.
+@when("...")
+def step_impl(context):
+    pass
+
+@then("...")
+def step_impl(context):
+    pass
+
 ```
 
 #### B. Few-Shot Prompt Template
+Kỹ thuật Few-Shot cung cấp 2 ví dụ mẫu đại diện cụ thể đã được viết hoàn chỉnh để mô hình GPT-4o học theo cấu trúc mong muốn. Các ví dụ mẫu này trình bày rõ cấu trúc kịch bản Gherkin và mã Behave Step Definitions tương ứng. GPT-4o sẽ bắt chước trực tiếp cấu trúc của các ví dụ này để trả về kết quả định dạng cố định, loại bỏ các giải thích dư thừa.
 ```text
 You are an expert BDD engineer. Given a Connextra User Story, automatically generate a structured Gherkin Scenario and its corresponding Python Step Definitions (using the behave framework).
 
@@ -362,43 +390,61 @@ Rules:
 - Do not use markdown code fences.
 - Do not include explanations, notes, or comments.
 - Do not include any text before "Gherkin:" or after the Python output.
-
 ```
 
 #### C. Chain-of-Thought Prompt Template
+Kỹ thuật Chain-of-Thought (CoT) hướng dẫn mô hình thực hiện các bước lập luận logic nội bộ trước khi sinh ra kết quả cuối cùng. Tuy nhiên, để đảm bảo tính nhất quán của định dạng đầu ra phục vụ cho bộ lọc tự động, mô hình được chỉ dẫn nghiêm ngặt rằng toàn bộ quá trình suy luận này phải được giữ kín và tuyệt đối không được hiển thị trong kết quả trả về. Kết quả trả về cuối cùng chỉ chứa đúng một Feature, một Gherkin Scenario và mã Behave Step Definitions tương ứng theo cấu trúc quy định.
 ```text
-You are an expert BDD engineer. Given a Connextra User Story and its Requirement Description, you must automatically generate a structured Gherkin Scenario and its corresponding Python Step Definitions (using the behave framework).
+You are an expert BDD engineer.
 
-Use step-by-step reasoning internally before generating the final answer. Do not reveal your reasoning process.
+Use internal step-by-step reasoning before producing the final answer.
+Do NOT reveal your reasoning.
 
-Use the Requirement Description to identify:
-
-* Preconditions (Given)
-* User actions (When)
-* Expected outcomes (Then)
-
-Output only the final Gherkin Scenario and Python Step Definitions.
+Generate EXACTLY ONE BDD Feature, ONE Scenario, and the corresponding Python Step Definitions.
 
 User Story:
-{USER_STORY}
+{user_story}
 
 Requirement Description:
-{REQUIREMENTS}
+{requirements}
 
-Output Format:
+Requirements:
+
+1. Generate exactly one Feature.
+2. Generate exactly one Scenario.
+3. Use standard Given-When-Then syntax.
+4. Use the Requirement Description to infer missing preconditions and expected outcomes.
+5. Generate syntactically valid Behave Step Definitions.
+6. Every Given, When, and Then step must have a corresponding Python step.
+
+STRICT OUTPUT FORMAT
 
 Gherkin:
-[Gherkin Scenario]
+
+Feature: <feature name>
+
+Scenario: <scenario name>
+
+Given ...
+And ...
+When ...
+And ...
+Then ...
 
 Python:
-[Python Step Definitions]
 
-Rules:
+from behave import given, when, then
 
-* Do not use markdown code fences.
-* Do not include explanations, notes, reasoning, or comments.
-* Do not include any text before "Gherkin:" or after the Python output.
+...
 
+STRICT RULES
+
+- The output MUST contain a Feature section.
+- Do not omit Feature.
+- Return plain text only.
+- Do not use markdown.
+- Do not include explanations.
+- Do not reveal reasoning.
 
 ```
 
@@ -472,7 +518,7 @@ Bảng ánh xạ câu hỏi nghiên cứu, tiêu chuẩn chất lượng và ph�
 
 ### 6.3 Expected Outcomes (Kịch bản kết quả dự tính)
 
-*   **Kịch bản A (Tối ưu):** Ít nhất một kỹ thuật prompt (thường dự kiến là Few-Shot hoặc Chain-of-Thought) đạt điểm Cosine Similarity $\ge 0.80$, Executable Syntax Rate $\ge 85\%$, và có sự vượt trội rõ rệt có ý nghĩa thống kê so với Zero-Shot. Kết luận kỹ thuật Prompt Engineering nâng cao (Few-Shot/CoT) là giải pháp hiệu quả giúp nâng cao chất lượng sinh BDD artifacts trên mô hình nguồn mở chạy cục bộ.
+*   **Kịch bản A (Tối ưu):** Ít nhất một kỹ thuật prompt (thường dự kiến là Few-Shot hoặc Chain-of-Thought) đạt điểm Cosine Similarity $\ge 0.80$, Executable Syntax Rate $\ge 85\%$, và có sự vượt trội rõ rệt có ý nghĩa thống kê so với Zero-Shot. Kết luận kỹ thuật Prompt Engineering nâng cao (Few-Shot/CoT) là giải pháp hiệu quả giúp nâng cao chất lượng sinh BDD artifacts trên mô hình GPT-4o.
 *   **Kịch bản B (Trung bình):** Các kỹ thuật prompt đều vượt qua ngưỡng kỳ vọng nhưng không có sự khác biệt có ý nghĩa thống kê rõ rệt giữa Few-Shot và Chain-of-Thought. Kết luận Few-Shot là đủ tốt để triển khai thực tế vì có độ trễ và số lượng token thấp hơn CoT.
 *   **Kịch bản C (Không đạt):** Không có kỹ thuật prompt nào đạt các ngưỡng tối thiểu. Kết luận cần thiết kế lại cấu trúc ví dụ mẫu (few-shot examples) hoặc bổ sung thêm hướng dẫn ngữ cảnh chuyên sâu.
 
@@ -481,7 +527,7 @@ Bảng ánh xạ câu hỏi nghiên cứu, tiêu chuẩn chất lượng và ph�
 ## 7. Threats to Validity
 
 ### 7.1 Internal Validity (Độ chính xác nội bộ)
-*   **Mối đe dọa từ thiên kiến thiết kế Prompt (Prompt Design Bias):** Sự thiên kiến trong thiết kế prompt template có thể ảnh hưởng không mong muốn đến kết quả sinh ra của Qwen2.5-7B-Instruct. Nhóm giảm thiểu rủi ro này bằng cách xây dựng prompt dựa trên các tài liệu chuẩn hóa của behave, được rà soát chéo giữa các thành viên và cố định hoàn toàn prompt khung cho mọi lượt chạy.
+*   **Mối đe dọa từ thiên kiến thiết kế Prompt (Prompt Design Bias):** Sự thiên kiến trong thiết kế prompt template có thể ảnh hưởng không mong muốn đến kết quả sinh ra của GPT-4o. Nhóm giảm thiểu rủi ro này bằng cách xây dựng prompt dựa trên các tài liệu chuẩn hóa của behave, được rà soát chéo giữa các thành viên và cố định hoàn toàn prompt khung cho mọi lượt chạy.
 *   **Mối đe dọa từ ví dụ mẫu (Few-Shot Example Selection Bias):** Việc lựa chọn 2 ví dụ mẫu trong Few-Shot prompt có thể khiến mô hình bị "quá khớp" (overfit) vào phong cách hoặc từ vựng của ví dụ. Nhóm giảm thiểu rủi ro này bằng cách chọn các ví dụ mẫu đa dạng từ các miền nghiệp vụ khác nhau (Login, Shopping Cart) và viết chuẩn mực theo đúng hướng dẫn.
 *   **Mối đe dọa từ lập luận Chain-of-Thought (Reasoning Variability):** Yêu cầu mô hình lập luận trước khi sinh code (CoT) có thể dẫn đến việc lập luận sai nhưng code vẫn đúng, hoặc ngược lại. Nhóm giảm thiểu bằng cách hướng dẫn mô hình chỉ suy luận nội bộ và không xuất lập luận ra ngoài output (chỉ xuất các BDD artifacts đã qua xử lý), giúp triệt tiêu hoàn toàn nhiễu lập luận trong kết quả thô.
 
@@ -505,6 +551,16 @@ Bảng ánh xạ câu hỏi nghiên cứu, tiêu chuẩn chất lượng và ph�
 *   **Mối đe dọa:** Kịch bản Ground Truth do chuyên gia viết tay có thể mang tính chủ quan của cá nhân người viết, dẫn đến việc mô hình sinh ra một kịch bản hoàn toàn đúng đắn nhưng lại bị chấm điểm thấp do khác biệt về phong cách viết.
 *   **Hành động giảm thiểu (Mitigation):** Bộ dữ liệu Ground Truth được rà soát chéo độc lập bởi thành viên DG (Trần Đăng Khoa) và đối chiếu với các hướng dẫn viết BDD tiêu chuẩn để đảm bảo tính khách quan và chuẩn hóa cao nhất trước khi đưa vào so sánh.
 
+### 7.7 API Service & Infrastructure Validity (Mối đe dọa từ hạ tầng API thương mại)
+*   **Mối đe dọa:** Việc sử dụng dịch vụ API của bên thứ ba (OpenAI Responses API) đối mặt với các mối đe dọa liên quan đến:
+    *   **API availability (Tính khả dụng của API):** API có thể gặp sự cố downtime hoặc bị gián đoạn dịch vụ.
+    *   **API model version updates (Cập nhật phiên bản mô hình):** Việc OpenAI nâng cấp hoặc thay đổi phiên bản mô hình ngầm có thể ảnh hưởng đến tính nhất quán của kết quả.
+    *   **Model Version Drift (Sự trôi dạt phiên bản mô hình):** Các cập nhật trong tương lai của OpenAI đối với mô hình GPT-4o có thể thay đổi nhẹ hành vi và chất lượng đầu ra của mô hình, ngay cả khi sử dụng cùng một cấu trúc prompt và các tham số sinh tất định.
+    *   **Token limitations (Giới hạn token và Rate Limits):** Các giới hạn về số lượng token trên mỗi phút (TPM) hoặc yêu cầu trên mỗi phút (RPM) có thể làm gián đoạn quá trình chạy thực nghiệm.
+    *   **Network interruptions (Gián đoạn kết nối mạng):** Mất kết nối Internet trong quá trình gọi API.
+    *   **API service dependency (Sự phụ thuộc vào dịch vụ API):** Sự phụ thuộc hoàn toàn vào nhà cung cấp dịch vụ bên ngoài thay vì tự vận hành.
+*   **Hành động giảm thiểu (Mitigation):** Nhóm thiết lập cơ chế tự động thử lại (retry mechanism) khi gặp lỗi mạng hoặc rate limit, cố định phiên bản mô hình thông qua tham số gọi cụ thể (ví dụ: `gpt-4o-2024-05-13` thay vì sử dụng tên generic `gpt-4o` để đảm bảo tính nhất quán hành vi tối đa và giảm thiểu trôi dạt mô hình), lưu trữ log chi tiết của từng lượt gọi API để đối chiếu và sử dụng gói trả phí để đảm bảo hạn mức băng thông (quota).
+
 ---
 
 ## 8. Timeline & Resources
@@ -518,13 +574,13 @@ Bảng ánh xạ câu hỏi nghiên cứu, tiêu chuẩn chất lượng và ph�
     *   *Đóng góp kỹ thuật & quản lý:* Chịu trách nhiệm tổng hợp proposal, soát lỗi chính tả/định dạng, kiểm tra tính nhất quán học thuật toàn bộ tài liệu đề cương và quản lý tiến độ thực hiện dự án của các thành viên.
 *   **Trịnh Phú Quốc (LR - LLM Runner):**
     *   *Đóng góp viết tài liệu:* Viết mục Thiết kế cấu hình mô hình (Section 5.3) và đặc tả các Prompt Templates (Section 5.4) cho Zero-Shot, Few-Shot, và Chain-of-Thought.
-    *   *Đóng góp kỹ thuật & quản lý:* Phụ trách thiết kế chi tiết 3 loại prompts (bao gồm 2 ví dụ mẫu cho Few-Shot và hướng dẫn suy luận nội bộ cho CoT), cấu hình môi trường suy luận cục bộ Qwen2.5-7B-Instruct, thực thi chạy mô hình và thu thập dữ liệu đầu ra thô của thực nghiệm.
+    *   *Đóng góp kỹ thuật & quản lý:* Phụ trách thiết kế chi tiết 3 loại prompts (bao gồm 2 ví dụ mẫu cho Few-Shot và hướng dẫn suy luận nội bộ cho CoT), cấu hình và gọi mô hình GPT-4o thông qua OpenAI Responses API, thực thi chạy mô hình trên toàn bộ tập dữ liệu, thu thập dữ liệu đầu ra thô và quản lý logs thực nghiệm.
 *   **Trần Đăng Khoa (DG - Data & Ground Truth):**
     *   *Đóng góp viết tài liệu:* Viết mục Đặc tả dữ liệu thực nghiệm (Section 5.1).
     *   *Đóng góp kỹ thuật & quản lý:* Chịu trách nhiệm nghiên cứu tập dữ liệu Rathnayake (2026), thực hiện quy trình lấy mẫu ngẫu nhiên đơn giản (Simple Random Sampling với seed = 42, không lặp) để trích xuất 100 mẫu, rà soát và kiểm định dữ liệu đối chứng Ground Truth. Hỗ trợ chuẩn hóa dữ liệu đầu ra, hỗ trợ quản lý và lưu trữ kết quả thực nghiệm, và hỗ trợ kiểm tra tính nhất quán giữa Output của mô hình và Ground Truth.
 *   **Đặng Đỗ Cao Sang (MS - Metrics & Stats):**
     *   *Đóng góp viết tài liệu:* Viết mục Kiểm định tĩnh kép (Section 5.5), Đánh giá ngữ nghĩa (Section 5.6) và Quy trình phân tích thống kê (Section 5.7).
-    *   *Đóng góp kỹ thuật & quản lý:* Xây dựng và thực thi bộ công cụ parser kiểm định cú pháp tĩnh (Gherkin parser và Python AST validation), lập trình tính toán điểm Cosine Semantic Similarity qua SBERT, thực hiện các phép kiểm thống kê toán học (One-Sample Wilcoxon, Binomial Exact, Paired Wilcoxon, McNemar), và viết báo cáo phân tích kết quả thực nghiệm.
+    *   *Đóng góp kỹ thuật & quản lý:* Xây dựng và thực thi bộ công cụ parser kiểm định cú pháp tĩnh (Static Validation bao gồm Gherkin Parser và Python AST Validation), lập trình tính toán điểm Cosine Semantic Similarity qua SBERT và các độ đo truyền thống BLEU, ROUGE. Lập trình thực hiện các phép kiểm định thống kê toán học (Wilcoxon Signed-Rank Test, Binomial Exact Test, McNemar Test) và đo kích cỡ hiệu ứng (Rank-Biserial Correlation). Thiết kế các biểu đồ trực quan hóa dữ liệu thống kê (Statistical Visualization) và thực hiện diễn giải kết quả phân tích thống kê (Result Interpretation) phục vụ báo cáo.
 *   **Đào Lý Phi Hùng (RW - Report Writer):**
     *   *Đóng góp viết tài liệu:* Viết mục Câu hỏi nghiên cứu (Section 4.1 & 4.2), Khung PICO (Section 4.3), Định nghĩa biến (Section 4.4), Kế hoạch đánh giá (Section 6.1 & 6.2), và Threats to Validity (Section 7). Viết phần Thảo luận (Discussion) và Kết luận (Conclusion) trong báo cáo cuối kỳ.
     *   *Đóng góp kỹ thuật & quản lý:* Thiết kế slide thuyết trình đề cương/slide nghiệm thu, hỗ trợ tổng hợp kết quả thực nghiệm, hỗ trợ chuẩn bị nội dung trả lời phản biện (Q&A Prep), và tổng hợp tài liệu báo cáo nghiệm thu khoa học cuối kỳ.
@@ -534,9 +590,9 @@ Bảng phân công chi tiết đóng góp học thuật và vai trò thực nghi
 | Thành viên | Trách nhiệm viết tài liệu | Trách nhiệm kỹ thuật thực nghiệm | Vai trò chính |
 | :--- | :--- | :--- | :---: |
 | **Ngô Đình Khoa** | Problem Statement, Motivation, Related Work, Soát lỗi tính nhất quán | Tổng hợp proposal, Quản lý tiến độ | PL |
-| **Trịnh Phú Quốc** | Model Config, Prompt Templates (Zero, Few, CoT) | Thiết kế prompt, Cài đặt & chạy mô hình Qwen local | LR |
+| **Trịnh Phú Quốc** | Model Config, Prompt Templates (Zero, Few, CoT) | Thiết kế prompt, cấu hình OpenAI API, chạy mô hình GPT-4o | LR |
 | **Trần Đăng Khoa** | Dataset Specification | Nghiên cứu dữ liệu, Random Sampling, Quản lý Ground Truth, Chuẩn hóa đầu ra, Lưu trữ kết quả thực nghiệm, Kiểm tra tính nhất quán Output vs Ground Truth | DG |
-| **Đặng Đỗ Cao Sang**| Static Validation, Semantic Evaluation, Statistical Analysis | Xây dựng bộ lọc tĩnh parser/AST, Đo Cosine SBERT, Chạy code phân tích thống kê | MS |
+| **Đặng Đỗ Cao Sang**| Static Validation, Semantic Evaluation, Statistical Analysis | Xây dựng bộ lọc tĩnh parser/AST, đo Cosine SBERT, BLEU, ROUGE, chạy kiểm định Wilcoxon, Binomial, McNemar, Rank-Biserial Correlation, trực quan hóa và diễn giải kết quả | MS |
 | **Đào Lý Phi Hùng** | Research Questions, PICO, Threats to Validity, Timeline, Discussion & Conclusion, Slide | Thiết kế Slide, Hỗ trợ tổng hợp kết quả, chuẩn bị phản biện, hoàn thiện walkthrough | RW |
 
 ### 8.1.1 Danh mục Sản phẩm bàn giao cá nhân (Individual Deliverables)
@@ -546,9 +602,9 @@ Bảng phân công chi tiết đóng góp học thuật và vai trò thực nghi
 | Thành viên | Sản phẩm bàn giao chính (Primary Deliverables) |
 | :--- | :--- |
 | **Ngô Đình Khoa** | Đề cương proposal hoàn chỉnh (tổng hợp), Phần viết Problem Statement & Motivation (Section 2), Phần viết Related Work (Section 3), Kế hoạch quản lý tiến độ nhóm. |
-| **Trịnh Phú Quốc** | Tài liệu đặc tả Prompt Templates (Section 5.4), Cấu hình mô hình Qwen local (Section 5.3), Bộ dữ liệu thô kết quả chạy thực nghiệm (Raw Outputs CSV). |
+| **Trịnh Phú Quốc** | Tài liệu đặc tả Prompt Templates (Section 5.4), Cấu hình OpenAI Responses API (Section 5.3), Bộ dữ liệu thô kết quả chạy thực nghiệm (Raw Outputs CSV). |
 | **Trần Đăng Khoa** | Gói dữ liệu đầu vào chuẩn hóa (Dataset Package), Báo cáo kiểm định dữ liệu chuẩn (Ground Truth Validation Report), Bộ dữ liệu đầu ra đã chuẩn hóa và làm sạch (Cleaned Outputs). |
-| **Đặng Đỗ Cao Sang**| Mã nguồn script kiểm định cú pháp tĩnh (Validation Scripts), Notebook lập trình phân tích thống kê (Statistical Notebook), Báo cáo kết quả phân tích số liệu (Analysis Report). |
+| **Đặng Đỗ Cao Sang**| Mã nguồn script kiểm định cú pháp tĩnh (Validation Scripts), Notebook lập trình phân tích thống kê (Statistical Notebook), các biểu đồ trực quan hóa số liệu và báo cáo kết quả phân tích thống kê đầy đủ. |
 | **Đào Lý Phi Hùng** | Báo cáo nghiệm thu kết quả cuối kỳ (Final walkthrough.md), Phần viết Thảo luận (Discussion) & Kết luận (Conclusion), Slide bảo vệ đề cương và nghiệm thu dự án. |
 
 ### 8.2 Quản lý Tài nguyên (Resource Inventory)
@@ -556,12 +612,12 @@ Bảng phân công chi tiết đóng góp học thuật và vai trò thực nghi
 | Tài nguyên | Trạng thái | Chủ sở hữu | Ghi chú |
 | :--- | :---: | :--- | :--- |
 | Dataset Rathnayake | [Planned] | DG | Đã xác định nguồn dữ liệu, sẵn sàng tải và tiền xử lý. |
-| Inference Environment | [Planned] | LR | Lập kế hoạch cài đặt Ollama chạy Qwen2.5-7B-Instruct cục bộ trên thiết bị của nhóm. |
+| OpenAI Responses API | [Planned] | LR | Cấu hình tài khoản OpenAI API và thiết lập quota/credits để gọi mô hình GPT-4o. |
 | Thư viện kiểm định tĩnh | [Planned] | MS | Chuẩn bị mã nguồn tích hợp `ast` và package `gherkin-official`. |
 | Thư viện thống kê | [Planned] | MS | Chuẩn bị tích hợp các thư viện `scipy.stats`, `statsmodels` và `sentence-transformers`. |
 
 ### 8.3 Dự trù kinh phí thực nghiệm
-*   Ước tính chi phí thực nghiệm trực tiếp là khoảng 0 USD do mô hình Qwen2.5-7B-Instruct được chạy hoàn toàn cục bộ (local inference) trên phần cứng sẵn có của nhóm và sử dụng các thư viện phân tích thống kê mã nguồn mở (không yêu cầu thêm cơ sở hạ tầng đám mây hoặc API trả phí).
+*   Ước tính chi phí thực nghiệm trực tiếp dựa trên lượng tiêu thụ token thực tế khi gọi OpenAI Responses API để sinh kịch bản cho 100 User Stories dưới 3 kỹ thuật prompt. Nhóm sử dụng tài nguyên API trả phí theo lượng sử dụng thực tế (pay-as-you-go) từ OpenAI.
 
 ### 8.4 Kế hoạch thực hiện chi tiết theo tuần (Work Breakdown Timeline)
 
@@ -577,44 +633,44 @@ Nhóm phân chia lộ trình thực hiện dự án từ Tuần 5 đến Tuần 
     *   Tệp đề cương nghiên cứu khoa học hoàn chỉnh `proposal.md` v2.4.
     *   Slide thuyết trình bảo vệ đề cương (Proposal defense slide deck).
 
-#### Tuần 7: Chuẩn bị dataset, thiết kế prompt và chạy thử nghiệm Pilot
+#### Tuần 7: Pilot Experiment
 *   **Công việc thực hiện:**
     *   Tải tập dữ liệu gốc, viết script trích xuất 100 mẫu ngẫu nhiên không lặp (seed = 42) và chuẩn bị Ground Truth.
     *   Thiết kế cấu trúc prompt và viết các ví dụ mẫu cho kỹ thuật Few-Shot.
-    *   Chạy thực nghiệm pilot trên 10 mẫu để kiểm thử tính khả thi của hệ thống và bộ parser.
-*   **Người phụ trách chính:** Trần Đăng Khoa (DG) - chuẩn bị dữ liệu; Trịnh Phú Quốc (LR) - thiết kế prompt & chạy mô hình.
+    *   Chạy thực nghiệm pilot (thử nghiệm Pilot) trên 20 mẫu để kiểm thử tính khả thi của kết nối OpenAI Responses API và bộ parser.
+*   **Người phụ trách chính:** Trần Đăng Khoa (DG) - chuẩn bị dữ liệu; Trịnh Phú Quốc (LR) - thiết kế prompt & chạy thử nghiệm Pilot.
 *   **Người hỗ trợ:** Đặng Đỗ Cao Sang (MS) - tích hợp parser tĩnh.
 *   **Sản phẩm đầu ra (Deliverables):**
     *   Tập dữ liệu thực nghiệm đã chuẩn hóa (100 mẫu) kèm Ground Truth kiểm định.
-    *   Tệp prompt templates hoàn chỉnh (Zero-Shot, Few-Shot, Chain-of-Thought).
-    *   Kết quả pilot thô và logs chạy thử nghiệm trên 10 mẫu (Pilot results).
+    *   Tệp prompt templates hoàn chỉnh (Zero-Shot, Few-Shot, Chain-of-Thought) cho GPT-4o.
+    *   Kết quả pilot thô và logs chạy thử nghiệm trên 10 mẫu.
 
-#### Tuần 8: Triển khai chạy thực nghiệm chính thức trên 100 mẫu
+#### Tuần 8: GPT-4o Full Experiment
 *   **Công việc thực hiện:**
-    *   Chạy suy luận cục bộ Qwen2.5-7B-Instruct trên 100 mẫu đối với cả 3 kỹ thuật prompt (Zero-Shot, Few-Shot, Chain-of-Thought).
+    *   Triển khai thực nghiệm chính thức Full Experiment (N = 100) sử dụng các kỹ thuật Zero-shot, Few-shot và Chain-of-Thought prompting trên mô hình GPT-4o thông qua OpenAI API.
     *   Thu thập logs chạy thực nghiệm và xuất dữ liệu thô.
-    *   Phân tách và lưu trữ kết quả thực nghiệm thô của từng mô hình.
+    *   Phân tách và lưu trữ kết quả thực nghiệm thô.
 *   **Người phụ trách chính:** Trịnh Phú Quốc (LR), Trần Đăng Khoa (DG).
 *   **Người hỗ trợ:** Đặng Đỗ Cao Sang (MS).
 *   **Sản phẩm đầu ra (Deliverables):**
     *   Tệp dữ liệu thô kết quả sinh của mô hình `prompt_experiment_outputs.csv` (100 mẫu $\times$ 3 cấu hình prompt).
     *   Bộ artifacts (kịch bản Gherkin và Python step definitions) đã được phân tách và lưu trữ có cấu trúc.
 
-#### Tuần 9: Thực hiện Static Validation, Semantic Evaluation và Statistical Analysis
+#### Tuần 9: Static Validation, Semantic Evaluation, Statistical Analysis
 *   **Công việc thực hiện:**
     *   Chạy script phân tích cú pháp tĩnh (Gherkin parser và Python AST).
     *   Tính toán điểm Cosine Semantic Similarity bằng mô hình nhúng SBERT.
-    *   Thực hiện các phép kiểm định thống kê toán học bằng scipy (Wilcoxon, Binomial, McNemar).
+    *   Thực hiện các phép kiểm định thống kê toán học bằng scipy (Wilcoxon, Binomial, McNemar) và đo kích cỡ hiệu ứng (Effect Size).
     *   Vẽ biểu đồ và tổng hợp kết quả phân tích số liệu.
 *   **Người phụ trách chính:** Đặng Đỗ Cao Sang (MS).
-*   **Người hỗ trợ:** Trịnh Phú Quốc (LR) - trích xuất logs và xử lý định dạng tệp lỗi.
+*   **Người hỗ trợ:** Trịnh Phú Quốc (LR) - xử lý định dạng tệp.
 *   **Sản phẩm đầu ra (Deliverables):**
     *   Tệp phân tích thống kê chi tiết chứa mã nguồn thực thi `statistical_analysis_results.ipynb`.
     *   Bảng tổng hợp kết quả kiểm định tĩnh và điểm Cosine (Validation & statistical results report).
 
-#### Tuần 10: Hoàn thiện báo cáo cuối kỳ và thuyết trình nghiệm thu
+#### Tuần 10: Discussion, Conclusion, Presentation
 *   **Công việc thực hiện:**
-    *   Tổng hợp kết quả thực nghiệm và viết báo cáo nghiệm thu walkthrough cuối kỳ.
+    *   Tổng hợp kết quả, viết các mục Thảo luận (Discussion) và Kết luận (Conclusion) cho báo cáo khoa học cuối kỳ.
     *   Thiết kế slide thuyết trình nghiệm thu kết quả nghiên cứu.
     *   Tập duyệt bảo vệ kết quả trước hội đồng.
 *   **Người phụ trách chính:** Đào Lý Phi Hùng (RW) - tổng hợp báo cáo và slide; Ngô Đình Khoa (PL) - rà soát chất lượng.
@@ -625,7 +681,7 @@ Nhóm phân chia lộ trình thực hiện dự án từ Tuần 5 đến Tuần 
     *   Bộ tài liệu nghiệm thu đóng gói (Presentation package bao gồm mã nguồn và dữ liệu sạch).
 
 ### 8.5 Kế hoạch dự phòng rủi ro (Contingency Plan)
-*   **Mô hình Qwen chạy cục bộ bị lỗi tràn bộ nhớ (OOM):** LR chuyển sang sử dụng phiên bản lượng tử hóa 4-bit (Q4_K_M) của Qwen2.5-7B-Instruct qua Ollama để giảm dung lượng bộ nhớ RAM/VRAM yêu cầu hoặc chuyển sang chạy trên môi trường miễn phí như Kaggle Notebook với GPU T4 kép.
+*   **Lỗi kết nối hoặc vượt quá giới hạn API (Rate Limit / Timeout):** LR cấu hình cơ chế tự động thử lại (exponential backoff) trong script gọi API để xử lý các lỗi kết nối mạng tạm thời hoặc lỗi Rate Limit (RPM/TPM) từ phía OpenAI.
 *   **Lỗi định dạng đầu ra của mô hình:** Thêm chỉ dẫn định dạng nghiêm ngặt (Markdown code block delimiters) vào hệ thống prompt và viết script regex parser mạnh mẽ hơn để tách biệt thành công phần kịch bản Gherkin và mã Python.
 *   **Thành viên chậm tiến độ:** PL có quyền phân bổ lại nhiệm vụ hoặc yêu cầu họp khẩn cấp để xử lý nghẽn tiến độ sau 24 giờ không phản hồi.
 

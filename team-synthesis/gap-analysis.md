@@ -8,7 +8,7 @@ Tài liệu này chứa nội dung chi tiết của quy trình phân tích kho�
 
 | Loại GAP | Phát hiện từ bảng bằng chứng | Câu hỏi cốt lõi |
 |:---|:---|:---|
-| **GAP-T (Technology)** | **GAP-T: Co-generation of Gherkin Scenarios and Step Definitions from Connextra User Stories using modern LLMs.** Các nghiên cứu hiện tại về tự động sinh kiểm thử BDD chủ yếu tập trung vào việc sinh Gherkin Scenarios độc lập từ User Stories hoặc Requirement Descriptions. Tuy nhiên, chưa có nghiên cứu nào đánh giá toàn diện khả năng sinh đồng thời (co-generation) cả Gherkin Scenarios và Step Definitions từ Connextra User Stories bằng các mô hình LLM hiện đại. Vì vậy, nghiên cứu này chọn GAP-T làm khoảng trống chính, với GPT-4o Zero-shot làm baseline đối chứng và LLaMA-3-8B LoRA-FT làm mô hình can thiệp chính. | Công nghệ/Mô hình nào thế hệ mới chưa được đánh giá? |
+| **GAP-T (Technology)** | **GAP-T: A systematic empirical comparison of Prompt Engineering techniques (Zero-shot, Few-shot and Chain-of-thought) for automatically generating Gherkin Scenarios and Python Step Definitions from Connextra User Stories using GPT-4o.** Các nghiên cứu hiện tại về tự động sinh kiểm thử BDD chủ yếu tập trung vào việc sinh Gherkin Scenarios độc lập hoặc đánh giá trên một kỹ thuật prompt đơn lẻ. Chưa có nghiên cứu nào thực hiện đánh giá và so sánh thực nghiệm một cách hệ thống giữa các kỹ thuật Prompt Engineering (Zero-Shot, Few-Shot, Chain-of-Thought) cho việc sinh đồng thời cả kịch bản Gherkin và Python Step Definitions từ Connextra User Stories sử dụng mô hình tiên tiến GPT-4o qua OpenAI Responses API. | Kỹ thuật Prompt/Mô hình nào thế hệ mới chưa được đánh giá có hệ thống? |
 | **GAP-M (Metric)** | Các nghiên cứu trước đo tương đồng ngữ nghĩa hoặc kiểm tra cú pháp một cách riêng lẻ. **Chưa có nghiên cứu nào sử dụng đồng thời Gherkin Parser Validation và Python AST Validation như một cơ chế Static Validation kép trước khi đánh giá Cosine Similarity.** | Khía cạnh chất lượng/Độ đo kết hợp nào chưa được sử dụng? |
 | **GAP-D (Dataset)** | Các nghiên cứu trước hầu hết sử dụng các bộ dữ liệu nhỏ lẻ tự xây dựng (5 đến 34 mẫu) hoặc dữ liệu tự sinh (synthetic) bằng AI. Thiếu các nghiên cứu đánh giá trên dữ liệu Agile thực tế đa miền từ doanh nghiệp. Nghiên cứu này sử dụng dataset gốc gồm 500 User Stories của Rathnayake et al. (2026) và tiến hành rút mẫu thực nghiệm ngẫu nhiên 100 mẫu. | Domain/Quy mô dữ liệu thực nghiệm nào còn thiếu? |
 | **GAP-S (Shared Limitation)** | Nhiều nghiên cứu thừa nhận hạn chế về sự phụ thuộc vào cấu trúc prompt template thủ công phức tạp hoặc cấu trúc multi-agent có độ trễ/chi phí API quá cao, chưa đánh giá zero-shot thuần túy của mô hình frontier mạnh nhất trên bài toán sinh đồng thời cả kịch bản và mã code. | Hạn chế chung nào được đa số nghiên cứu thừa nhận? |
@@ -46,15 +46,15 @@ Tài liệu này chứa nội dung chi tiết của quy trình phân tích kho�
 ## 3. Chốt GAP nghiên cứu chính
 
 ### GAP Chính (Primary GAP - GAP-T):
-> **Tuyên bố GAP chính:** GAP-T: Co-generation of Gherkin Scenarios and Step Definitions from Connextra User Stories using modern LLMs.
+> **Tuyên bố GAP chính:** GAP-T: A systematic empirical comparison of Prompt Engineering techniques (Zero-shot, Few-shot and Chain-of-thought) for automatically generating Gherkin Scenarios and Python Step Definitions from Connextra User Stories using GPT-4o.
 > 
-> *Chi tiết:* Các nghiên cứu hiện tại về tự động sinh kiểm thử BDD chủ yếu tập trung vào việc sinh Gherkin Scenarios độc lập từ User Stories hoặc Requirement Descriptions. Tuy nhiên, chưa có nghiên cứu nào đánh giá toàn diện khả năng sinh đồng thời (co-generation) cả Gherkin Scenarios và Step Definitions từ Connextra User Stories bằng các mô hình LLM hiện đại. Vì vậy, nghiên cứu này chọn GAP-T làm khoảng trống chính, với GPT-4o Zero-shot làm baseline đối chứng và LLaMA-3-8B LoRA-FT làm mô hình can thiệp chính.
+> *Chi tiết:* Các nghiên cứu hiện tại về tự động sinh kiểm thử BDD chủ yếu tập trung vào việc sinh kịch bản Gherkin đơn lẻ hoặc chưa đánh giá hệ thống các kỹ thuật prompt khác nhau. Chưa có nghiên cứu thực nghiệm nào so sánh một cách toàn diện và có hệ thống hiệu quả của ba kỹ thuật Prompt Engineering gồm Zero-Shot, Few-Shot và Chain-of-Thought trong tác vụ sinh đồng thời (co-generation) cả kịch bản Gherkin và Python Step Definitions từ Connextra User Stories trên mô hình thương mại tiên tiến GPT-4o.
 
 ### GAP Phụ (Secondary GAP - GAP-M):
 > **Tuyên bố GAP phụ:** Chưa có nghiên cứu nào sử dụng đồng thời Gherkin Parser Validation và Python AST Validation như một cơ chế Static Validation kép trước khi đánh giá Cosine Similarity.
 
 ### GAP Hỗ trợ (Supporting GAP - GAP-D):
-> **Tuyên bố GAP hỗ trợ:** Dataset gốc gồm 500 User Stories, 500 Requirement Descriptions và 500 Manual BDD Scenarios từ Rathnayake et al. (2026). Dataset thực nghiệm sử dụng mẫu ngẫu nhiên 100 mẫu để tiến hành đối chứng thực nghiệm giữa mô hình LLaMA-3-8B (LoRA-FT) và GPT-4o (Zero-shot) nhằm tránh thiên kiến dữ liệu tự sinh.
+> **Tuyên bố GAP hỗ trợ:** Dataset gốc gồm 500 User Stories, 500 Requirement Descriptions và 500 Manual BDD Scenarios từ Rathnayake et al. (2026). Dataset thực nghiệm sử dụng mẫu ngẫu nhiên 100 mẫu (SRS seed = 42) để tiến hành đánh giá thực nghiệm các kỹ thuật Prompting khác nhau của GPT-4o nhằm cung cấp kết quả khách quan và tránh thiên kiến từ dữ liệu tự sinh.
 
 ---
 
@@ -64,7 +64,7 @@ Tài liệu này chứa nội dung chi tiết của quy trình phân tích kho�
 |:---|:---|:---|
 | **Dataset (Dữ liệu)** | **High** | Sử dụng mẫu ngẫu nhiên 100 mẫu từ bộ dữ liệu công khai 500 User Stories thực tế đa miền của Rathnayake et al. (2026). |
 | **Tool/API (Công cụ)** | **High** | API GPT-4o và mô hình nhúng SBERT (`all-MiniLM-L6-v2`) đều sẵn có. Các công cụ parser cú pháp (Gherkin parser và Python AST module) đều là thư viện chuẩn nguồn mở. |
-| **Compute (Tài nguyên)** | **High** | Chạy mô hình nhúng SBERT và parser cú pháp tĩnh chỉ tốn vài giây trên một máy tính cá nhân thông thường. Tinh chỉnh LoRA LLaMA-3-8B có thể thực hiện trên GPU Google Colab hoặc GPU Kaggle miễn phí. |
+| **Compute (Tài nguyên)** | **High** | Chạy mô hình nhúng SBERT, parser cú pháp tĩnh và gọi API GPT-4o chỉ tốn chi phí nhỏ và thời gian tính toán ngắn, hoàn toàn khả thi trên phần cứng cá nhân thông thường kết hợp tài khoản OpenAI API. |
 | **Ground Truth (Đáp án)** | **High** | Đã có sẵn 500 Manual BDD Scenarios viết tay đi kèm bộ dữ liệu của Rathnayake et al. (2026) (tập thực nghiệm sẽ lấy tương ứng 100 kịch bản làm đối chứng). |
 | **Skills (Kỹ năng)** | **High** | Sinh viên đã được trang bị kỹ năng lập trình Python, gọi API, sử dụng thư viện sentence-transformers và hiểu biết về BDD/Gherkin. |
 | **Thời gian** | **High** | Thực nghiệm sử dụng dataset có sẵn giúp tiết kiệm thời gian gán nhãn, hoàn toàn khả thi trong 1-2 tuần. |
@@ -110,12 +110,10 @@ flowchart TD
     classDef highlight fill:#0369a1,stroke:#0ea5e9,stroke-width:2px,color:#e0f2fe,font-weight:bold;
     classDef success fill:#0f766e,stroke:#14b8a6,stroke-width:1px,color:#ccfbf1;
     
-    A["User Stories + Requirement Descriptions (100 Samples)"]:::default --> B["Data Filtering & Preprocessing"]:::default
-    B --> C["LLM Generation: GPT-4o (Zero-shot) vs LLaMA-3-8B (LoRA-FT)"]:::highlight
-    C --> D["Generate Gherkin Scenarios & Step Definitions"]:::default
-    D --> E["Static Validation: Gherkin Parser & Python AST"]:::default
-    E --> F["Executable Syntax Rate (Binomial Test)"]:::success
-    F -->|Pass| G["Semantic Evaluation: Cosine Similarity"]:::default
-    G --> H["Comparison with Expert Baseline (Wilcoxon Test)"]:::success
-    H --> I["Statistical Analysis & Evaluation"]:::highlight
+    A["User Story + Requirement Description (100 Samples)"]:::default --> B["Prompt Template (Zero-shot / Few-shot / CoT)"]:::default
+    B --> C["GPT-4o (OpenAI Responses API)"]:::highlight
+    C --> D["BDD Generation (Gherkin & Step Definitions)"]:::default
+    D --> E["Static Validation (Gherkin Parser & Python AST)"]:::default
+    E --> F["Semantic Evaluation (Cosine Similarity, BLEU, ROUGE)"]:::default
+    F --> G["Statistical Analysis (Wilcoxon, Binomial, McNemar)"]:::success
 ```
