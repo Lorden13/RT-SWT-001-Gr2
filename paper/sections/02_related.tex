@@ -1,1 +1,15 @@
-% 02_related.tex
+\section{Related Work}
+\label{sec:related}
+
+Automating test generation from natural language requirements is a long-standing goal in software engineering. Early approaches relied on rule-based systems or heuristic natural language processing (NLP) to parse requirements and map them to test cases. While successful in highly restricted domains, these methods struggled with the ambiguity and variety of natural language user stories.
+
+The advent of Large Language Models (LLMs) has transformed this landscape. Modern models are pretrained on vast codebases, allowing them to translate requirements to executable test scripts directly.
+
+In the context of Behavior-Driven Development (BDD), several recent studies have explored the capabilities of LLMs:
+\begin{itemize}
+    \item \textbf{Scenario Generation}: Fernandes et al.~\cite{fernandes2024} evaluated commercial LLMs (such as GPT-3.5 and Gemini) for generating Gherkin scenarios from user stories. Their study showed that commercial models could produce correct syntax, but frequently required prompt refinement to capture complex business rules and boundary cases.
+    \item \textbf{Step Definition Generation}: Tesfalidet~\cite{tesfalidet2025} investigated the generation of step definitions using GPT-4, noting that while the generated code syntax was highly accurate, the naming conventions of step functions often diverged from existing test suites unless few-shot examples were provided.
+    \item \textbf{Datasets and Benchmarks}: Rathnayake et al.~\cite{rathnayake2026} established a public dataset of user stories paired with expert-written Gherkin scenarios. This dataset has become a standard benchmark for evaluating automated Gherkin scenario generation.
+\end{itemize}
+
+Unlike previous studies that mostly focus on large commercial models (e.g., GPT-4) or evaluate Gherkin scenario generation in isolation, our work evaluates the performance of a medium-sized open-source model (\texttt{Qwen2.5-7B-Instruct}) for the *joint* generation of Gherkin scenarios and Python step definitions. We systematically compare three prompt configurations to identify the most stable and resource-efficient approach for local deployment.

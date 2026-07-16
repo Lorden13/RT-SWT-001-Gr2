@@ -1,1 +1,19 @@
-% 01_intro.tex
+\section{Introduction}
+\label{sec:intro}
+
+Behavior-Driven Development (BDD) is an agile software development methodology that encourages collaboration among developers, QA engineers, and business stakeholders. By defining software requirements in structured, natural language formats like Gherkin (using `Given-When-Then` steps), BDD ensures that technical implementations directly match business expectations. Once the kịch bản Gherkin are defined, developers write Step Definitions (typically in Python using Behave or Java using Cucumber) to map the natural language steps to executable test scripts (e.g., Selenium web driver actions).
+
+Despite its benefits, manually writing Gherkin scenarios and implementing step definitions is a time-consuming and error-prone process. As software systems grow in size and complexity, maintaining test coverage becomes a significant bottleneck. 
+
+To address this challenge, researchers and practitioners have explored the use of Large Language Models (LLMs) to automate test generation. Modern LLMs have demonstrated remarkable capabilities in code completion, code generation, and requirement translation. However, most existing studies have focused on commercial, closed-source models (such as GPT-4) or single-stage scenario generation, leaving a gap in our understanding of how smaller, open-source models perform in joint scenario and step definition generation.
+
+This paper presents an empirical evaluation of the open-source model \texttt{Qwen2.5-7B-Instruct} for automated BDD test generation. We systematically compare three prompt engineering techniques: Zero-Shot, Few-Shot, and Chain-of-Thought (CoT) prompting across a dataset of $N=100$ user stories.
+
+Specifically, this study makes the following contributions:
+\begin{itemize}
+    \item We conduct a rigorous quantitative evaluation of semantic similarity and syntax correctness for joint BDD scenario and step definition generation.
+    \item We perform statistical significance testing using Wilcoxon and McNemar tests to compare the prompting strategies.
+    \item We provide a public replication package including prompts, generated datasets, and the evaluation scripts.
+\end{itemize}
+
+The rest of this paper is organized as follows. Section~\ref{sec:related} reviews related work. Section~\ref{sec:method} details our methodology. Section~\ref{sec:results} presents the quantitative results, followed by discussion in Section~\ref{sec:discussion}. Section~\ref{sec:threats} addresses threats to validity, and Section~\ref{sec:conclusion} concludes the paper.
