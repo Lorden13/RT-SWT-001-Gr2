@@ -1,4 +1,4 @@
-RQ,Metric,Technique/Comparison,Value,Threshold/Comparison,p-value,Effect Size,N,Status
+﻿RQ,Metric,Technique/Comparison,Value,Threshold/Comparison,p-value,Effect Size,N,Status
 RQ1,Cosine Similarity,Zero-Shot,0.7995,0.80,0.0710,-0.0040,100,Không đạt
 RQ1,Cosine Similarity,Few-Shot,0.8141,0.80,0.0007,0.1218,100,Đạt
 RQ1,Cosine Similarity,Chain-of-Thought,0.8100,0.80,0.0046,0.0881,100,Đạt
