@@ -1,1 +1,26 @@
-% 05_discussion.tex
+\section{Discussion and Implications}
+\label{sec:discussion}
+
+In this section, we analyze the implications of our experimental findings, perform a detailed error analysis, and discuss recommendations for practitioners.
+
+\subsection{Interpretation of Findings}
+Our experiment demonstrates that Qwen2.5-7B-Instruct is highly capable of generating valid BDD tests. However, the choice of prompting technique heavily impacts the quality of business logic alignment:
+\begin{itemize}
+    \item \textbf{Few-Shot Prompting} proved to be the most robust approach, achieving a mean Cosine Similarity of $0.8141$ ($p = 0.0007$) and a $100\%$ AST syntax pass rate. The inclusion of two structured input-output templates provided clear boundaries for Gherkin keywords and python step definitions, reducing deviation from expert scenarios.
+    \item \textbf{Chain-of-Thought (CoT)} prompting yielded a high semantic similarity of $0.8100$, but suffered a slight drop in syntax correctness ($99.00\%$) because the model occasionally included conversational preambles inside the code blocks.
+    \item \textbf{Zero-Shot Prompting} ($0.7995$, $p = 0.0710$) failed to reach statistical significance above $0.80$. Without examples, the model frequently outputted overly generic or verbose Gherkin steps (e.g., combining multiple assertions into a single step), which reduced similarity to the concise Ground Truth.
+\end{itemize}
+
+\subsection{Error Analysis}
+Through manual inspection of the outputs, we identified two main categories of errors:
+\begin{enumerate}
+    \item \textbf{Empty Code Blocks and Pass Statements}: For Zero-Shot and Few-Shot, the Python step definitions generated contained empty function bodies with only the \texttt{pass} statement. While syntactically valid (100\% AST pass rate), these steps are non-executable in a real test environment without manual locator integration.
+    \item \textbf{Syntactic Pollution (CoT)}: In 1\% of the cases, CoT generated markdown formatting or explanation text inside the Python block, causing compiler failures. 
+\end{enumerate}
+
+\subsection{Implications for Practitioners}
+For software development teams, our study suggests that:
+\begin{itemize}
+    \item **Few-Shot prompting** should be the default strategy for test generation pipelines. It matches or exceeds CoT performance while consuming significantly fewer tokens and introducing no syntax errors.
+    \item **Post-Processing Filters** are necessary to clean LLM outputs (e.g., stripping non-code explanations) before executing step definitions.
+\end{itemize}

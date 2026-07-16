@@ -1,1 +1,75 @@
-% 04_results.tex
+\section{Experimental Results}
+\label{sec:results}
+
+In this section, we present the quantitative results of our empirical study, structured according to our three Research Questions (RQs). All statistical significance tests are evaluated at a significance level of $\alpha = 0.05$.
+
+\subsection{RQ1: Semantic Similarity}
+RQ1 evaluates the semantic alignment of the generated BDD Gherkin scenarios against the expert-written Ground Truth scenarios. The semantic similarity is measured using SBERT (\texttt{all-MiniLM-L6-v2}) embedding cosine similarity. The target threshold for successful business logic retention is set to $\ge 0.80$. A One-Sample Wilcoxon Signed-Rank Test is conducted to assess if the median similarity score for each technique is significantly above $0.80$.
+
+Table~\ref{tab:rq1_results} summarizes the SBERT Cosine Similarity results for Zero-Shot, Few-Shot, and Chain-of-Thought (CoT) prompting techniques across $N = 100$ requirements.
+
+\begin{table}[htbp]
+\caption{RQ1: SBERT Cosine Similarity Results ($N=100$)}
+\begin{center}
+\begin{tabular}{lccccc}
+\hline
+\textbf{Technique} & \textbf{Mean Similarity} & \textbf{Threshold} & \textbf{p-value} & \textbf{Effect Size ($d$)} & \textbf{Status} \\
+\hline
+Zero-Shot & 0.7995 & 0.80 & 0.0710 & -0.0040 & Không đạt \\
+Few-Shot & 0.8141 & 0.80 & 0.0007 & 0.1218 & \textbf{Đạt} \\
+CoT & 0.8100 & 0.80 & 0.0046 & 0.0881 & \textbf{Đạt} \\
+\hline
+\end{tabular}
+\label{tab:rq1_results}
+\end{center}
+\end{table}
+
+As shown in Table~\ref{tab:rq1_results}, both \textbf{Few-Shot} ($0.8141$, $p = 0.0007 < 0.05$) and \textbf{Chain-of-Thought} ($0.8100$, $p = 0.0046 < 0.05$) techniques successfully surpassed the target threshold of $0.80$ with statistical significance. Zero-Shot prompting achieved a mean similarity of $0.7995$ but failed to reach statistical significance ($p = 0.0710$), suggesting that without context or structured examples, the model struggled to consistently align the generated scenarios with the core business requirements.
+
+\subsection{RQ2: Executable Syntax Rate}
+RQ2 evaluates the syntactic correctness of the generated Behave Python Step Definitions. This is validated statically using python's Abstract Syntax Tree (AST) parser to ensure that the code is structurally valid and executable. The baseline success threshold is set to $\ge 85\%$. A One-Sample Binomial Exact Test is conducted to verify if the syntax pass rates are significantly above the $85\%$ benchmark.
+
+\begin{table}[htbp]
+\caption{RQ2: AST Parse Rate Results ($N=100$)}
+\begin{center}
+\begin{tabular}{lccccc}
+\hline
+\textbf{Technique} & \textbf{Success Rate} & \textbf{Threshold} & \textbf{p-value} & \textbf{N} & \textbf{Status} \\
+\hline
+Zero-Shot & 100.00\% & 85\% & 0.0000 & 100 & \textbf{Đạt} \\
+Few-Shot & 100.00\% & 85\% & 0.0000 & 100 & \textbf{Đạt} \\
+CoT & 99.00\% & 85\% & 0.0000 & 100 & \textbf{Đạt} \\
+\hline
+\end{tabular}
+\label{tab:rq2_results}
+\end{center}
+\end{table}
+
+Table~\ref{tab:rq2_results} shows that all three techniques achieved exceptionally high syntax validity rates, vastly exceeding the target threshold of $85\%$ with high statistical significance ($p < 0.001$). Zero-Shot and Few-Shot prompting achieved a perfect syntax rate ($100.00\%$), while Chain-of-Thought had only a single failure ($99.00\%$) where the model generated a malformed string block within the Python definitions. These findings indicate that Qwen2.5-7B-Instruct has a strong grasp of Python coding syntax structures.
+
+\subsection{RQ3: Direct Comparison}
+RQ3 compares the relative effectiveness of the prompting techniques against each other. For semantic similarity (continuous metric), a Paired Wilcoxon Signed-Rank Test is used. For syntax validity (binary metric), McNemar's Test is applied.
+
+\begin{table}[htbp]
+\caption{RQ3: Prompting Techniques Semantic Comparison}
+\begin{center}
+\begin{tabular}{lccc}
+\hline
+\textbf{Comparison Pair} & \textbf{p-value (Wilcoxon)} & \textbf{Effect Size ($d$)} & \textbf{Result} \\
+\hline
+Few-Shot vs. Zero-Shot & 0.0034 & 0.3029 (Medium) & \textbf{Significant} \\
+Few-Shot vs. CoT & 0.3604 & 0.0972 (Negligible) & Not Significant \\
+Zero-Shot vs. CoT & 0.1106 & -0.2264 (Small) & Not Significant \\
+\hline
+\end{tabular}
+\label{tab:rq3_semantic}
+\end{center}
+\end{table}
+
+The semantic comparisons in Table~\ref{tab:rq3_semantic} reveal that:
+\begin{itemize}
+    \item \textbf{Few-Shot vs. Zero-Shot}: Few-Shot prompting performs significantly better than Zero-Shot prompting ($p = 0.0034 < 0.05$) with a medium effect size ($d = 0.3029$). This confirms that providing example templates in the prompt significantly aids the model in generating aligned business scenarios.
+    \item \textbf{Few-Shot vs. CoT}: There is no statistically significant difference in quality between Few-Shot and Chain-of-Thought prompting ($p = 0.3604 > 0.05$).
+\end{itemize}
+
+For syntax validity comparison using McNemar's Test, all pairwise comparisons yielded a p-value of $1.0000$, indicating that there are no statistically significant differences in syntax correctness rates among the three techniques, as all of them produced structurally valid code near 100\%.

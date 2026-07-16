@@ -1,1 +1,40 @@
-% Main LaTeX file
+\documentclass[conference]{IEEEtran}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\begin{document}
+
+\title{Empirical Evaluation of Prompting Techniques for BDD Scenario and Step Definition Generation using Open-Source LLMs}
+
+\author{
+    \IEEEauthorblockN{Tran Dang Khoa, Ngo Dinh Khoa, Trinh Phu Quoc, Dang Do Cao Sang, Dao Ly Phi Hung}
+    \IEEEauthorblockA{Department of Software Engineering, FPT University, Vietnam}
+}
+
+\maketitle
+
+\begin{abstract}
+\input{sections/00_abstract}
+\end{abstract}
+
+\begin{IEEEkeywords}
+large language models, behavior-driven development, test generation, empirical study, prompt engineering
+\end{IEEEkeywords}
+
+\input{sections/01_intro}
+\input{sections/02_related}
+\input{sections/03_method}
+\input{sections/04_results}
+\input{sections/05_discussion}
+\input{sections/06_threats}
+\input{sections/07_conclusion}
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}
