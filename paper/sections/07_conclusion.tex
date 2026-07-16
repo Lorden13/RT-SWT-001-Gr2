@@ -1,1 +1,13 @@
-% 07_conclusion.tex
+\section{Conclusion and Future Work}
+\label{sec:conclusion}
+
+In this empirical study, we evaluated the performance of Qwen2.5-7B-Instruct in automatically generating Behavior-Driven Development (BDD) Gherkin scenarios and Behave step definitions from User Stories. Through a rigorous evaluation of 100 requirements, we assessed Zero-Shot, Few-Shot, and Chain-of-Thought (CoT) prompting techniques.
+
+Our findings show that:
+\begin{itemize}
+    \item Both **Few-Shot** (mean similarity = $0.8141$, $p = 0.0007$) and **CoT** ($0.8100$, $p = 0.0046$) prompting techniques successfully exceed the target quality threshold of $0.80$ with statistical significance.
+    \item All techniques achieve exceptionally high syntax correctness rates ($\ge 99\%$), far surpassing the $85\%$ quality benchmark.
+    \item Few-Shot prompting performs significantly better than Zero-Shot prompting ($p = 0.0034$), making it the most stable, accurate, and token-efficient prompting technique for automated BDD workflows.
+\end{itemize}
+
+Future work will focus on integrating automated UI locator discovery to replace empty test function bodies, evaluating larger open-source models, and testing the generalization of these prompting strategies on complex, multi-domain requirements.
