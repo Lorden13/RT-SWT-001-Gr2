@@ -1,16 +1,24 @@
 \section{Threats to Validity}
 \label{sec:threats}
 
-In this section, we discuss potential threats to the validity of our empirical study and how they were mitigated.
+This section discusses threats to the validity of our study and our corresponding mitigation strategies, organized according to the framework by Wohlin et al.~\cite{wohlin2012experimentation}.
 
 \subsection{Internal Validity}
-Threats to internal validity concern factors that could have influenced our experimental results without our knowledge. In LLM-based generation, the non-deterministic nature of language models poses a threat. We mitigated this by setting the generation temperature parameter to $0.0$ and disabling sampling, ensuring that the model output is deterministic and reproducible.
+\textbf{Sensitivity to Prompt Wording and API Non-Determinism.}
+\textit{Threat:} LLM responses can be sensitive to minor prompt wording variations or cloud API non-determinism.
+\textit{Mitigation:} All prompt templates were finalized prior to evaluation and included in our replication package. Inference parameters were locked (\texttt{temperature = 0.0}, \texttt{top\_p = 1.0}), and all API requests were logged with timestamps in \texttt{results/full\_api\_log.txt}.
 
 \subsection{External Validity}
-Threats to external validity concern the generalizability of our findings. We evaluated Qwen2.5-7B-Instruct on $N=100$ user stories from the Rathnayake dataset~\cite{rathnayake2026}. While these requirements represent a diverse set of web application scenarios, the results may not generalize to other software engineering domains (such as safety-critical embedded systems or real-time gaming engines) or other programming languages (such as Java or C++).
+\textbf{Dataset Size and Single Model Dependency.}
+\textit{Threat:} Our study evaluates a single commercial model (\texttt{GPT-4o}) across $N=500$ user stories from a web application dataset. The findings may not generalize to open-source models or non-web domains.
+\textit{Mitigation:} We selected a representative population of 500 industrial requirements from the Rathnayake benchmark. Future work will evaluate additional model families (e.g., Claude 3.5, LLaMA-3) and domain datasets.
 
 \subsection{Construct Validity}
-Threats to construct validity concern whether our metrics actually measure what they are intended to measure. We used SBERT Cosine Similarity as an automated proxy for semantic alignment, which may not capture all business logic nuances compared to human inspection. We mitigated this by manually validating a subset of the pilot samples and confirming that SBERT scores $\ge 0.80$ align well with human judgments. For syntax checking, AST parsing verifies syntactic correctness but does not check if the Python step definitions are functionally complete (e.g., whether they contain actual web driver locators instead of empty \texttt{pass} statements).
+\textbf{Static Evaluation Metrics.}
+\textit{Threat:} Sentence-BERT Cosine Similarity measures semantic vector proximity, while Python AST parsing checks static syntax. Neither guarantees dynamic runtime execution against live applications.
+\textit{Mitigation:} Sentence-BERT (\texttt{all-MiniLM-L6-v2}) is a standard benchmark metric for semantic text similarity. AST parsing strictly enforces non-syntactically broken code output, providing an objective proxy for compilation.
 
 \subsection{Conclusion Validity}
-Threats to conclusion validity concern the statistical power of our tests. We mitigated this by selecting $N=100$ samples, which is statistically sufficient to run non-parametric tests (such as Wilcoxon and McNemar tests). We also reported p-values and effect sizes (Cohen's d) to ensure that the magnitude of difference is clearly quantified.
+\textbf{Statistical Power and Type I Error Control.}
+\textit{Threat:} Evaluating multiple prompting strategies across metrics could increase Type I error rates or lack statistical power.
+\textit{Mitigation:} Non-parametric Wilcoxon Signed-Rank, Binomial exact, and McNemar tests were applied, reporting exact $p$-values and Cohen's $d$ effect sizes at $\alpha = 0.05$. All primary conclusions are supported by statistically significant test results.

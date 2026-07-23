@@ -1,45 +1,54 @@
 \section{Methodology}
 \label{sec:method}
 
-This section describes our experimental setup, the prompting configurations, the metrics used for evaluation, and the statistical analysis plan.
+This section describes our experimental setup, dataset, prompt designs, evaluation metrics, statistical analysis plan, and replication package.
 
-\subsection{Dataset (Population)}
-We extracted a random sample of $N=100$ User Stories from the public dataset published by Rathnayake et al.~\cite{rathnayake2026}. Each sample contains:
+\subsection{Dataset}
+We extracted a dataset of $N=500$ User Stories from the benchmark dataset published by Rathnayake et al.~\cite{rathnayake2026}. Each sample contains:
 \begin{itemize}
-    \item A User Story in Connextra format (As a..., I want..., So that...).
-    \item Business requirements.
-    \item A Ground Truth Gherkin scenario written by human experts.
+    \item A User Story in Connextra format (\textit{As a... I want to... So that...}).
+    \item Detailed business requirements and acceptance criteria.
+    \item An expert-written Ground Truth Gherkin scenario.
 \end{itemize}
-We selected 20 samples from this set to serve as our Pilot dataset (Tuần 7) and ran the final experiment on all 100 samples (Tuần 8) using a fixed random seed of 42 to ensure reproducibility.
+Evaluation was conducted across all 500 samples using a fixed random seed of 42 to ensure reproducibility.
 
-\subsection{Model Configuration (Intervention)}
-We used the open-source model \texttt{Qwen2.5-7B-Instruct} running locally via the Hugging Face Transformers pipeline. The generation parameters were configured to ensure deterministic output:
-\begin{itemize}
-    \item Temperature: $0.0$ (deterministic).
-    \item Top\_p: $1.0$.
-    \item Max new tokens: $1000$.
-\end{itemize}
-
-\subsection{Prompting Strategies}
-We systematically evaluated three prompting strategies:
+\subsection{Experimental Pipeline}
+Our automated experimental execution pipeline consists of six sequential stages:
 \begin{enumerate}
-    \item \textbf{Zero-Shot Prompting}: The model was given the User Story and requirements and directly instructed to output the Gherkin scenario and Behave Python step definitions without any examples.
-    \item \textbf{Few-Shot Prompting}: We included two concrete input-output examples (templates) in the prompt, showing the exact Gherkin syntax and Behave Python code structure.
-    \item \textbf{Chain-of-Thought (CoT) Prompting}: The model was instructed to output its reasoning process ("thinking steps") before generating the Gherkin scenarios and Python code.
+    \item \textbf{Dataset Ingestion}: Ingest $N=500$ requirements and format prompt inputs.
+    \item \textbf{Prompt Formatting}: Construct Zero-Shot, Few-Shot, and Chain-of-Thought prompt instances.
+    \item \textbf{GPT-4o Inference}: Execute cloud-based API inference using \texttt{GPT-4o} via the OpenAI Responses API (\texttt{temperature = 0.0}, \texttt{top\_p = 1.0}).
+    \item \textbf{BDD Artifact Parsing}: Extract Gherkin scenario blocks and Python Behave step definition blocks using structural regex parsers.
+    \item \textbf{Metric Computation}: Compute Sentence-BERT Cosine Similarity, Gherkin syntax validation, Python AST Syntax Parse Rates, and structural content statistics.
+    \item \textbf{Statistical Analysis}: Perform One-Sample/Pairwise Wilcoxon Signed-Rank tests, Binomial exact tests, and McNemar tests to evaluate hypotheses.
 \end{enumerate}
 
-\subsection{Evaluation Metrics}
-We evaluated the generated outputs using two distinct metrics:
+\subsection{Prompt Strategies}
+We systematically evaluated three prompt engineering strategies:
 \begin{itemize}
-    \item \textbf{Cosine Semantic Similarity}: We extracted the Gherkin scenario from the output and compared it with the Ground Truth scenario. We used the Sentence-BERT (SBERT) model \texttt{all-MiniLM-L6-v2} to encode the scenarios and calculated the Cosine Similarity between their embeddings. The success threshold was set to $\ge 0.80$.
-    \item \textbf{AST Parse Rate}: We extracted the Behave Python code from the output and checked if it could be parsed successfully by Python's Abstract Syntax Tree (\texttt{ast.parse()}) library. The success threshold was set to $\ge 85\%$.
+    \item \textbf{Zero-Shot Prompting}: The model was provided with the User Story and acceptance criteria and directly instructed to output the Gherkin scenario and Behave Python step definitions without any exemplars.
+    \item \textbf{Few-Shot Prompting}: The prompt included two concrete in-context exemplars illustrating correct Gherkin keyword formatting (\texttt{Given-When-Then}) and Behave Python step decorators (\texttt{@given}, \texttt{@when}, \texttt{@then}).
+    \item \textbf{Chain-of-Thought (CoT) Prompting}: The prompt explicitly instructed the model to generate intermediate logical reasoning steps prior to emitting Gherkin scenarios and Python step definitions.
+\end{itemize}
+
+\subsection{Evaluation Metrics and Thresholds}
+We evaluated model outputs across four primary metrics:
+\begin{itemize}
+    \item \textbf{Sentence-BERT Cosine Similarity (Semantic Fidelity)}: Extracted Gherkin scenarios were compared against expert Ground Truth scenarios using Sentence-BERT (\texttt{all-MiniLM-L6-v2}) embedding cosine similarity. The quality baseline threshold was set to $\ge 0.80$.
+    \item \textbf{Gherkin Syntax Validation}: Verified the structural presence of mandatory BDD keywords (\texttt{Feature}, \texttt{Scenario}, \texttt{Given}, \texttt{When}, \texttt{Then}).
+    \item \textbf{AST Parse Rate (Syntactic Validity)}: Extracted Behave Python step definitions were evaluated using Python's Abstract Syntax Tree parser (\texttt{ast.parse()}). Code blocks compiling without \texttt{SyntaxError} received a score of 1, and 0 otherwise. The baseline threshold was set to $\ge 85\%$.
+    \item \textbf{Content Statistics}: Measured structural properties including average step count, average scenario count, percentage of \texttt{And} conjunction usage, average word count, average line count, and step bounds.
 \end{itemize}
 
 \subsection{Statistical Analysis Plan}
-To validate our results, we implemented the following statistical tests:
+All statistical hypothesis tests were evaluated at $\alpha = 0.05$:
 \begin{itemize}
-    \item \textbf{One-Sample Wilcoxon Signed-Rank Test}: To check if the SBERT Cosine Similarity of each technique significantly exceeds the $0.80$ threshold.
-    \item \textbf{One-Sample Binomial Exact Test}: To verify if the AST Parse Rate of each technique significantly exceeds the $85\%$ benchmark.
-    \item \textbf{Paired Wilcoxon Signed-Rank Test}: To compare the semantic similarity scores between techniques (e.g., Few-Shot vs. Zero-Shot).
-    \item \textbf{McNemar's Test}: To compare the syntax validity rates between techniques.
+    \item \textbf{One-Sample Wilcoxon Signed-Rank Test}: Selected because Cosine Similarity scores are continuous, bounded $[0, 1]$, and non-normally distributed. Evaluates whether median Cosine Similarity for each technique significantly exceeds the $0.80$ baseline threshold.
+    \item \textbf{One-Sample Binomial Exact Test}: Selected because AST parse status is binary ($1/0$). Evaluates whether the syntactic pass rate significantly exceeds the $85\%$ benchmark.
+    \item \textbf{Pairwise Wilcoxon Signed-Rank Test}: Selected for paired comparison of continuous semantic similarity scores across techniques on the same 500 requirement items.
+    \item \textbf{McNemar's Test}: Selected for paired comparison of binary AST parse success/failure outcomes across techniques.
+    \item \textbf{Effect Size Quantification}: Calculated using Cohen's $d$ for paired continuous metrics to quantify practical difference magnitude ($|d| < 0.2$ Negligible, $0.2 \le |d| < 0.5$ Small, $0.5 \le |d| < 0.8$ Medium, $|d| \ge 0.8$ Large).
 \end{itemize}
+
+\subsection{Replication Package}
+All prompts, raw API response logs, generated datasets, evaluation scripts, and statistical notebooks are available in our public GitHub repository: \url{https://github.com/Lorden13/RT-SWT-001-Gr2}.

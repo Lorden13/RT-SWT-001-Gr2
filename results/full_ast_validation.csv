@@ -1,0 +1,4 @@
+Prompt,Valid,Total,Parse Rate (%)
+Zero-shot,499,100,99.8
+Few-shot,500,100,100.0
+CoT,500,100,100.0

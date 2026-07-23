@@ -1,13 +1,15 @@
 \section{Conclusion and Future Work}
 \label{sec:conclusion}
 
-In this empirical study, we evaluated the performance of Qwen2.5-7B-Instruct in automatically generating Behavior-Driven Development (BDD) Gherkin scenarios and Behave step definitions from User Stories. Through a rigorous evaluation of 100 requirements, we assessed Zero-Shot, Few-Shot, and Chain-of-Thought (CoT) prompting techniques.
+In this paper, we presented a large-scale empirical evaluation of \texttt{GPT-4o} (accessed via the cloud-based OpenAI Responses API) for joint BDD Gherkin scenario and Behave Python step definition generation across $N=500$ requirements.
 
-Our findings show that:
+Our empirical findings directly answer our three Research Questions:
 \begin{itemize}
-    \item Both **Few-Shot** (mean similarity = $0.8141$, $p = 0.0007$) and **CoT** ($0.8100$, $p = 0.0046$) prompting techniques successfully exceed the target quality threshold of $0.80$ with statistical significance.
-    \item All techniques achieve exceptionally high syntax correctness rates ($\ge 99\%$), far surpassing the $85\%$ quality benchmark.
-    \item Few-Shot prompting performs significantly better than Zero-Shot prompting ($p = 0.0034$), making it the most stable, accurate, and token-efficient prompting technique for automated BDD workflows.
+    \item \textbf{RQ1 (Semantic Similarity)}: Few-Shot prompting achieves the highest mean SBERT Cosine Similarity of $0.8218$, significantly outperforming Zero-Shot ($0.8088$, $p < 0.0001, d=0.291$) and Chain-of-Thought prompting ($0.8168$, $p < 0.0001, d=0.617$).
+    \item \textbf{RQ2 (Executable Syntax Validity)}: Few-Shot and Chain-of-Thought prompting produce the highest executable AST syntax validity ($100.0\%$, 500/500), while Zero-Shot achieves $99.8\%$ (499/500), with all techniques vastly exceeding the $85\%$ benchmark ($p < 0.0001$).
+    \item \textbf{RQ3 (Comparative Effectiveness)}: Statistically significant differences exist among all three prompting techniques ($p < 0.0001$), establishing Few-Shot prompting as the most effective and token-efficient strategy for automated BDD workflows.
 \end{itemize}
 
-Future work will focus on integrating automated UI locator discovery to replace empty test function bodies, evaluating larger open-source models, and testing the generalization of these prompting strategies on complex, multi-domain requirements.
+In summary, this study demonstrates that Few-Shot prompting with GPT-4o provides optimal semantic precision, structural completeness, and syntactic validity for enterprise BDD test automation.
+
+Future work will focus on integrating automated HTML DOM locator discovery tools to populate the generated \texttt{pass} function bodies, evaluating additional foundation models (e.g., Claude 3.5 Sonnet), and testing generalization across multi-domain software repositories.

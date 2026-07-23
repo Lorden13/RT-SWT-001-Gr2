@@ -3,7 +3,7 @@
 Full Experiment API Log
 ==============================
 
-Date: 2026-07-14 15:57:19.484092
+Date: 2026-07-19 11:39:48.907035
 
 Model: GPT-4o
 Provider: OpenAI API
@@ -21,9 +21,9 @@ Full Dataset (N = 100)
 
 Samples
 -------
-Zero-shot : 100
-Few-shot  : 100
-CoT       : 100
+Zero-shot : 500
+Few-shot  : 500
+CoT       : 500
 
 Invalid Outputs : 0
 

@@ -207,5 +207,5 @@ summary_rows = [
 ]
 
 summary_df = pd.DataFrame(summary_rows)
-summary_df.to_csv(output_path, index=False, encoding='utf-8-sig')
+summary_df.to_csv(output_path, index=False)
 print(f"Successfully generated summary.csv at: {output_path}")

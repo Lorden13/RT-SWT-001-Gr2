@@ -1,19 +1,26 @@
 \section{Introduction}
 \label{sec:intro}
 
-Behavior-Driven Development (BDD) is an agile software development methodology that encourages collaboration among developers, QA engineers, and business stakeholders. By defining software requirements in structured, natural language formats like Gherkin (using `Given-When-Then` steps), BDD ensures that technical implementations directly match business expectations. Once the kịch bản Gherkin are defined, developers write Step Definitions (typically in Python using Behave or Java using Cucumber) to map the natural language steps to executable test scripts (e.g., Selenium web driver actions).
+Behavior-Driven Development (BDD) is an established software engineering methodology that fosters collaboration among software developers, Quality Assurance (QA) engineers, and business stakeholders. By formalizing software requirements into structured, domain-specific natural language scenarios using Gherkin syntax (\texttt{Given-When-Then} clauses), BDD aligns technical test specifications directly with business expectations. Once Gherkin scenarios are defined, automation engineers implement Step Definitions in programming languages such as Python (using Behave) or Java (using Cucumber) to bind step statements to executable web driver actions (e.g., Selenium calls).
 
-Despite its benefits, manually writing Gherkin scenarios and implementing step definitions is a time-consuming and error-prone process. As software systems grow in size and complexity, maintaining test coverage becomes a significant bottleneck. 
+Despite its widespread adoption, manually authoring Gherkin scenarios and implementing underlying step definition scripts is labor-intensive, time-consuming, and highly susceptible to human error. As software applications evolve, maintaining comprehensive BDD test suites becomes a severe operational bottleneck.
 
-To address this challenge, researchers and practitioners have explored the use of Large Language Models (LLMs) to automate test generation. Modern LLMs have demonstrated remarkable capabilities in code completion, code generation, and requirement translation. However, most existing studies have focused on commercial, closed-source models (such as GPT-4) or single-stage scenario generation, leaving a gap in our understanding of how smaller, open-source models perform in joint scenario and step definition generation.
+To address these challenges, researchers have increasingly investigated Large Language Models (LLMs) for automated software test generation. While state-of-the-art foundation models demonstrate strong code generation capabilities, existing studies predominantly restrict evaluation to single-stage Gherkin scenario generation or lack comparative evaluations across different prompt engineering paradigms for multi-artifact BDD generation.
 
-This paper presents an empirical evaluation of the open-source model \texttt{Qwen2.5-7B-Instruct} for automated BDD test generation. We systematically compare three prompt engineering techniques: Zero-Shot, Few-Shot, and Chain-of-Thought (CoT) prompting across a dataset of $N=100$ user stories.
+To address this gap, this paper presents an empirical evaluation of \texttt{GPT-4o} (accessed via the cloud-based OpenAI Responses API) for end-to-end BDD test artifact generation. We systematically compare Zero-Shot, Few-Shot, and Chain-of-Thought (CoT) prompting strategies across a benchmark dataset of $N=500$ user stories.
 
-Specifically, this study makes the following contributions:
+Specifically, this study investigates three Research Questions (RQs):
 \begin{itemize}
-    \item We conduct a rigorous quantitative evaluation of semantic similarity and syntax correctness for joint BDD scenario and step definition generation.
-    \item We perform statistical significance testing using Wilcoxon and McNemar tests to compare the prompting strategies.
-    \item We provide a public replication package including prompts, generated datasets, and the evaluation scripts.
+    \item \textbf{RQ1 (Semantic Similarity)}: Which prompting technique achieves the highest semantic similarity compared with the ground truth?
+    \item \textbf{RQ2 (Executable Syntax Validity)}: Which prompting technique produces the highest executable syntax validity?
+    \item \textbf{RQ3 (Comparative Effectiveness)}: Are there statistically significant differences among the prompting techniques?
 \end{itemize}
 
-The rest of this paper is organized as follows. Section~\ref{sec:related} reviews related work. Section~\ref{sec:method} details our methodology. Section~\ref{sec:results} presents the quantitative results, followed by discussion in Section~\ref{sec:discussion}. Section~\ref{sec:threats} addresses threats to validity, and Section~\ref{sec:conclusion} concludes the paper.
+This paper makes the following main contributions:
+\begin{enumerate}
+    \item A large-scale empirical evaluation ($N=500$) measuring semantic similarity, Gherkin syntax validation, Python AST parse rate, and content statistics for joint BDD scenario and step definition generation using GPT-4o.
+    \item Rigorous non-parametric statistical hypothesis testing (One-Sample and Pairwise Wilcoxon Signed-Rank tests, Binomial exact tests, and McNemar tests) with effect size quantifications ($d$).
+    \item A fully open replication package including prompts, generated raw API outputs, and evaluation scripts to facilitate future research.
+\end{enumerate}
+
+The remainder of this paper is organized as follows: Section~\ref{sec:related} discusses related work. Section~\ref{sec:method} details the methodology. Section~\ref{sec:results} presents empirical findings. Section~\ref{sec:discussion} analyzes the results and implications. Section~\ref{sec:threats} addresses threats to validity, and Section~\ref{sec:conclusion} concludes the paper.

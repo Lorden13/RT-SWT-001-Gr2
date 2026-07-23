@@ -1,0 +1,4 @@
+Prompt,Average Cosine
+Zero-Shot,0.80876935
+Few-Shot,0.82179636
+CoT,0.76666456
