@@ -1,15 +1,25 @@
 \section{Related Work}
 \label{sec:related}
 
-Automating test generation from natural language requirements is a long-standing goal in software engineering. Early approaches relied on rule-based systems or heuristic natural language processing (NLP) to parse requirements and map them to test cases. While successful in highly restricted domains, these methods struggled with the ambiguity and variety of natural language user stories.
+Automating software test generation from natural language requirements has long been a key goal in automated software engineering. This section organizes prior research into three main themes and positions our work within the existing literature.
 
-The advent of Large Language Models (LLMs) has transformed this landscape. Modern models are pretrained on vast codebases, allowing them to translate requirements to executable test scripts directly.
+\subsection{BDD Scenario and Step Definition Generation}
+Early approaches to BDD test automation relied on heuristic Natural Language Processing (NLP) or rule-based grammars to extract action verbs and entities from user stories. While effective in constrained environments, these systems lacked flexibility when handling ambiguous, free-form requirement texts.
 
-In the context of Behavior-Driven Development (BDD), several recent studies have explored the capabilities of LLMs:
-\begin{itemize}
-    \item \textbf{Scenario Generation}: Fernandes et al.~\cite{fernandes2024} evaluated commercial LLMs (such as GPT-3.5 and Gemini) for generating Gherkin scenarios from user stories. Their study showed that commercial models could produce correct syntax, but frequently required prompt refinement to capture complex business rules and boundary cases.
-    \item \textbf{Step Definition Generation}: Tesfalidet~\cite{tesfalidet2025} investigated the generation of step definitions using GPT-4, noting that while the generated code syntax was highly accurate, the naming conventions of step functions often diverged from existing test suites unless few-shot examples were provided.
-    \item \textbf{Datasets and Benchmarks}: Rathnayake et al.~\cite{rathnayake2026} established a public dataset of user stories paired with expert-written Gherkin scenarios. This dataset has become a standard benchmark for evaluating automated Gherkin scenario generation.
-\end{itemize}
+With the emergence of Large Language Models (LLMs), recent work has examined model capabilities for BDD artifact synthesis. Fernandes et al.~\cite{fernandes2024} evaluated commercial LLMs (GPT-3.5 and Gemini) for generating Gherkin scenarios, finding that while commercial APIs produce valid Gherkin syntax, prompt refinement is required to capture edge-case business logic. In a separate study, Tesfalidet~\cite{tesfalidet2025} evaluated step definition code generation using GPT-4, observing high syntactic accuracy but frequent parameter naming divergence from existing test codebases.
 
-Unlike previous studies that mostly focus on large commercial models (e.g., GPT-4) or evaluate Gherkin scenario generation in isolation, our work evaluates the performance of a medium-sized open-source model (\texttt{Qwen2.5-7B-Instruct}) for the *joint* generation of Gherkin scenarios and Python step definitions. We systematically compare three prompt configurations to identify the most stable and resource-efficient approach for local deployment.
+\textit{Positioning Statement:} Unlike previous studies that evaluate scenario generation or step definition synthesis in isolation, our work evaluates the *joint* end-to-end generation of both Gherkin scenarios and Behave Python step definitions within a single inference pipeline.
+
+\subsection{Prompt Engineering Strategies in Automated Software Testing}
+Prompt engineering strategy significantly influences LLM performance on software engineering tasks. Zero-shot prompting evaluates baseline model knowledge without context, whereas Few-shot prompting guides model formatting and logic through in-context exemplars. Chain-of-Thought (CoT) prompting introduces intermediate reasoning steps to break down complex tasks.
+
+In software test generation, researchers have compared these prompting techniques to optimize code correctness and coverage. However, findings remain mixed regarding whether CoT prompting consistently improves code synthesis, as intermediate reasoning can introduce formatting noise that complicates automated post-processing.
+
+\textit{Positioning Statement:} However, existing studies have not systematically quantified the trade-offs between Zero-Shot, Few-Shot, and CoT prompting for joint multi-artifact BDD generation under strict statistical hypothesis testing.
+
+\subsection{Foundation Models in Software Test Automation}
+Recent developments in foundation models have led to the deployment of highly capable models such as OpenAI's GPT-4o. While GPT-4o exhibits strong reasoning and code synthesis across general benchmarks, empirical evaluations regarding its comparative prompt sensitivity for domain-specific testing formalisms (such as BDD Gherkin and Behave step definitions) remain limited.
+
+Rathnayake et al.~\cite{rathnayake2026} established a public benchmark dataset of user stories paired with expert Gherkin scenarios, providing a standardized foundation for empirical LLM benchmarking.
+
+\textit{Positioning Statement:} Unlike prior work evaluating earlier model generations, our study systematically benchmarks \texttt{GPT-4o} across 500 industrial user stories, quantifying the exact impact of prompt engineering techniques on semantic similarity, Gherkin syntax validation, Python AST parse rates, and structural content statistics.
