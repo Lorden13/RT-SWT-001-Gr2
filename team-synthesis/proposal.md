@@ -549,7 +549,7 @@ Bảng ánh xạ câu hỏi nghiên cứu, tiêu chuẩn chất lượng và ph�
 
 ### 7.6 Ground Truth Bias (Thiên lệch trong kịch bản chuẩn)
 *   **Mối đe dọa:** Kịch bản Ground Truth do chuyên gia viết tay có thể mang tính chủ quan của cá nhân người viết, dẫn đến việc mô hình sinh ra một kịch bản hoàn toàn đúng đắn nhưng lại bị chấm điểm thấp do khác biệt về phong cách viết.
-*   **Hành động giảm thiểu (Mitigation):** Bộ dữ liệu Ground Truth được rà soát chéo độc lập bởi thành viên DG (Trần Đăng Khoa) và đối chiếu với các hướng dẫn viết BDD tiêu chuẩn để đảm bảo tính khách quan và chuẩn hóa cao nhất trước khi đưa vào so sánh.
+*   **Hành động giảm thiểu (Mitigation):** Bộ dữ liệu Ground Truth được rà soát chéo độc lập bởi thành viên DG (Ngô Đình Khoa) và đối chiếu với các hướng dẫn viết BDD tiêu chuẩn để đảm bảo tính khách quan và chuẩn hóa cao nhất trước khi đưa vào so sánh.
 
 ### 7.7 API Service & Infrastructure Validity (Mối đe dọa từ hạ tầng API thương mại)
 *   **Mối đe dọa:** Việc sử dụng dịch vụ API của bên thứ ba (OpenAI Responses API) đối mặt với các mối đe dọa liên quan đến:
@@ -569,13 +569,13 @@ Bảng ánh xạ câu hỏi nghiên cứu, tiêu chuẩn chất lượng và ph�
 
 Để đảm bảo tính độc lập khách quan và phân định rõ đóng góp học thuật của từng thành viên theo yêu cầu của giảng viên hướng dẫn, nhóm thống nhất cơ cấu trách nhiệm chi tiết như sau:
 
-*   **Ngô Đình Khoa (PL - Project Lead):**
+*   **Trần Đăng Khoa (PL - Project Lead):**
     *   *Đóng góp viết tài liệu:* Viết mục Bối cảnh & Tầm quan trọng (Section 2.1), GAP nghiên cứu (Section 2.3), Motivation (Section 2.4), và Related Work (Section 3).
     *   *Đóng góp kỹ thuật & quản lý:* Chịu trách nhiệm tổng hợp proposal, soát lỗi chính tả/định dạng, kiểm tra tính nhất quán học thuật toàn bộ tài liệu đề cương và quản lý tiến độ thực hiện dự án của các thành viên.
 *   **Trịnh Phú Quốc (LR - LLM Runner):**
     *   *Đóng góp viết tài liệu:* Viết mục Thiết kế cấu hình mô hình (Section 5.3) và đặc tả các Prompt Templates (Section 5.4) cho Zero-Shot, Few-Shot, và Chain-of-Thought.
-    *   *Đóng góp kỹ thuật & quản lý:* Phụ trách thiết kế chi tiết 3 loại prompts (bao gồm 2 ví dụ mẫu cho Few-Shot và hướng dẫn suy luận nội bộ cho CoT), cấu hình và gọi mô hình GPT-4o thông qua OpenAI Responses API, thực thi chạy mô hình trên toàn bộ tập dữ liệu, thu thập dữ liệu đầu ra thô và quản lý logs thực nghiệm.
-*   **Trần Đăng Khoa (DG - Data & Ground Truth):**
+    *   *Đóng góp kỹ thuật & quản lý:* Phụ trách thiết kế chi tiết 3 loại prompts (bao gồm 2 ví dụ mẫu cho Few-Shot và hướng dẫn suy luận nội bộ cho CoT), cấu hình môi trường suy luận cục bộ Qwen2.5-7B-Instruct, thực thi chạy mô hình và thu thập dữ liệu đầu ra thô của thực nghiệm.
+*   **Ngô Đình Khoa (DG - Data & Ground Truth):**
     *   *Đóng góp viết tài liệu:* Viết mục Đặc tả dữ liệu thực nghiệm (Section 5.1).
     *   *Đóng góp kỹ thuật & quản lý:* Chịu trách nhiệm nghiên cứu tập dữ liệu Rathnayake (2026), thực hiện quy trình lấy mẫu ngẫu nhiên đơn giản (Simple Random Sampling với seed = 42, không lặp) để trích xuất 100 mẫu, rà soát và kiểm định dữ liệu đối chứng Ground Truth. Hỗ trợ chuẩn hóa dữ liệu đầu ra, hỗ trợ quản lý và lưu trữ kết quả thực nghiệm, và hỗ trợ kiểm tra tính nhất quán giữa Output của mô hình và Ground Truth.
 *   **Đặng Đỗ Cao Sang (MS - Metrics & Stats):**
@@ -589,10 +589,10 @@ Bảng phân công chi tiết đóng góp học thuật và vai trò thực nghi
 
 | Thành viên | Trách nhiệm viết tài liệu | Trách nhiệm kỹ thuật thực nghiệm | Vai trò chính |
 | :--- | :--- | :--- | :---: |
-| **Ngô Đình Khoa** | Problem Statement, Motivation, Related Work, Soát lỗi tính nhất quán | Tổng hợp proposal, Quản lý tiến độ | PL |
-| **Trịnh Phú Quốc** | Model Config, Prompt Templates (Zero, Few, CoT) | Thiết kế prompt, cấu hình OpenAI API, chạy mô hình GPT-4o | LR |
-| **Trần Đăng Khoa** | Dataset Specification | Nghiên cứu dữ liệu, Random Sampling, Quản lý Ground Truth, Chuẩn hóa đầu ra, Lưu trữ kết quả thực nghiệm, Kiểm tra tính nhất quán Output vs Ground Truth | DG |
-| **Đặng Đỗ Cao Sang**| Static Validation, Semantic Evaluation, Statistical Analysis | Xây dựng bộ lọc tĩnh parser/AST, đo Cosine SBERT, BLEU, ROUGE, chạy kiểm định Wilcoxon, Binomial, McNemar, Rank-Biserial Correlation, trực quan hóa và diễn giải kết quả | MS |
+| **Trần Đăng Khoa** | Problem Statement, Motivation, Related Work, Soát lỗi tính nhất quán | Tổng hợp proposal, Quản lý tiến độ | PL |
+| **Trịnh Phú Quốc** | Model Config, Prompt Templates (Zero, Few, CoT) | Thiết kế prompt, Cài đặt & chạy mô hình Qwen local | LR |
+| **Ngô Đình Khoa** | Dataset Specification | Nghiên cứu dữ liệu, Random Sampling, Quản lý Ground Truth, Chuẩn hóa đầu ra, Lưu trữ kết quả thực nghiệm, Kiểm tra tính nhất quán Output vs Ground Truth | DG |
+| **Đặng Đỗ Cao Sang**| Static Validation, Semantic Evaluation, Statistical Analysis | Xây dựng bộ lọc tĩnh parser/AST, Đo Cosine SBERT, Chạy code phân tích thống kê | MS |
 | **Đào Lý Phi Hùng** | Research Questions, PICO, Threats to Validity, Timeline, Discussion & Conclusion, Slide | Thiết kế Slide, Hỗ trợ tổng hợp kết quả, chuẩn bị phản biện, hoàn thiện walkthrough | RW |
 
 ### 8.1.1 Danh mục Sản phẩm bàn giao cá nhân (Individual Deliverables)
@@ -601,10 +601,10 @@ Bảng phân công chi tiết đóng góp học thuật và vai trò thực nghi
 
 | Thành viên | Sản phẩm bàn giao chính (Primary Deliverables) |
 | :--- | :--- |
-| **Ngô Đình Khoa** | Đề cương proposal hoàn chỉnh (tổng hợp), Phần viết Problem Statement & Motivation (Section 2), Phần viết Related Work (Section 3), Kế hoạch quản lý tiến độ nhóm. |
-| **Trịnh Phú Quốc** | Tài liệu đặc tả Prompt Templates (Section 5.4), Cấu hình OpenAI Responses API (Section 5.3), Bộ dữ liệu thô kết quả chạy thực nghiệm (Raw Outputs CSV). |
-| **Trần Đăng Khoa** | Gói dữ liệu đầu vào chuẩn hóa (Dataset Package), Báo cáo kiểm định dữ liệu chuẩn (Ground Truth Validation Report), Bộ dữ liệu đầu ra đã chuẩn hóa và làm sạch (Cleaned Outputs). |
-| **Đặng Đỗ Cao Sang**| Mã nguồn script kiểm định cú pháp tĩnh (Validation Scripts), Notebook lập trình phân tích thống kê (Statistical Notebook), các biểu đồ trực quan hóa số liệu và báo cáo kết quả phân tích thống kê đầy đủ. |
+| **Trần Đăng Khoa** | Đề cương proposal hoàn chỉnh (tổng hợp), Phần viết Problem Statement & Motivation (Section 2), Phần viết Related Work (Section 3), Kế hoạch quản lý tiến độ nhóm. |
+| **Trịnh Phú Quốc** | Tài liệu đặc tả Prompt Templates (Section 5.4), Cấu hình mô hình Qwen local (Section 5.3), Bộ dữ liệu thô kết quả chạy thực nghiệm (Raw Outputs CSV). |
+| **Ngô Đình Khoa** | Gói dữ liệu đầu vào chuẩn hóa (Dataset Package), Báo cáo kiểm định dữ liệu chuẩn (Ground Truth Validation Report), Bộ dữ liệu đầu ra đã chuẩn hóa và làm sạch (Cleaned Outputs). |
+| **Đặng Đỗ Cao Sang**| Mã nguồn script kiểm định cú pháp tĩnh (Validation Scripts), Notebook lập trình phân tích thống kê (Statistical Notebook), Báo cáo kết quả phân tích số liệu (Analysis Report). |
 | **Đào Lý Phi Hùng** | Báo cáo nghiệm thu kết quả cuối kỳ (Final walkthrough.md), Phần viết Thảo luận (Discussion) & Kết luận (Conclusion), Slide bảo vệ đề cương và nghiệm thu dự án. |
 
 ### 8.2 Quản lý Tài nguyên (Resource Inventory)
@@ -627,8 +627,8 @@ Nhóm phân chia lộ trình thực hiện dự án từ Tuần 5 đến Tuần 
 *   **Công việc thực hiện:**
     *   Viết và hoàn thiện các mục trong proposal (Problem Statement, Related Work, RQs, PICO, Methodology, Timeline, Threats).
     *   Thiết kế slide trình bày bảo vệ đề cương.
-*   **Người phụ trách chính:** Ngô Đình Khoa (PL).
-*   **Người hỗ trợ:** Toàn bộ thành viên trong nhóm (Trịnh Phú Quốc, Trần Đăng Khoa, Đặng Đỗ Cao Sang, Đào Lý Phi Hùng).
+*   **Người phụ trách chính:** Trần Đăng Khoa (PL).
+*   **Người hỗ trợ:** Toàn bộ thành viên trong nhóm (Trịnh Phú Quốc, Ngô Đình Khoa, Đặng Đỗ Cao Sang, Đào Lý Phi Hùng).
 *   **Sản phẩm đầu ra (Deliverables):**
     *   Tệp đề cương nghiên cứu khoa học hoàn chỉnh `proposal.md` v2.4.
     *   Slide thuyết trình bảo vệ đề cương (Proposal defense slide deck).
@@ -637,8 +637,8 @@ Nhóm phân chia lộ trình thực hiện dự án từ Tuần 5 đến Tuần 
 *   **Công việc thực hiện:**
     *   Tải tập dữ liệu gốc, viết script trích xuất 100 mẫu ngẫu nhiên không lặp (seed = 42) và chuẩn bị Ground Truth.
     *   Thiết kế cấu trúc prompt và viết các ví dụ mẫu cho kỹ thuật Few-Shot.
-    *   Chạy thực nghiệm pilot (thử nghiệm Pilot) trên 20 mẫu để kiểm thử tính khả thi của kết nối OpenAI Responses API và bộ parser.
-*   **Người phụ trách chính:** Trần Đăng Khoa (DG) - chuẩn bị dữ liệu; Trịnh Phú Quốc (LR) - thiết kế prompt & chạy thử nghiệm Pilot.
+    *   Chạy thực nghiệm pilot trên 10 mẫu để kiểm thử tính khả thi của hệ thống và bộ parser.
+*   **Người phụ trách chính:** Ngô Đình Khoa (DG) - chuẩn bị dữ liệu; Trịnh Phú Quốc (LR) - thiết kế prompt & chạy mô hình.
 *   **Người hỗ trợ:** Đặng Đỗ Cao Sang (MS) - tích hợp parser tĩnh.
 *   **Sản phẩm đầu ra (Deliverables):**
     *   Tập dữ liệu thực nghiệm đã chuẩn hóa (100 mẫu) kèm Ground Truth kiểm định.
@@ -649,8 +649,8 @@ Nhóm phân chia lộ trình thực hiện dự án từ Tuần 5 đến Tuần 
 *   **Công việc thực hiện:**
     *   Triển khai thực nghiệm chính thức Full Experiment (N = 100) sử dụng các kỹ thuật Zero-shot, Few-shot và Chain-of-Thought prompting trên mô hình GPT-4o thông qua OpenAI API.
     *   Thu thập logs chạy thực nghiệm và xuất dữ liệu thô.
-    *   Phân tách và lưu trữ kết quả thực nghiệm thô.
-*   **Người phụ trách chính:** Trịnh Phú Quốc (LR), Trần Đăng Khoa (DG).
+    *   Phân tách và lưu trữ kết quả thực nghiệm thô của từng mô hình.
+*   **Người phụ trách chính:** Trịnh Phú Quốc (LR), Ngô Đình Khoa (DG).
 *   **Người hỗ trợ:** Đặng Đỗ Cao Sang (MS).
 *   **Sản phẩm đầu ra (Deliverables):**
     *   Tệp dữ liệu thô kết quả sinh của mô hình `prompt_experiment_outputs.csv` (100 mẫu $\times$ 3 cấu hình prompt).
@@ -673,8 +673,8 @@ Nhóm phân chia lộ trình thực hiện dự án từ Tuần 5 đến Tuần 
     *   Tổng hợp kết quả, viết các mục Thảo luận (Discussion) và Kết luận (Conclusion) cho báo cáo khoa học cuối kỳ.
     *   Thiết kế slide thuyết trình nghiệm thu kết quả nghiên cứu.
     *   Tập duyệt bảo vệ kết quả trước hội đồng.
-*   **Người phụ trách chính:** Đào Lý Phi Hùng (RW) - tổng hợp báo cáo và slide; Ngô Đình Khoa (PL) - rà soát chất lượng.
-*   **Người hỗ trợ:** Toàn bộ thành viên trong nhóm (Trịnh Phú Quốc, Trần Đăng Khoa, Đặng Đỗ Cao Sang).
+*   **Người phụ trách chính:** Đào Lý Phi Hùng (RW) - tổng hợp báo cáo và slide; Trần Đăng Khoa (PL) - rà soát chất lượng.
+*   **Người hỗ trợ:** Toàn bộ thành viên trong nhóm (Trịnh Phú Quốc, Ngô Đình Khoa, Đặng Đỗ Cao Sang).
 *   **Sản phẩm đầu ra (Deliverables):**
     *   Tệp báo cáo nghiệm thu kết quả dự án cuối kỳ hoàn chỉnh `walkthrough.md`.
     *   Slide trình bày bảo vệ kết quả cuối kỳ (Final defense slide deck).

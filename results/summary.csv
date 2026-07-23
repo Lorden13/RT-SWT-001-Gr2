@@ -1,4 +1,13 @@
-﻿RQ,Metric,Best Prompt,Mean,P-value,Effect Size,Reject H0,Conclusion
-RQ1,Semantic Similarity (Cosine),Few-Shot,0.8217999935150146,0.000676,0.625,True,Few-shot achieved the highest semantic similarity.
-RQ2,Gherkin Syntax Validity,Zero-Shot & CoT,1.0,0.5,,False,No statistically significant difference in Gherkin syntax validity.
-RQ3,Overall Statistical Comparison,Few-Shot,0.8217999935150146,0.0,0.625,True,"Few-shot achieved the highest semantic similarity, and statistical tests confirmed significant differences among prompting techniques."
+﻿RQ,Metric,Technique/Comparison,Value,Threshold/Comparison,p-value,Effect Size,N,Status
+RQ1,Cosine Similarity,Zero-Shot,0.8088,0.80,0.0000,0.0827,500,Đạt
+RQ1,Cosine Similarity,Few-Shot,0.8218,0.80,0.0000,0.2038,500,Đạt
+RQ1,Cosine Similarity,Chain-of-Thought,0.8168,0.80,0.0000,0.1644,500,Đạt
+RQ2,AST Parse Rate,Zero-Shot,0.9980,0.85,0.0000,—,500,Đạt
+RQ2,AST Parse Rate,Few-Shot,1.0000,0.85,0.0000,—,500,Đạt
+RQ2,AST Parse Rate,Chain-of-Thought,1.0000,0.85,0.0000,—,500,Đạt
+RQ3 (Semantic),Cosine Similarity,Few-Shot vs Zero-Shot,0.8218 vs 0.8088,Paired,0.0000,0.2496,500,Có ý nghĩa
+RQ3 (Semantic),Cosine Similarity,Few-Shot vs CoT,0.8218 vs 0.8168,Paired,0.0105,0.0995,500,Có ý nghĩa
+RQ3 (Semantic),Cosine Similarity,Zero-Shot vs CoT,0.8088 vs 0.8168,Paired,0.0002,-0.1749,500,Có ý nghĩa
+RQ3 (Syntax),AST Parse Rate,Few-Shot vs Zero-Shot,1.0000 vs 0.9980,McNemar,1.0000,—,500,Không ý nghĩa
+RQ3 (Syntax),AST Parse Rate,Few-Shot vs CoT,1.0000 vs 1.0000,McNemar,1.0000,—,500,Không ý nghĩa
+RQ3 (Syntax),AST Parse Rate,Zero-Shot vs CoT,0.9980 vs 1.0000,McNemar,1.0000,—,500,Không ý nghĩa
