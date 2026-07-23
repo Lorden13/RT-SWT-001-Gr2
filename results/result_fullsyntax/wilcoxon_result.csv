@@ -1,0 +1,4 @@
+Comparison,Statistic,P-value,Reject H0,Effect Size
+Zero-Shot vs Few-Shot,44391.0,0.0,True,0.291
+Zero-Shot vs CoT,33404.0,0.0,True,0.467
+Few-Shot vs CoT,24010.0,0.0,True,0.617

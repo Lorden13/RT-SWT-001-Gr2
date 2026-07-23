@@ -1,0 +1,4 @@
+,Feature,Scenario,Given,When,Then,Valid
+Zero-Shot,500,500,500,500,500,500
+Few-Shot,500,500,500,496,500,496
+CoT,500,500,500,500,500,500
